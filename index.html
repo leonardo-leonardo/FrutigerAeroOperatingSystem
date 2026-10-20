@@ -15,14 +15,14 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: url('https://raw.githubusercontent.com/leonardo-leonardo/FrutigerAeroOperatingSystem/refs/heads/main/Vista%20Black%20Widescreen%20Pixel4k.jpg') no-repeat center center fixed;
             background-size: cover;
-            transition: background 0.5s ease;
+            transition: background 0.8s ease-in-out;
         }
 
         /* Desktop Canvas */
         #desktop {
             position: relative;
             width: 100%;
-            height: calc(100% - 40px);
+            height: calc(100% - 42px);
             padding: 20px;
             box-sizing: border-box;
         }
@@ -35,6 +35,16 @@
             cursor: pointer;
             margin-bottom: 20px;
             user-select: none;
+            transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), filter 0.2s ease;
+        }
+
+        .desktop-icon:hover {
+            transform: scale(1.08);
+            filter: drop-shadow(0 0 8px rgba(114, 188, 255, 0.8));
+        }
+
+        .desktop-icon:active {
+            transform: scale(0.95);
         }
 
         .desktop-icon span.icon {
@@ -49,30 +59,40 @@
             display: block;
         }
 
-        /* Aero Glass Window Component */
+        /* Animated Aero Glass Window Component */
         .window {
             position: absolute;
             top: 80px;
             left: 120px;
             width: 500px;
             height: 350px;
-            background: rgba(30, 30, 35, 0.45);
-            backdrop-filter: blur(14px) saturate(180%);
-            -webkit-backdrop-filter: blur(14px) saturate(180%);
-            border: 1px solid rgba(255, 255, 255, 0.35);
-            border-top: 1px solid rgba(255, 255, 255, 0.6);
+            background: rgba(30, 30, 35, 0.5);
+            backdrop-filter: blur(16px) saturate(190%);
+            -webkit-backdrop-filter: blur(16px) saturate(190%);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            border-top: 1px solid rgba(255, 255, 255, 0.7);
             box-shadow: 
-                inset 0 1px 0 rgba(255, 255, 255, 0.4),
-                0 15px 35px rgba(0, 0, 0, 0.6);
+                inset 0 1px 0 rgba(255, 255, 255, 0.5),
+                0 20px 40px rgba(0, 0, 0, 0.7);
             border-radius: 8px 8px 5px 5px;
-            display: none;
+            display: flex;
             flex-direction: column;
             overflow: hidden;
             z-index: 10;
+            
+            /* Fluid Opening Animation Defaults */
+            transform: scale(0.7) translateY(20px);
+            opacity: 0;
+            visibility: hidden;
+            transition: transform 0.3s cubic-bezier(0.1, 0.9, 0.2, 1), 
+                        opacity 0.3s cubic-bezier(0.1, 0.9, 0.2, 1), 
+                        visibility 0.3s ease;
         }
 
         .window.active {
-            display: flex;
+            transform: scale(1) translateY(0);
+            opacity: 1;
+            visibility: visible;
         }
 
         /* Windows 7 Glossy Title Bar */
@@ -98,7 +118,7 @@
 
         .title-bar-controls {
             display: flex;
-            gap: 4px;
+            gap: 6px;
         }
 
         .title-bar-controls button {
@@ -109,10 +129,12 @@
             border-radius: 50%;
             cursor: pointer;
             box-shadow: inset 0 1px 0 rgba(255,255,255,0.6);
+            transition: transform 0.15s ease, filter 0.15s ease;
         }
 
         .title-bar-controls button:hover {
-            filter: brightness(1.1);
+            transform: scale(1.15);
+            filter: brightness(1.2);
         }
 
         .window-content {
@@ -120,14 +142,14 @@
             color: #f0f0f0;
             flex-grow: 1;
             overflow-y: auto;
-            background: rgba(20, 20, 25, 0.3);
+            background: rgba(20, 20, 25, 0.35);
         }
 
         .window-content p, .window-content label {
             text-shadow: 0 1px 2px rgba(0,0,0,0.8);
         }
 
-        /* Settings Form Styling */
+        /* Settings Form Styling with smooth animations */
         .settings-group {
             margin-bottom: 15px;
         }
@@ -148,10 +170,16 @@
             border-radius: 4px;
             cursor: pointer;
             font-family: 'Segoe UI', Tahoma, sans-serif;
+            transition: background 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
         }
 
         .settings-group select:hover, .settings-group button:hover {
-            background: rgba(70, 85, 105, 0.9);
+            background: rgba(70, 85, 105, 0.95);
+            box-shadow: 0 0 10px rgba(114, 188, 255, 0.4);
+        }
+
+        .settings-group button:active {
+            transform: scale(0.97);
         }
 
         /* Windows 7 Taskbar */
@@ -162,15 +190,15 @@
             width: 100%;
             height: 42px;
             background: linear-gradient(to bottom, rgba(25, 30, 40, 0.9) 0%, rgba(10, 12, 18, 0.95) 100%);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border-top: 1px solid rgba(255, 255, 255, 0.25);
             display: flex;
             align-items: center;
             padding: 0 6px;
             box-sizing: border-box;
             z-index: 1000;
-            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3), 0 -5px 20px rgba(0,0,0,0.5);
         }
 
         .start-btn {
@@ -185,10 +213,13 @@
             cursor: pointer;
             box-shadow: inset 0 1px 3px rgba(255,255,255,0.9), 0 2px 6px rgba(0,0,0,0.4);
             font-size: 16px;
+            transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), filter 0.2s ease;
         }
 
         .start-btn:hover {
+            transform: scale(1.1);
             background: radial-gradient(circle, #92ccff 0%, #2c75c5 100%);
+            filter: drop-shadow(0 0 6px rgba(114, 188, 255, 0.8));
         }
 
         .taskbar-tray {
@@ -228,8 +259,8 @@
             </div>
             <div class="window-content">
                 <h3 style="margin-top:0; color:#72bcff; text-shadow:0 1px 2px rgba(0,0,0,0.9);">✨ Welcome to Frutiger Aero Web OS</h3>
-                <p>Running on the sleek Black Vista dark glass aesthetic.</p>
-                <p>Click and drag any window by its title bar to move it around your desktop!</p>
+                <p>Fully animated web operating system environment.</p>
+                <p>Enjoy fluid scaling, smooth dragging, and dynamic glass reflections!</p>
             </div>
         </div>
 
@@ -269,12 +300,12 @@
 
                 <div class="settings-group">
                     <label>System Information:</label>
-                    <p style="margin: 4px 0; font-size: 13px;">OS Version: Frutiger Aero Web OS 1.0</p>
-                    <p style="margin: 4px 0; font-size: 13px;">Renderer: HTML5 / CSS3 / JavaScript</p>
+                    <p style="margin: 4px 0; font-size: 13px;">OS Version: Frutiger Aero Web OS 2.0 (Animated)</p>
+                    <p style="margin: 4px 0; font-size: 13px;">Renderer: Hardware-Accelerated CSS3 Transitions</p>
                 </div>
 
                 <div class="settings-group" style="margin-top: 20px;">
-                    <button onclick="alert('Settings saved successfully!')">Apply Changes</button>
+                    <button onclick="alert('Settings saved and applied successfully!')">Apply Changes</button>
                 </div>
             </div>
         </div>
@@ -289,7 +320,7 @@
     <script>
         let highestZIndex = 10;
 
-        // Window Management Functions
+        // Window Management Functions with Smooth Animations
         function openWindow(id) {
             const win = document.getElementById(id);
             win.classList.add('active');
@@ -305,7 +336,7 @@
             document.getElementById(id).style.zIndex = highestZIndex;
         }
 
-        // Draggable Windows Logic
+        // Draggable Windows Logic with Smooth Dragging
         function startDrag(e, windowId) {
             const win = document.getElementById(windowId);
             focusWindow(windowId);
@@ -327,7 +358,7 @@
             document.addEventListener('mouseup', onMouseUp);
         }
 
-        // Wallpaper Changer Function
+        // Animated Wallpaper Changer Function
         function changeWallpaper(theme) {
             if (theme === 'vista-black') {
                 document.body.style.background = "url('https://raw.githubusercontent.com/leonardo-leonardo/FrutigerAeroOperatingSystem/refs/heads/main/Vista%20Black%20Widescreen%20Pixel4k.jpg') no-repeat center center fixed";
