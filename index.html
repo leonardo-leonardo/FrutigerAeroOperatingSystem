@@ -100,7 +100,7 @@
         #bootScreen, #loginScreen, #lockScreen, #shutdownScreen, #biosScreen, #sleepScreen {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 999999;
             display: flex; flex-direction: column; align-items: center; justify-content: center; background: #000; color: white;
-            transition: opacity 0.4s ease;
+            transition: opacity 0.3s ease;
         }
         #bootScreen { background: radial-gradient(circle, #152535 0%, #05080c 100%); }
         .boot-logo {
@@ -395,12 +395,11 @@
     <!-- Glossy Real FPS Counter Overlay -->
     <div id="fpsCounter">FPS: 240</div>
 
-    <!-- Bulletproof Boot Sequence Screen with Instant Bypass Button -->
+    <!-- Exact 1-Second Boot Screen -->
     <div id="bootScreen">
         <div class="boot-logo">🪟</div>
-        <div style="font-size: 20px; font-weight: 500; letter-spacing: 1px; margin-bottom: 15px;">Starting Frutiger Aero OS...</div>
+        <div style="font-size: 20px; font-weight: 500; letter-spacing: 1px;">Starting Frutiger Aero OS...</div>
         <div class="spinner"></div>
-        <button onclick="finishBoot()" class="glass-btn" style="margin-top: 30px; font-size: 14px; padding: 8px 22px;">Enter Frutiger Aero OS</button>
     </div>
 
     <!-- Login Screen -->
@@ -487,9 +486,9 @@
                     </div>
                 </div>
                 <div class="window-content" style="padding:0;">
-                    <textarea class="notepad-textarea">✨ Welcome to Frutiger Aero Web OS v10.0!
+                    <textarea class="notepad-textarea">✨ Welcome to Frutiger Aero Web OS v11.0!
 
-- Bulletproof startup sequence with manual "Enter OS" button and auto-timer.
+- Exact 1-second boot timer with fail-safe automatic transition.
 - Fully opaque window contents preventing icon bleed-through.
 - Active & Inactive window awareness fully operational.
 - Real resolution scaling & True 30/240 FPS frame pacing.
@@ -708,7 +707,7 @@
                             <p><strong>RAM:</strong> <span id="ramText">16GB 5200MHz DDR5</span></p>
                             <p><strong>Storage:</strong> WDC SN5000S 512GB SSD</p>
                             <p><strong>GPU:</strong> <span id="gpuAboutText">NVIDIA GeForce RTX 5060</span></p>
-                            <p><strong>OS:</strong> Frutiger Aero Web OS Ultimate 10.0</p>
+                            <p><strong>OS:</strong> Frutiger Aero Web OS Ultimate 11.0</p>
                         </div>
                     </div>
                 </div>
@@ -793,8 +792,11 @@
     <script>
         let currentPassword = "1234";
 
-        // Bulletproof Startup Boot Sequence with Instant Button Bypass & Auto Timer
+        // Bulletproof 1-Second Real Boot Timer with Dual Fail-Safe Handlers
+        let bootFinished = false;
         function finishBoot() {
+            if (bootFinished) return;
+            bootFinished = true;
             const boot = document.getElementById('bootScreen');
             if (boot) {
                 boot.style.opacity = '0';
@@ -805,7 +807,9 @@
             }
         }
 
-        setTimeout(finishBoot, 1200);
+        // Strict 1000ms (1 second) boot duration
+        setTimeout(finishBoot, 1000);
+        window.addEventListener('load', () => setTimeout(finishBoot, 1000));
 
         // Real-Time Hardware Detection (WebGL GPU & Navigator Cores)
         window.addEventListener('DOMContentLoaded', () => {
@@ -923,15 +927,16 @@
 
         function bootFromBIOS() {
             document.getElementById('biosScreen').style.display = 'none';
-            document.getElementById('bootScreen').style.display = 'flex';
-            document.getElementById('bootScreen').style.opacity = '1';
+            const boot = document.getElementById('bootScreen');
+            boot.style.display = 'flex';
+            boot.style.opacity = '1';
             setTimeout(() => {
-                document.getElementById('bootScreen').style.opacity = '0';
+                boot.style.opacity = '0';
                 setTimeout(() => {
-                    document.getElementById('bootScreen').style.display = 'none';
+                    boot.style.display = 'none';
                     document.getElementById('desktop').style.display = 'block';
                 }, 300);
-            }, 1500);
+            }, 1000);
         }
 
         // Sleep Mode
