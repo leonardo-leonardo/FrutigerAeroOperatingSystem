@@ -7,160 +7,105 @@
     <style>
         :root {
             --accent: #1c65b5;
-            --accent-glow: rgba(28, 101, 181, 0.6);
-            --taskbar-bg1: rgba(55, 110, 190, 0.9);
-            --taskbar-bg2: rgba(15, 45, 90, 0.95);
-            --window-bg: linear-gradient(135deg, rgba(255, 255, 255, 0.25) 0%, rgba(30, 35, 45, 0.65) 50%, rgba(10, 12, 18, 0.8) 100%);
-            --window-content: rgba(15, 18, 24, 0.55);
-            --titlebar-1: rgba(110, 130, 150, 0.92);
-            --titlebar-2: rgba(45, 55, 70, 0.88);
-            --titlebar-3: rgba(15, 20, 28, 0.95);
-            --titlebar-4: rgba(30, 40, 55, 0.95);
+            --accent-glow: rgba(28, 101, 181, 0.8);
+            --taskbar-bg1: rgba(35, 75, 135, 0.85);
+            --taskbar-bg2: rgba(10, 30, 65, 0.92);
+            --window-bg: linear-gradient(135deg, rgba(255, 255, 255, 0.35) 0%, rgba(40, 50, 70, 0.45) 50%, rgba(10, 15, 25, 0.65) 100%);
+            --window-content: rgba(15, 20, 30, 0.4);
+            --titlebar-1: rgba(255, 255, 255, 0.5);
+            --titlebar-2: rgba(80, 105, 135, 0.7);
+            --titlebar-3: rgba(15, 25, 40, 0.85);
+            --titlebar-4: rgba(45, 65, 90, 0.75);
             --text-color: #f0f0f0;
-            --sidebar-bg: rgba(20, 25, 35, 0.65);
-            --col-bg: rgba(15, 20, 30, 0.6);
+            --sidebar-bg: rgba(20, 25, 35, 0.5);
+            --col-bg: rgba(15, 20, 30, 0.45);
         }
 
-        /* Light Mode Theme Overrides */
+        /* Light Mode Overrides */
         body.light-mode {
-            --window-bg: linear-gradient(135deg, rgba(255, 255, 255, 0.85) 0%, rgba(220, 235, 250, 0.75) 50%, rgba(190, 210, 235, 0.8) 100%);
-            --window-content: rgba(240, 245, 252, 0.7);
-            --titlebar-1: rgba(255, 255, 255, 0.95);
-            --titlebar-2: rgba(200, 220, 240, 0.9);
-            --titlebar-3: rgba(140, 180, 220, 0.95);
-            --titlebar-4: rgba(160, 200, 235, 0.95);
-            --text-color: #102030;
-            --sidebar-bg: rgba(210, 225, 245, 0.7);
-            --col-bg: rgba(225, 235, 250, 0.65);
+            --window-bg: linear-gradient(135deg, rgba(255, 255, 255, 0.75) 0%, rgba(220, 235, 250, 0.65) 50%, rgba(180, 205, 235, 0.7) 100%);
+            --window-content: rgba(245, 248, 255, 0.6);
+            --titlebar-1: rgba(255, 255, 255, 0.9);
+            --titlebar-2: rgba(190, 215, 245, 0.8);
+            --titlebar-3: rgba(120, 165, 215, 0.85);
+            --titlebar-4: rgba(150, 190, 230, 0.85);
+            --text-color: #112233;
+            --sidebar-bg: rgba(210, 225, 245, 0.6);
+            --col-bg: rgba(225, 235, 250, 0.55);
         }
 
-        /* Native Custom Retro Scrollbars */
-        ::-webkit-scrollbar {
-            width: 12px;
-            height: 12px;
-        }
-        ::-webkit-scrollbar-track {
-            background: rgba(0, 0, 0, 0.2);
-            border-left: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        ::-webkit-scrollbar-thumb {
-            background: linear-gradient(to right, rgba(255,255,255,0.4), rgba(100,100,100,0.4));
-            border: 1px solid rgba(0,0,0,0.4);
-            border-radius: 3px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--accent);
-        }
+        /* Retro Custom Scrollbars */
+        ::-webkit-scrollbar { width: 10px; height: 10px; }
+        ::-webkit-scrollbar-track { background: rgba(0, 0, 0, 0.15); }
+        ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 3px; border: 1px solid rgba(255,255,255,0.4); }
 
         /* Global Styles & GPU Acceleration */
         body, html {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
+            margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: url('https://raw.githubusercontent.com/leonardo-leonardo/FrutigerAeroOperatingSystem/refs/heads/main/Vista%20Black%20Widescreen%20Pixel4k.jpg') no-repeat center center fixed;
             background-size: cover;
-            transform: translate3d(0,0,0);
-            backface-visibility: hidden;
-            user-select: none;
+            transform: translate3d(0,0,0); backface-visibility: hidden; user-select: none;
         }
 
-        /* Boot, Login, Shutdown, BIOS, Sleep Screens */
+        /* System Screens */
         #bootScreen, #loginScreen, #shutdownScreen, #biosScreen, #sleepScreen {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 99999;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            background: #000;
-            color: white;
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 99999;
+            display: flex; flex-direction: column; align-items: center; justify-content: center; background: #000; color: white;
             transition: opacity 0.5s ease;
         }
-
         #bootScreen { background: radial-gradient(circle, #152535 0%, #05080c 100%); }
         .boot-logo { font-size: 64px; margin-bottom: 20px; animation: pulseLogo 2s infinite alternate; }
         @keyframes pulseLogo {
             0% { transform: scale(1); filter: drop-shadow(0 0 10px rgba(114,188,255,0.5)); }
             100% { transform: scale(1.05); filter: drop-shadow(0 0 25px rgba(114,188,255,0.9)); }
         }
-
         .spinner {
-            width: 40px; height: 40px;
-            border: 4px solid rgba(255,255,255,0.2);
-            border-top: 4px solid var(--accent);
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-            margin-top: 20px;
+            width: 40px; height: 40px; border: 4px solid rgba(255,255,255,0.2);
+            border-top: 4px solid var(--accent); border-radius: 50%;
+            animation: spin 1s linear infinite; margin-top: 20px;
         }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
         #loginScreen {
             background: url('https://raw.githubusercontent.com/leonardo-leonardo/FrutigerAeroOperatingSystem/refs/heads/main/Vista%20Black%20Widescreen%20Pixel4k.jpg') no-repeat center center fixed;
-            background-size: cover;
-            display: none;
+            background-size: cover; display: none;
         }
-
         .login-box {
-            width: 320px;
-            background: rgba(20, 25, 35, 0.75);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.4);
-            border-radius: 10px;
-            padding: 30px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.8);
-            text-align: center;
+            width: 320px; background: rgba(20, 25, 35, 0.65); backdrop-filter: blur(10px);
+            border: 1px solid var(--accent); border-radius: 10px; padding: 30px; box-shadow: 0 20px 50px rgba(0,0,0,0.8); text-align: center;
         }
-
         .login-avatar {
-            width: 80px; height: 80px; border-radius: 50%;
-            background: radial-gradient(circle, var(--accent) 0%, #1c65b5 100%);
-            margin: 0 auto 15px auto; display: flex; align-items: center; justify-content: center;
-            font-size: 36px; border: 2px solid rgba(255,255,255,0.6);
-            box-shadow: inset 0 2px 5px rgba(255,255,255,0.8);
+            width: 80px; height: 80px; border-radius: 50%; background: radial-gradient(circle, var(--accent) 0%, #1c65b5 100%);
+            margin: 0 auto 15px auto; display: flex; align-items: center; justify-content: center; font-size: 36px;
+            border: 2px solid rgba(255,255,255,0.8); box-shadow: inset 0 2px 5px rgba(255,255,255,0.9);
         }
-
         .login-box input {
-            width: 100%; padding: 8px 12px; margin: 10px 0;
-            background: rgba(10, 15, 25, 0.8); border: 1px solid rgba(255, 255, 255, 0.3);
-            border-radius: 4px; color: white; box-sizing: border-box; font-size: 14px;
+            width: 100%; padding: 8px 12px; margin: 10px 0; background: rgba(10, 15, 25, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.3); border-radius: 4px; color: white; box-sizing: border-box; font-size: 14px;
         }
-
         .login-box button {
             width: 100%; padding: 8px; background: radial-gradient(circle, var(--accent) 0%, #1c65b5 100%);
             border: 1px solid #bce2ff; color: white; font-weight: bold; border-radius: 4px; cursor: pointer; margin-top: 10px;
         }
 
         #shutdownScreen { display: none; background: #05070a; opacity: 0; transition: opacity 1s ease; }
-
-        /* BIOS Screen */
         #biosScreen {
             display: none; background: #000; color: #fff; font-family: 'Courier New', monospace;
             padding: 40px; align-items: flex-start; justify-content: flex-start; z-index: 999999;
         }
-
-        /* Sleep Screen */
-        #sleepScreen {
-            display: none; background: #000; cursor: none; z-index: 999998;
-        }
+        #sleepScreen { display: none; background: #000; cursor: none; z-index: 999998; }
         .power-led {
             position: absolute; bottom: 25px; right: 35px; width: 8px; height: 8px;
-            background: #00ff00; border-radius: 50%; box-shadow: 0 0 10px #00ff00;
+            background: #00ff00; border-radius: 50%; box-shadow: 0 0 12px #00ff00;
             animation: powerBlink 2s infinite ease-in-out;
         }
         @keyframes powerBlink { 0%, 100% { opacity: 0.3; } 50% { opacity: 1; } }
 
-        /* Desktop */
+        /* Desktop Canvas */
         #desktop {
             position: relative; width: 100%; height: calc(100% - 42px); padding: 20px; box-sizing: border-box; display: none;
         }
-
         .desktop-icon {
             width: 84px; text-align: center; color: white; text-shadow: 1px 1px 3px rgba(0,0,0,0.9);
             cursor: pointer; margin-bottom: 20px; transition: transform 0.2s ease;
@@ -169,7 +114,6 @@
         .desktop-icon span.icon { font-size: 40px; display: block; margin-bottom: 4px; }
         .desktop-icon span.label { font-size: 12px; display: block; }
 
-        /* Retro Glass Icons */
         .retro-folder {
             width: 44px; height: 36px; background: linear-gradient(to bottom, #ffea85 0%, #d4a017 100%);
             margin: 0 auto 4px auto; border-radius: 2px 6px 6px 6px; position: relative;
@@ -180,18 +124,19 @@
             background: #e6b800; border-radius: 2px 2px 0 0;
         }
         .retro-glass-file {
-            width: 36px; height: 42px; background: rgba(255,255,255,0.35); backdrop-filter: blur(4px);
+            width: 36px; height: 42px; background: rgba(255,255,255,0.35); backdrop-filter: blur(2px);
             margin: 0 auto 4px auto; border: 1px solid rgba(255,255,255,0.7); border-radius: 3px;
             position: relative; box-shadow: 0 4px 8px rgba(0,0,0,0.4), inset 0 1px 2px rgba(255,255,255,0.9);
             display: flex; align-items: center; justify-content: center; font-size: 18px;
         }
 
-        /* Glass Windows with GPU Acceleration & Resize */
+        /* Glossy Transparent Glass Windows */
         .window {
             position: absolute; top: 80px; left: 120px; width: 640px; height: 440px;
-            background: var(--window-bg); border: 1px solid rgba(255, 255, 255, 0.5);
-            border-top: 1px solid rgba(255, 255, 255, 0.85);
-            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6), 0 25px 50px rgba(0, 0, 0, 0.7);
+            background: var(--window-bg);
+            border: 1px solid var(--accent);
+            border-top: 1px solid rgba(255, 255, 255, 0.9);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8), inset 0 0 25px rgba(255, 255, 255, 0.1), 0 25px 50px rgba(0, 0, 0, 0.7);
             border-radius: 8px 8px 5px 5px; display: flex; flex-direction: column; overflow: hidden; z-index: 10;
             transform: scale(0.7) translateY(20px) translate3d(0,0,0); opacity: 0; visibility: hidden;
             transition: transform 0.25s cubic-bezier(0.1, 0.9, 0.2, 1), opacity 0.25s ease, visibility 0.25s ease;
@@ -201,7 +146,6 @@
         .window.minimized { transform: scale(0.1) translateY(500px); opacity: 0; visibility: hidden; pointer-events: none; }
         .window.maximized { top: 0 !important; left: 0 !important; width: 100% !important; height: calc(100% - 42px) !important; border-radius: 0 !important; }
 
-        /* Resizers */
         .resizer { position: absolute; z-index: 100; }
         .resizer.right { width: 6px; right: 0; top: 0; height: 100%; cursor: e-resize; }
         .resizer.bottom { height: 6px; bottom: 0; left: 0; width: 100%; cursor: s-resize; }
@@ -210,15 +154,15 @@
         /* Title Bar */
         .title-bar {
             height: 32px; background: linear-gradient(to bottom, var(--titlebar-1) 0%, var(--titlebar-2) 50%, var(--titlebar-3) 51%, var(--titlebar-4) 100%);
-            border-bottom: 1px solid rgba(0,0,0,0.6); display: flex; align-items: center; justify-content: space-between;
+            border-bottom: 1px solid var(--accent); display: flex; align-items: center; justify-content: space-between;
             padding: 0 12px; cursor: grab; color: #ffffff; font-weight: bold; font-size: 13px;
-            text-shadow: 0 1px 2px rgba(0,0,0,0.9); box-shadow: inset 0 1px 0 rgba(255,255,255,0.5);
+            text-shadow: 0 1px 2px rgba(0,0,0,0.9); box-shadow: inset 0 1px 0 rgba(255,255,255,0.6);
         }
         .title-bar:active { cursor: grabbing; }
 
         .title-bar-controls { display: flex; align-items: center; gap: 4px; }
         .title-bar-controls button {
-            width: 22px; height: 20px; border-radius: 3px; border: 1px solid rgba(255, 255, 255, 0.6);
+            width: 22px; height: 20px; border-radius: 3px; border: 1px solid rgba(255, 255, 255, 0.7);
             cursor: pointer; outline: none; display: flex; align-items: center; justify-content: center;
             font-size: 11px; font-weight: bold; color: white; text-shadow: 0 1px 1px rgba(0,0,0,0.8);
             box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.9), 0 2px 4px rgba(0, 0, 0, 0.4);
@@ -234,39 +178,43 @@
         /* Explorer UI */
         .explorer-layout {
             display: flex; height: 100%; background: var(--window-content); border-radius: 6px; overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.25); box-shadow: inset 0 2px 5px rgba(0,0,0,0.4);
+            border: 1px solid rgba(255, 255, 255, 0.3); box-shadow: inset 0 2px 5px rgba(0,0,0,0.3);
         }
         .explorer-sidebar {
-            width: 170px; background: var(--sidebar-bg); backdrop-filter: blur(12px);
-            border-right: 1px solid rgba(255, 255, 255, 0.2); padding: 12px; font-size: 13px; color: var(--text-color);
+            width: 170px; background: var(--sidebar-bg); backdrop-filter: blur(8px);
+            border-right: 1px solid rgba(255, 255, 255, 0.25); padding: 12px; font-size: 13px; color: var(--text-color);
         }
         .explorer-sidebar ul { list-style: none; padding: 0; margin: 0; }
         .explorer-sidebar li { padding: 6px 10px; cursor: pointer; border-radius: 4px; margin-bottom: 3px; }
-        .explorer-sidebar li:hover { background: rgba(255, 255, 255, 0.2); }
-        .explorer-sidebar li.selected { background: rgba(255, 255, 255, 0.3); border: 1px solid rgba(255, 255, 255, 0.4); font-weight: bold; }
+        .explorer-sidebar li:hover { background: rgba(255, 255, 255, 0.25); }
+        .explorer-sidebar li.selected { background: rgba(255, 255, 255, 0.35); border: 1px solid rgba(255, 255, 255, 0.5); font-weight: bold; }
 
         .explorer-col-pane {
-            width: 180px; background: var(--col-bg); backdrop-filter: blur(8px);
-            border-right: 1px solid rgba(255, 255, 255, 0.15); padding: 15px; display: flex; flex-direction: column; gap: 12px;
+            width: 180px; background: var(--col-bg); backdrop-filter: blur(6px);
+            border-right: 1px solid rgba(255, 255, 255, 0.2); padding: 15px; display: flex; flex-direction: column; gap: 12px;
         }
         .explorer-main {
             flex-grow: 1; padding: 15px; display: grid; grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
-            grid-gap: 15px; align-content: start; overflow-y: auto; background: rgba(0, 0, 0, 0.2);
+            grid-gap: 15px; align-content: start; overflow-y: auto; background: rgba(0, 0, 0, 0.15);
         }
 
-        /* Settings Form */
+        /* Settings Categories App */
+        .settings-layout { display: flex; height: 100%; background: var(--window-content); border-radius: 6px; overflow: hidden; border: 1px solid rgba(255,255,255,0.3); }
+        .settings-sidebar { width: 180px; background: var(--sidebar-bg); border-right: 1px solid rgba(255,255,255,0.25); padding: 10px; }
+        .settings-sidebar div { padding: 8px 12px; cursor: pointer; border-radius: 4px; font-size: 13px; color: var(--text-color); margin-bottom: 4px; }
+        .settings-sidebar div:hover { background: rgba(255,255,255,0.2); }
+        .settings-sidebar div.active-tab { background: var(--accent); color: white; font-weight: bold; }
+        .settings-pane { flex-grow: 1; padding: 20px; overflow-y: auto; display: none; }
+        .settings-pane.active { display: block; }
         .settings-group { margin-bottom: 18px; }
         .settings-group label { display: block; font-size: 13px; margin-bottom: 6px; color: var(--accent); font-weight: bold; }
-        .settings-group select, .settings-group input[type="color"], .settings-group input[type="file"], .settings-group button {
-            padding: 6px 12px; background: rgba(40, 45, 55, 0.8); border: 1px solid rgba(255, 255, 255, 0.3);
-            color: white; border-radius: 4px; cursor: pointer; font-family: 'Segoe UI', Tahoma, sans-serif;
-        }
+        .settings-group select, .settings-group input { padding: 6px 12px; background: rgba(40, 45, 55, 0.8); border: 1px solid rgba(255, 255, 255, 0.3); color: white; border-radius: 4px; }
 
         /* Start Menu */
         #startMenu {
             position: fixed; bottom: 46px; left: 6px; width: 300px;
             background: linear-gradient(135deg, rgba(30, 40, 55, 0.95) 0%, rgba(15, 20, 30, 0.98) 100%);
-            backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.5); border-radius: 8px 8px 0 0;
+            backdrop-filter: blur(12px); border: 1px solid var(--accent); border-radius: 8px 8px 0 0;
             box-shadow: 0 -5px 25px rgba(0,0,0,0.7); display: none; flex-direction: column; z-index: 9999;
             animation: startMenuPop 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
@@ -284,14 +232,24 @@
         }
         .start-item:hover { background: rgba(114, 188, 255, 0.3); border: 1px solid rgba(114, 188, 255, 0.4); }
 
-        /* Glossy Retro Taskbar & Tray */
+        /* Tray Flyouts (Network & Volume) */
+        .tray-flyout {
+            position: fixed; bottom: 48px; right: 10px; width: 260px;
+            background: rgba(25, 30, 40, 0.92); backdrop-filter: blur(14px);
+            border: 1px solid var(--accent); border-radius: 6px; padding: 15px; color: white;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.7); display: none; z-index: 10000;
+            animation: flyoutPop 0.2s ease;
+        }
+        .tray-flyout.active { display: block; }
+        @keyframes flyoutPop { 0% { transform: translateY(10px) scale(0.95); opacity: 0; } 100% { transform: translateY(0) scale(1); opacity: 1; } }
+
+        /* Taskbar */
         #taskbar {
             position: fixed; bottom: 0; left: 0; width: 100%; height: 42px;
             background: linear-gradient(to bottom, var(--taskbar-bg1) 0%, var(--taskbar-bg2) 100%);
-            border-top: 1px solid rgba(255, 255, 255, 0.4); display: flex; align-items: center; padding: 0 6px;
-            box-sizing: border-box; z-index: 1000; box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 -5px 20px rgba(0,0,0,0.5);
+            border-top: 1px solid rgba(255, 255, 255, 0.5); display: flex; align-items: center; padding: 0 6px;
+            box-sizing: border-box; z-index: 1000; box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6), 0 -5px 20px rgba(0,0,0,0.5);
         }
-
         .start-btn {
             background: radial-gradient(circle, var(--accent) 0%, #1c65b5 100%);
             border: 1px solid #bce2ff; border-radius: 50%; width: 34px; height: 34px;
@@ -301,41 +259,32 @@
         }
         .start-btn:hover { transform: scale(1.1); }
 
-        /* Taskbar App Items List */
         #taskbarApps { display: flex; gap: 4px; margin-left: 10px; align-items: center; flex-grow: 1; }
         .taskbar-app {
-            height: 30px; padding: 0 12px; background: linear-gradient(to bottom, rgba(255,255,255,0.25) 0%, rgba(255,255,255,0.1) 50%, rgba(0,0,0,0.2) 51%, rgba(255,255,255,0.15) 100%);
-            border: 1px solid rgba(255,255,255,0.3); border-radius: 3px; color: white; font-size: 12px;
+            height: 30px; padding: 0 12px; background: linear-gradient(to bottom, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0.1) 50%, rgba(0,0,0,0.25) 51%, rgba(255,255,255,0.2) 100%);
+            border: 1px solid rgba(255,255,255,0.4); border-radius: 3px; color: white; font-size: 12px;
             display: flex; align-items: center; gap: 6px; cursor: pointer; text-shadow: 0 1px 1px rgba(0,0,0,0.8);
-            box-shadow: inset 0 1px 0 rgba(255,255,255,0.4); transition: background 0.15s;
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.5); transition: background 0.15s;
         }
-        .taskbar-app:hover { background: linear-gradient(to bottom, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.2) 50%, rgba(0,0,0,0.1) 51%, rgba(255,255,255,0.25) 100%); }
+        .taskbar-app:hover { background: linear-gradient(to bottom, rgba(255,255,255,0.45) 0%, rgba(255,255,255,0.25) 50%, rgba(0,0,0,0.1) 51%, rgba(255,255,255,0.3) 100%); }
         .taskbar-app.minimized-state { opacity: 0.7; border-style: dashed; }
-        .taskbar-app.active-state { background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(255,255,255,0.1) 100%); box-shadow: inset 0 2px 5px rgba(0,0,0,0.6); }
+        .taskbar-app.active-state { background: linear-gradient(to bottom, rgba(0,0,0,0.4) 0%, rgba(255,255,255,0.15) 100%); box-shadow: inset 0 2px 5px rgba(0,0,0,0.6); border-color: var(--accent); }
 
-        /* Taskbar Tray */
         .taskbar-tray {
             display: flex; align-items: center; gap: 10px; margin-left: auto; color: white; font-size: 12px;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.8); padding: 0 8px; height: 100%; border-left: 1px solid rgba(255,255,255,0.2);
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.8); padding: 0 8px; height: 100%; border-left: 1px solid rgba(255,255,255,0.25);
         }
-        .tray-icon { font-size: 14px; cursor: pointer; filter: drop-shadow(0 1px 1px rgba(0,0,0,0.8)); }
+        .tray-icon { font-size: 14px; cursor: pointer; filter: drop-shadow(0 1px 1px rgba(0,0,0,0.8)); padding: 2px 4px; border-radius: 3px; }
+        .tray-icon:hover { background: rgba(255,255,255,0.2); }
 
-        /* Modal Dialog Box */
-        #osModal {
-            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0.8);
-            width: 340px; background: var(--window-bg); border: 1px solid rgba(255, 255, 255, 0.5);
-            border-top: 1px solid rgba(255, 255, 255, 0.8); border-radius: 8px; box-shadow: 0 25px 50px rgba(0,0,0,0.7);
-            overflow: hidden; color: white; z-index: 10000; opacity: 0; visibility: hidden;
-            transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.2s ease, visibility 0.2s ease;
+        /* Notepad Editor Window */
+        .notepad-textarea {
+            width: 100%; height: 100%; background: rgba(20, 25, 35, 0.7); border: none; color: var(--text-color);
+            font-family: 'Courier New', Courier, monospace; font-size: 14px; resize: none; box-sizing: border-box; padding: 10px; outline: none;
         }
-        #osModal.active { transform: translate(-50%, -50%) scale(1); opacity: 1; visibility: visible; }
-        .modal-header { background: linear-gradient(to bottom, var(--titlebar-1), var(--titlebar-2)); padding: 8px 12px; font-weight: bold; font-size: 13px; border-bottom: 1px solid rgba(0,0,0,0.5); display: flex; justify-content: space-between; align-items: center; }
-        .modal-body { padding: 20px; font-size: 14px; text-shadow: 0 1px 2px rgba(0,0,0,0.8); background: var(--window-content); }
-        .modal-footer { padding: 10px 15px; background: var(--window-content); display: flex; justify-content: flex-end; border-top: 1px solid rgba(255,255,255,0.15); }
-        .modal-footer button { padding: 5px 15px; background: radial-gradient(circle, var(--accent) 0%, #1c65b5 100%); border: 1px solid #bce2ff; color: white; border-radius: 4px; cursor: pointer; font-weight: bold; }
     </style>
 </head>
-<body onclick="checkCloseStartMenu(event)">
+<body onclick="checkClosePopups(event)">
 
     <!-- Boot Sequence Screen -->
     <div id="bootScreen">
@@ -354,7 +303,7 @@
         </div>
     </div>
 
-    <!-- Shutdown Sequence Screen -->
+    <!-- Shutdown Screen -->
     <div id="shutdownScreen">
         <div class="spinner" style="margin-bottom: 20px;"></div>
         <div style="font-size: 22px; font-weight: bold; letter-spacing: 1px;">Shutting down...</div>
@@ -372,15 +321,15 @@
         <p style="color:#00ff00; margin-top:30px;">[ Click anywhere or press any key to boot Frutiger Aero OS ]</p>
     </div>
 
-    <!-- Sleep Screen (Display Off) -->
+    <!-- Sleep Screen -->
     <div id="sleepScreen" onclick="wakeFromSleep()" onmousemove="wakeFromSleep()">
         <div class="power-led"></div>
     </div>
 
     <!-- Main OS Desktop -->
     <div id="desktop">
-        <!-- Desktop Shortcuts with Retro Icons -->
-        <div class="desktop-icon" onclick="openWindow('welcomeWindow')">
+        <!-- Desktop Shortcuts -->
+        <div class="desktop-icon" onclick="openWindow('notepadWindow')">
             <div class="retro-glass-file">📄</div>
             <span class="label">Welcome.txt</span>
         </div>
@@ -397,23 +346,26 @@
             <span class="label">Settings</span>
         </div>
 
-        <!-- Window 1: Welcome -->
-        <div id="welcomeWindow" class="window active" onmousedown="focusWindow('welcomeWindow')">
-            <div class="title-bar" onmousedown="startDrag(event, 'welcomeWindow')">
-                <span>Welcome - Frutiger Aero OS</span>
+        <!-- Window 1: Real Notepad File Viewer (`Welcome.txt`) -->
+        <div id="notepadWindow" class="window active" onmousedown="focusWindow('notepadWindow')">
+            <div class="title-bar" onmousedown="startDrag(event, 'notepadWindow')">
+                <span>Welcome.txt - Notepad</span>
                 <div class="title-bar-controls">
-                    <button class="btn-minimize" onclick="minimizeWindow('welcomeWindow')" title="Minimize">-</button>
-                    <button class="btn-maximize" onclick="maximizeWindow('welcomeWindow')" title="Maximize">▢</button>
-                    <button class="btn-close" onclick="closeWindow('welcomeWindow')" title="Close">✕</button>
+                    <button class="btn-minimize" onclick="minimizeWindow('notepadWindow')" title="Minimize">-</button>
+                    <button class="btn-maximize" onclick="maximizeWindow('notepadWindow')" title="Maximize">▢</button>
+                    <button class="btn-close" onclick="closeWindow('notepadWindow')" title="Close">✕</button>
                 </div>
             </div>
-            <div class="window-content">
-                <h3 style="margin-top:0;">✨ Frutiger Aero Web OS</h3>
-                <p>Fully GPU-accelerated mid-2000s desktop environment featuring light/dark theme toggling, live accent color customization, retro glossy yellow folders, working taskbar minimization, fully operational tray icons, and real Sleep/BIOS modes!</p>
+            <div class="window-content" style="padding:0;">
+                <textarea class="notepad-textarea">✨ Welcome to Frutiger Aero Web OS!
+
+This file (`Welcome.txt`) is loaded directly into the real Notepad text editor application. You can edit this text, navigate folders in the File Explorer, customize your accent colors, or toggle between Light and Dark modes instantly inside Settings!
+
+Enjoy the authentic mid-2000s glossy glass experience.</textarea>
             </div>
-            <div class="resizer right" onmousedown="initResize(event, 'welcomeWindow', 'right')"></div>
-            <div class="resizer bottom" onmousedown="initResize(event, 'welcomeWindow', 'bottom')"></div>
-            <div class="resizer corner" onmousedown="initResize(event, 'welcomeWindow', 'corner')"></div>
+            <div class="resizer right" onmousedown="initResize(event, 'notepadWindow', 'right')"></div>
+            <div class="resizer bottom" onmousedown="initResize(event, 'notepadWindow', 'bottom')"></div>
+            <div class="resizer corner" onmousedown="initResize(event, 'notepadWindow', 'corner')"></div>
         </div>
 
         <!-- Window 2: File Explorer -->
@@ -440,22 +392,18 @@
                     </div>
                     <div class="explorer-col-pane">
                         <div style="font-size: 11px; font-weight: bold; opacity: 0.9; text-transform: uppercase; color: var(--accent);">System Folders</div>
-                        <div style="font-size: 13px; cursor: pointer; padding: 6px 8px; border-radius:4px; background: rgba(255,255,255,0.15);" onclick="showOSModal('System32 selected.')">📁 System32</div>
-                        <div style="font-size: 13px; cursor: pointer; padding: 6px 8px; border-radius:4px;" onclick="showOSModal('Programs selected.')">📁 Programs</div>
-                        <div style="font-size: 13px; cursor: pointer; padding: 6px 8px; border-radius:4px;" onclick="showOSModal('Config selected.')">📁 Config</div>
+                        <div style="font-size: 13px; cursor: pointer; padding: 6px 8px; border-radius:4px; background: rgba(255,255,255,0.15);" onclick="openWindow('notepadWindow')">📁 System32</div>
+                        <div style="font-size: 13px; cursor: pointer; padding: 6px 8px; border-radius:4px;" onclick="openWindow('storeWindow')">📁 Programs</div>
+                        <div style="font-size: 13px; cursor: pointer; padding: 6px 8px; border-radius:4px;" onclick="openWindow('settingsWindow')">📁 Config</div>
                     </div>
                     <div class="explorer-main">
-                        <div class="file-item" onclick="showOSModal('Opening System32 Folder...')">
-                            <div class="retro-folder" style="transform:scale(0.8); margin-bottom:2px;"></div>
-                            <span class="file-item f-name" style="font-size:12px;">System32</span>
-                        </div>
-                        <div class="file-item" onclick="showOSModal('Opening Programs Directory...')">
-                            <div class="retro-folder" style="transform:scale(0.8); margin-bottom:2px;"></div>
-                            <span class="file-item f-name" style="font-size:12px;">Programs</span>
-                        </div>
-                        <div class="file-item" onclick="showOSModal('Welcome.txt - File loaded.')">
+                        <div class="file-item" onclick="openWindow('notepadWindow')">
                             <div class="retro-glass-file" style="transform:scale(0.8); margin-bottom:2px;">📄</div>
-                            <span class="file-item f-name" style="font-size:12px;">Welcome.txt</span>
+                            <span class="f-name" style="font-size:12px; color:var(--text-color);">Welcome.txt</span>
+                        </div>
+                        <div class="file-item" onclick="openWindow('storeWindow')">
+                            <div class="retro-folder" style="transform:scale(0.8); margin-bottom:2px;"></div>
+                            <span class="f-name" style="font-size:12px; color:var(--text-color);">Aero Store</span>
                         </div>
                     </div>
                 </div>
@@ -484,52 +432,82 @@
             <div class="resizer corner" onmousedown="initResize(event, 'storeWindow', 'corner')"></div>
         </div>
 
-        <!-- Window 4: Settings -->
-        <div id="settingsWindow" class="window" style="top: 180px; left: 300px;" onmousedown="focusWindow('settingsWindow')">
+        <!-- Window 4: Advanced Settings App (Multi-Category Sidebar) -->
+        <div id="settingsWindow" class="window" style="top: 180px; left: 300px; width: 660px; height: 440px;" onmousedown="focusWindow('settingsWindow')">
             <div class="title-bar" onmousedown="startDrag(event, 'settingsWindow')">
-                <span>System Preferences & Settings</span>
+                <span>Settings</span>
                 <div class="title-bar-controls">
                     <button class="btn-minimize" onclick="minimizeWindow('settingsWindow')" title="Minimize">-</button>
                     <button class="btn-maximize" onclick="maximizeWindow('settingsWindow')" title="Maximize">▢</button>
                     <button class="btn-close" onclick="closeWindow('settingsWindow')" title="Close">✕</button>
                 </div>
             </div>
-            <div class="window-content">
-                <h3 style="margin-top:0;">⚙️ Desktop Customization</h3>
-                
-                <div class="settings-group">
-                    <label for="modeSelect">Select Theme Mode:</label>
-                    <select id="modeSelect" onchange="changeThemeMode(this.value)">
-                        <option value="dark">Dark Mode (Default)</option>
-                        <option value="light">Light Mode</option>
-                    </select>
-                </div>
-
-                <div class="settings-group">
-                    <label for="accentPicker">Custom Accent Color:</label>
-                    <input type="color" id="accentPicker" value="#1c65b5" onchange="changeAccentColor(this.value)">
-                </div>
-
-                <div class="settings-group">
-                    <label for="wallpaperFile">Browse Local Wallpaper Image:</label>
-                    <input type="file" id="wallpaperFile" accept="image/*" onchange="loadLocalWallpaper(event)">
+            <div class="window-content" style="padding:0;">
+                <div class="settings-layout">
+                    <div class="settings-sidebar">
+                        <div id="tabSystem" class="active-tab" onclick="switchSettingsTab('System')">💻 System</div>
+                        <div id="tabPersonalization" onclick="switchSettingsTab('Personalization')">🎨 Personalization</div>
+                        <div id="tabAbout" onclick="switchSettingsTab('About')">ℹ️ About</div>
+                    </div>
+                    <!-- System Pane -->
+                    <div id="paneSystem" class="settings-pane active">
+                        <h3 style="margin-top:0; color:var(--accent);">System Display & Power</h3>
+                        <div class="settings-group">
+                            <label>Display Resolution:</label>
+                            <select>
+                                <option>3840 x 2160 (Recommended)</option>
+                                <option>2560 x 1440</option>
+                                <option>1920 x 1080</option>
+                            </select>
+                        </div>
+                        <div class="settings-group">
+                            <label>Power Mode:</label>
+                            <select>
+                                <option>High Performance (NVIDIA RTX / Ryzen 9)</option>
+                                <option>Balanced</option>
+                                <option>Power Saver</option>
+                            </select>
+                        </div>
+                        <div class="settings-group">
+                            <label>DPI Scaling:</label>
+                            <select>
+                                <option>150% (Recommended)</option>
+                                <option>125%</option>
+                                <option>100%</option>
+                            </select>
+                        </div>
+                    </div>
+                    <!-- Personalization Pane -->
+                    <div id="panePersonalization" class="settings-pane">
+                        <h3 style="margin-top:0; color:var(--accent);">Personalization & Themes</h3>
+                        <div class="settings-group">
+                            <label>Theme Mode (Light / Dark):</label>
+                            <select id="modeSelect" onchange="changeThemeMode(this.value)">
+                                <option value="dark">Dark Mode</option>
+                                <option value="light">Light Mode</option>
+                            </select>
+                        </div>
+                        <div class="settings-group">
+                            <label>Windows Accent Color:</label>
+                            <input type="color" id="accentPicker" value="#1c65b5" onchange="changeAccentColor(this.value)" style="width:100%; height:36px; cursor:pointer;">
+                        </div>
+                        <div class="settings-group">
+                            <label>Browse Local Wallpaper Image:</label>
+                            <input type="file" id="wallpaperFile" accept="image/*" onchange="loadLocalWallpaper(event)" style="width:100%;">
+                        </div>
+                    </div>
+                    <!-- About Pane -->
+                    <div id="paneAbout" class="settings-pane">
+                        <h3 style="margin-top:0; color:var(--accent);">About Frutiger Aero OS</h3>
+                        <p>OS Version: 3.5 Ultimate GPU-Accelerated Edition</p>
+                        <p>User: Leonardo (Experimental School, Taiwan)</p>
+                        <p>Hardware: ASUS TUF Gaming A16 (Ryzen 9 8940HX, RTX 5060)</p>
+                    </div>
                 </div>
             </div>
             <div class="resizer right" onmousedown="initResize(event, 'settingsWindow', 'right')"></div>
             <div class="resizer bottom" onmousedown="initResize(event, 'settingsWindow', 'bottom')"></div>
             <div class="resizer corner" onmousedown="initResize(event, 'settingsWindow', 'corner')"></div>
-        </div>
-
-        <!-- In-OS Floating Modal Dialog Window -->
-        <div id="osModal" onmousedown="focusWindow('osModal')">
-            <div class="modal-header">
-                <span>Frutiger Aero Web OS Notice</span>
-                <button class="btn-close" onclick="closeOSModal()" style="width:16px;height:16px;font-size:9px;border-radius:50%;border:1px solid rgba(255,255,255,0.7);background:radial-gradient(circle at 35% 35%, #ff6b61 0%, #cc2b20 70%, #991a10 100%);color:white;cursor:pointer;display:flex;align-items:center;justify-content:center;">✕</button>
-            </div>
-            <div class="modal-body" id="modalText">Message content goes here.</div>
-            <div class="modal-footer">
-                <button onclick="closeOSModal()">OK</button>
-            </div>
         </div>
     </div>
 
@@ -544,21 +522,38 @@
         </div>
         <div class="start-menu-items">
             <div class="start-item" onclick="openWindow('explorerWindow'); toggleStartMenu();">📁 File Explorer</div>
+            <div class="start-item" onclick="openWindow('notepadWindow'); toggleStartMenu();">📄 Notepad</div>
             <div class="start-item" onclick="openWindow('storeWindow'); toggleStartMenu();">🛒 Aero Store</div>
-            <div class="start-item" onclick="openWindow('settingsWindow'); toggleStartMenu();">⚙️ System Settings</div>
+            <div class="start-item" onclick="openWindow('settingsWindow'); toggleStartMenu();">⚙️ Settings</div>
             <div class="start-item" onclick="triggerSleep(); toggleStartMenu();">💤 Sleep</div>
             <div class="start-item" onclick="triggerShutdown(); toggleStartMenu();" style="color: #ff8888;">🔌 Shut Down</div>
         </div>
     </div>
 
-    <!-- Glossy Retro Taskbar & Working Tray Area -->
+    <!-- Working Tray Flyouts -->
+    <div id="networkFlyout" class="tray-flyout">
+        <div style="font-weight:bold; margin-bottom:10px; color:var(--accent);">Network & Internet</div>
+        <div style="font-size:13px; margin-bottom:6px;">📶 Wi-Fi: <strong>TUF_Gaming_5G</strong></div>
+        <div style="font-size:12px; opacity:0.8; margin-bottom:12px;">Connected, secure (Wi-Fi 6E)</div>
+        <button onclick="toggleFlyout('networkFlyout')" style="width:100%; padding:5px; background:var(--accent); border:none; color:white; border-radius:3px; cursor:pointer;">Network Settings</button>
+    </div>
+
+    <div id="volumeFlyout" class="tray-flyout">
+        <div style="font-weight:bold; margin-bottom:10px; color:var(--accent);">Volume Control</div>
+        <div style="display:flex; align-items:center; gap:10px; font-size:13px;">
+            <span>🔊</span>
+            <input type="range" min="0" max="100" value="80" style="width:100%; cursor:pointer;">
+        </div>
+    </div>
+
+    <!-- Glossy Retro Taskbar -->
     <div id="taskbar">
         <div class="start-btn" id="startOrb" title="Start Menu" onclick="toggleStartMenu(event)">🪟</div>
         <div id="taskbarApps"></div>
         <div class="taskbar-tray">
-            <span class="tray-icon" title="Network Connected">📶</span>
-            <span class="tray-icon" title="Volume: 100%">🔊</span>
-            <span class="tray-icon" id="clock">12:00 PM</span>
+            <span class="tray-icon" title="Network" onclick="toggleFlyout('networkFlyout', event)">📶</span>
+            <span class="tray-icon" title="Volume" onclick="toggleFlyout('volumeFlyout', event)">🔊</span>
+            <span class="tray-icon" id="clock" onclick="toggleFlyout('', event)">12:00 PM</span>
         </div>
     </div>
 
@@ -588,7 +583,7 @@
             }
         }
 
-        // Real Shutdown to BIOS Sequence
+        // Real Shutdown to BIOS
         function triggerShutdown() {
             const shutdown = document.getElementById('shutdownScreen');
             shutdown.style.display = 'flex';
@@ -613,7 +608,7 @@
             }, 1500);
         }
 
-        // Working Sleep Mode (Display Off -> Wake on mouse)
+        // Sleep Mode
         function triggerSleep() {
             document.getElementById('sleepScreen').style.display = 'flex';
             document.getElementById('desktop').style.display = 'none';
@@ -626,7 +621,7 @@
 
         let highestZIndex = 10;
         const windowTitles = {
-            'welcomeWindow': 'Welcome.txt',
+            'notepadWindow': 'Welcome.txt',
             'explorerWindow': 'Computer',
             'storeWindow': 'Aero Store',
             'settingsWindow': 'Settings'
@@ -665,12 +660,11 @@
             updateTaskbarApps();
         }
 
-        // Update Taskbar App Buttons State
         function updateTaskbarApps() {
             const container = document.getElementById('taskbarApps');
             container.innerHTML = '';
             
-            ['welcomeWindow', 'explorerWindow', 'storeWindow', 'settingsWindow'].forEach(id => {
+            ['notepadWindow', 'explorerWindow', 'storeWindow', 'settingsWindow'].forEach(id => {
                 const win = document.getElementById(id);
                 if (win.classList.contains('active') || win.classList.contains('minimized')) {
                     const btn = document.createElement('div');
@@ -698,7 +692,7 @@
             });
         }
 
-        // GPU-Accelerated Lag-Free Draggable Windows Logic
+        // GPU-Accelerated Draggable Windows
         function startDrag(e, windowId) {
             const win = document.getElementById(windowId);
             if (win.classList.contains('maximized')) return;
@@ -729,7 +723,7 @@
             document.addEventListener('mouseup', onMouseUp);
         }
 
-        // Window Resizing Logic
+        // Resizing Logic
         function initResize(e, windowId, direction) {
             e.stopPropagation();
             const win = document.getElementById(windowId);
@@ -764,7 +758,17 @@
             document.addEventListener('mouseup', onMouseUp);
         }
 
-        // Theme and Accent Customizer
+        // Settings Tabs Switcher
+        function switchSettingsTab(tabName) {
+            ['System', 'Personalization', 'About'].forEach(t => {
+                document.getElementById('pane' + t).classList.remove('active');
+                document.getElementById('tab' + t).classList.remove('active-tab');
+            });
+            document.getElementById('pane' + tabName).classList.add('active');
+            document.getElementById('tab' + tabName).classList.add('active-tab');
+        }
+
+        // Theme and Accent Color Customizer
         function changeThemeMode(mode) {
             if (mode === 'light') {
                 document.body.classList.add('light-mode');
@@ -777,7 +781,7 @@
             document.documentElement.style.setProperty('--accent', hex);
         }
 
-        // Local Wallpaper Browser Upload
+        // Local Wallpaper Upload
         function loadLocalWallpaper(event) {
             const file = event.target.files[0];
             if (file) {
@@ -785,37 +789,43 @@
                 reader.onload = function(e) {
                     document.body.style.background = `url('${e.target.result}') no-repeat center center fixed`;
                     document.body.style.backgroundSize = "cover";
-                    showOSModal('Local wallpaper loaded successfully!');
                 }
                 reader.readAsDataURL(file);
             }
         }
 
-        // Start Menu Toggle
+        // Start Menu & Tray Flyout Toggles
         function toggleStartMenu(e) {
             if (e) e.stopPropagation();
-            const menu = document.getElementById('startMenu');
-            menu.classList.toggle('active');
+            closeAllFlyouts();
+            document.getElementById('startMenu').classList.toggle('active');
         }
 
-        function checkCloseStartMenu(e) {
-            const menu = document.getElementById('startMenu');
-            const orb = document.getElementById('startOrb');
-            if (menu.classList.contains('active') && !menu.contains(e.target) && !orb.contains(e.target)) {
-                menu.classList.remove('active');
+        function toggleFlyout(flyoutId, e) {
+            if (e) e.stopPropagation();
+            document.getElementById('startMenu').classList.remove('active');
+            ['networkFlyout', 'volumeFlyout'].forEach(id => {
+                if (id !== flyoutId) document.getElementById(id).classList.remove('active');
+            });
+            if (flyoutId) {
+                document.getElementById(flyoutId).classList.toggle('active');
             }
         }
 
-        // Modal Dialogs
-        function showOSModal(message) {
-            document.getElementById('modalText').innerText = message;
-            const modal = document.getElementById('osModal');
-            modal.classList.add('active');
-            focusWindow('osModal');
+        function closeAllFlyouts() {
+            document.getElementById('startMenu').classList.remove('active');
+            document.getElementById('networkFlyout').classList.remove('active');
+            document.getElementById('volumeFlyout').classList.remove('active');
         }
 
-        function closeOSModal() {
-            document.getElementById('osModal').classList.remove('active');
+        function checkClosePopups(e) {
+            const menu = document.getElementById('startMenu');
+            const orb = document.getElementById('startOrb');
+            const net = document.getElementById('networkFlyout');
+            const vol = document.getElementById('volumeFlyout');
+            if (!menu.contains(e.target) && !orb.contains(e.target) && !net.contains(e.target) && !vol.contains(e.target)) {
+                closeAllFlyouts();
+            }
         }
 
         // Live Clock
