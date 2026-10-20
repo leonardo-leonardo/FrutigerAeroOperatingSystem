@@ -116,25 +116,39 @@
             cursor: grabbing;
         }
 
+        /* Full Glossy Glass Window Control Buttons (Matching Reference) */
         .title-bar-controls {
             display: flex;
+            align-items: center;
             gap: 6px;
         }
 
         .title-bar-controls button {
-            background: linear-gradient(to bottom, #ff6b61 0%, #d93830 100%);
-            border: 1px solid #99231e;
-            width: 16px;
-            height: 16px;
+            width: 18px;
+            height: 18px;
             border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, 0.6);
             cursor: pointer;
-            box-shadow: inset 0 1px 0 rgba(255,255,255,0.6);
+            position: relative;
+            outline: none;
+            box-shadow: 
+                inset 0 1px 3px rgba(255, 255, 255, 0.9), 
+                0 2px 5px rgba(0, 0, 0, 0.4);
             transition: transform 0.15s ease, filter 0.15s ease;
         }
 
         .title-bar-controls button:hover {
             transform: scale(1.15);
-            filter: brightness(1.2);
+            filter: brightness(1.25);
+        }
+
+        .title-bar-controls button:active {
+            transform: scale(0.95);
+        }
+
+        /* Glossy Red Close Button with Inner Glass Highlight */
+        .btn-close {
+            background: radial-gradient(circle at 35% 35%, #ff6b61 0%, #cc2b20 60%, #991a10 100%);
         }
 
         .window-content {
@@ -254,13 +268,13 @@
             <div class="title-bar" onmousedown="startDrag(event, 'welcomeWindow')">
                 <span>Welcome - Frutiger Aero OS</span>
                 <div class="title-bar-controls">
-                    <button onclick="closeWindow('welcomeWindow')"></button>
+                    <button class="btn-close" onclick="closeWindow('welcomeWindow')" title="Close"></button>
                 </div>
             </div>
             <div class="window-content">
                 <h3 style="margin-top:0; color:#72bcff; text-shadow:0 1px 2px rgba(0,0,0,0.9);">✨ Welcome to Frutiger Aero Web OS</h3>
                 <p>Fully animated web operating system environment.</p>
-                <p>Enjoy fluid scaling, smooth dragging, and dynamic glass reflections!</p>
+                <p>Enjoy fluid scaling, smooth dragging, and authentic glossy glass window controls!</p>
             </div>
         </div>
 
@@ -269,7 +283,7 @@
             <div class="title-bar" onmousedown="startDrag(event, 'storeWindow')">
                 <span>Aero Glass Store</span>
                 <div class="title-bar-controls">
-                    <button onclick="closeWindow('storeWindow')"></button>
+                    <button class="btn-close" onclick="closeWindow('storeWindow')" title="Close"></button>
                 </div>
             </div>
             <div class="window-content">
@@ -283,7 +297,7 @@
             <div class="title-bar" onmousedown="startDrag(event, 'settingsWindow')">
                 <span>System Preferences & Settings</span>
                 <div class="title-bar-controls">
-                    <button onclick="closeWindow('settingsWindow')"></button>
+                    <button class="btn-close" onclick="closeWindow('settingsWindow')" title="Close"></button>
                 </div>
             </div>
             <div class="window-content">
@@ -300,7 +314,7 @@
 
                 <div class="settings-group">
                     <label>System Information:</label>
-                    <p style="margin: 4px 0; font-size: 13px;">OS Version: Frutiger Aero Web OS 2.0 (Animated)</p>
+                    <p style="margin: 4px 0; font-size: 13px;">OS Version: Frutiger Aero Web OS 2.1 (Glossy Controls)</p>
                     <p style="margin: 4px 0; font-size: 13px;">Renderer: Hardware-Accelerated CSS3 Transitions</p>
                 </div>
 
