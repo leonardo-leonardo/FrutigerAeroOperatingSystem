@@ -5,7 +5,47 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Frutiger Aero Web OS</title>
     <style>
-        /* Frutiger Aero Global Styles & Custom Vista Black Wallpaper */
+        :root {
+            --taskbar-bg-1: rgba(25, 30, 40, 0.9);
+            --taskbar-bg-2: rgba(10, 12, 18, 0.95);
+            --window-bg: rgba(30, 30, 35, 0.55);
+            --window-content-bg: rgba(20, 20, 25, 0.4);
+            --titlebar-1: rgba(100,120,140,0.85);
+            --titlebar-2: rgba(50,60,75,0.75);
+            --titlebar-3: rgba(20,25,35,0.85);
+            --titlebar-4: rgba(40,50,65,0.9);
+            --accent-color: #72bcff;
+            --text-color: #f0f0f0;
+        }
+
+        /* Dynamic Theme Profiles */
+        body.theme-lightblue {
+            --taskbar-bg-1: rgba(30, 115, 200, 0.85);
+            --taskbar-bg-2: rgba(15, 60, 130, 0.92);
+            --window-bg: rgba(220, 240, 255, 0.45);
+            --window-content-bg: rgba(255, 255, 255, 0.25);
+            --titlebar-1: rgba(255,255,255,0.85);
+            --titlebar-2: rgba(180,215,255,0.65);
+            --titlebar-3: rgba(120,180,240,0.65);
+            --titlebar-4: rgba(70,140,220,0.75);
+            --accent-color: #0044aa;
+            --text-color: #051c33;
+        }
+
+        body.theme-naturegreen {
+            --taskbar-bg-1: rgba(30, 120, 70, 0.85);
+            --taskbar-bg-2: rgba(10, 60, 30, 0.92);
+            --window-bg: rgba(220, 255, 230, 0.45);
+            --window-content-bg: rgba(240, 255, 245, 0.25);
+            --titlebar-1: rgba(255,255,255,0.85);
+            --titlebar-2: rgba(180,255,200,0.65);
+            --titlebar-3: rgba(100,220,140,0.65);
+            --titlebar-4: rgba(50,160,90,0.75);
+            --accent-color: #006622;
+            --text-color: #05220a;
+        }
+
+        /* Global Styles & Wallpaper */
         body, html {
             margin: 0;
             padding: 0;
@@ -18,7 +58,6 @@
             transition: background 0.8s ease-in-out;
         }
 
-        /* Desktop Canvas */
         #desktop {
             position: relative;
             width: 100%;
@@ -43,10 +82,6 @@
             filter: drop-shadow(0 0 8px rgba(114, 188, 255, 0.8));
         }
 
-        .desktop-icon:active {
-            transform: scale(0.95);
-        }
-
         .desktop-icon span.icon {
             font-size: 36px;
             display: block;
@@ -59,14 +94,14 @@
             display: block;
         }
 
-        /* Animated Aero Glass Window Component */
+        /* Aero Glass Window Component */
         .window {
             position: absolute;
             top: 80px;
             left: 120px;
-            width: 500px;
-            height: 350px;
-            background: rgba(30, 30, 35, 0.5);
+            width: 540px;
+            height: 380px;
+            background: var(--window-bg);
             backdrop-filter: blur(16px) saturate(190%);
             -webkit-backdrop-filter: blur(16px) saturate(190%);
             border: 1px solid rgba(255, 255, 255, 0.4);
@@ -79,8 +114,6 @@
             flex-direction: column;
             overflow: hidden;
             z-index: 10;
-            
-            /* Fluid Opening Animation Defaults */
             transform: scale(0.7) translateY(20px);
             opacity: 0;
             visibility: hidden;
@@ -95,11 +128,11 @@
             visibility: visible;
         }
 
-        /* Windows 7 Glossy Title Bar */
+        /* Glossy Title Bar */
         .title-bar {
             height: 32px;
-            background: linear-gradient(to bottom, rgba(100,120,140,0.85) 0%, rgba(50,60,75,0.75) 50%, rgba(20,25,35,0.85) 51%, rgba(40,50,65,0.9) 100%);
-            border-bottom: 1px solid rgba(0,0,0,0.6);
+            background: linear-gradient(to bottom, var(--titlebar-1) 0%, var(--titlebar-2) 50%, var(--titlebar-3) 51%, var(--titlebar-4) 100%);
+            border-bottom: 1px solid rgba(0,0,0,0.4);
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -116,7 +149,6 @@
             cursor: grabbing;
         }
 
-        /* Full Glossy Glass Window Control Buttons (Matching Reference) */
         .title-bar-controls {
             display: flex;
             align-items: center;
@@ -129,11 +161,8 @@
             border-radius: 50%;
             border: 1px solid rgba(255, 255, 255, 0.6);
             cursor: pointer;
-            position: relative;
             outline: none;
-            box-shadow: 
-                inset 0 1px 3px rgba(255, 255, 255, 0.9), 
-                0 2px 5px rgba(0, 0, 0, 0.4);
+            box-shadow: inset 0 1px 3px rgba(255, 255, 255, 0.9), 0 2px 5px rgba(0, 0, 0, 0.4);
             transition: transform 0.15s ease, filter 0.15s ease;
         }
 
@@ -142,28 +171,23 @@
             filter: brightness(1.25);
         }
 
-        .title-bar-controls button:active {
-            transform: scale(0.95);
-        }
-
-        /* Glossy Red Close Button with Inner Glass Highlight */
         .btn-close {
             background: radial-gradient(circle at 35% 35%, #ff6b61 0%, #cc2b20 60%, #991a10 100%);
         }
 
         .window-content {
             padding: 20px;
-            color: #f0f0f0;
+            color: var(--text-color);
             flex-grow: 1;
             overflow-y: auto;
-            background: rgba(20, 20, 25, 0.35);
+            background: var(--window-content-bg);
         }
 
         .window-content p, .window-content label {
-            text-shadow: 0 1px 2px rgba(0,0,0,0.8);
+            text-shadow: 0 1px 2px rgba(255,255,255,0.4);
         }
 
-        /* Settings Form Styling with smooth animations */
+        /* Settings & Form Controls */
         .settings-group {
             margin-bottom: 15px;
         }
@@ -172,19 +196,19 @@
             display: block;
             font-size: 13px;
             margin-bottom: 5px;
-            color: #72bcff;
+            color: var(--accent-color);
             font-weight: bold;
         }
 
-        .settings-group select, .settings-group button {
+        .settings-group select, .settings-group input[type="file"], .settings-group button {
             padding: 6px 12px;
-            background: rgba(50, 60, 75, 0.8);
+            background: rgba(50, 60, 75, 0.7);
             border: 1px solid rgba(255, 255, 255, 0.3);
             color: white;
             border-radius: 4px;
             cursor: pointer;
             font-family: 'Segoe UI', Tahoma, sans-serif;
-            transition: background 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
+            transition: background 0.2s ease, box-shadow 0.2s ease;
         }
 
         .settings-group select:hover, .settings-group button:hover {
@@ -192,8 +216,147 @@
             box-shadow: 0 0 10px rgba(114, 188, 255, 0.4);
         }
 
-        .settings-group button:active {
-            transform: scale(0.97);
+        /* File Explorer Styles */
+        .explorer-layout {
+            display: flex;
+            height: 100%;
+            background: rgba(255,255,255,0.6);
+            border-radius: 4px;
+            overflow: hidden;
+            border: 1px solid rgba(0,0,0,0.2);
+        }
+
+        .explorer-sidebar {
+            width: 140px;
+            background: rgba(230,240,250,0.8);
+            border-right: 1px solid rgba(0,0,0,0.15);
+            padding: 10px;
+            font-size: 13px;
+            color: #222;
+        }
+
+        .explorer-sidebar ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .explorer-sidebar li {
+            padding: 5px 8px;
+            cursor: pointer;
+            border-radius: 3px;
+        }
+
+        .explorer-sidebar li:hover {
+            background: rgba(0,120,215,0.2);
+        }
+
+        .explorer-main {
+            flex-grow: 1;
+            padding: 15px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+            grid-gap: 15px;
+            align-content: start;
+            overflow-y: auto;
+        }
+
+        .file-item {
+            text-align: center;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 4px;
+        }
+
+        .file-item:hover {
+            background: rgba(0,120,215,0.15);
+            border: 1px solid rgba(0,120,215,0.3);
+        }
+
+        .file-item span.f-icon {
+            font-size: 30px;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .file-item span.f-name {
+            font-size: 12px;
+            color: #111;
+        }
+
+        /* In-OS Modal Dialog Popup */
+        #osModal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(4px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.2s ease, visibility 0.2s ease;
+        }
+
+        #osModal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-box {
+            width: 340px;
+            background: rgba(40, 45, 55, 0.9);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            border-radius: 8px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+            overflow: hidden;
+            color: white;
+            animation: modalPop 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        @keyframes modalPop {
+            0% { transform: scale(0.8); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .modal-header {
+            background: linear-gradient(to bottom, rgba(100,120,140,0.9), rgba(40,50,65,0.9));
+            padding: 8px 12px;
+            font-weight: bold;
+            font-size: 13px;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .modal-body {
+            padding: 20px;
+            font-size: 14px;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.8);
+        }
+
+        .modal-footer {
+            padding: 10px 15px;
+            background: rgba(20, 20, 25, 0.5);
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .modal-footer button {
+            padding: 5px 15px;
+            background: radial-gradient(circle, #72bcff 0%, #1c65b5 100%);
+            border: 1px solid #bce2ff;
+            color: white;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .modal-footer button:hover {
+            filter: brightness(1.1);
         }
 
         /* Windows 7 Taskbar */
@@ -203,7 +366,7 @@
             left: 0;
             width: 100%;
             height: 42px;
-            background: linear-gradient(to bottom, rgba(25, 30, 40, 0.9) 0%, rgba(10, 12, 18, 0.95) 100%);
+            background: linear-gradient(to bottom, var(--taskbar-bg-1) 0%, var(--taskbar-bg-2) 100%);
             backdrop-filter: blur(14px);
             -webkit-backdrop-filter: blur(14px);
             border-top: 1px solid rgba(255, 255, 255, 0.25);
@@ -227,13 +390,12 @@
             cursor: pointer;
             box-shadow: inset 0 1px 3px rgba(255,255,255,0.9), 0 2px 6px rgba(0,0,0,0.4);
             font-size: 16px;
-            transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), filter 0.2s ease;
+            transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
         .start-btn:hover {
             transform: scale(1.1);
             background: radial-gradient(circle, #92ccff 0%, #2c75c5 100%);
-            filter: drop-shadow(0 0 6px rgba(114, 188, 255, 0.8));
         }
 
         .taskbar-tray {
@@ -246,13 +408,17 @@
         }
     </style>
 </head>
-<body>
+<body class="theme-original">
 
     <div id="desktop">
         <!-- Desktop Shortcuts -->
         <div class="desktop-icon" onclick="openWindow('welcomeWindow')">
             <span class="icon">🌐</span>
             <span class="label">Welcome.txt</span>
+        </div>
+        <div class="desktop-icon" onclick="openWindow('explorerWindow')" style="margin-top: 15px;">
+            <span class="icon">📁</span>
+            <span class="label">Computer</span>
         </div>
         <div class="desktop-icon" onclick="openWindow('storeWindow')" style="margin-top: 15px;">
             <span class="icon">🛒</span>
@@ -272,13 +438,54 @@
                 </div>
             </div>
             <div class="window-content">
-                <h3 style="margin-top:0; color:#72bcff; text-shadow:0 1px 2px rgba(0,0,0,0.9);">✨ Welcome to Frutiger Aero Web OS</h3>
-                <p>Fully animated web operating system environment.</p>
-                <p>Enjoy fluid scaling, smooth dragging, and authentic glossy glass window controls!</p>
+                <h3 style="margin-top:0;">✨ Welcome to Frutiger Aero Web OS</h3>
+                <p>Fully functional web operating system environment with native in-OS dialogs, theme customization, local wallpaper uploads, and a built-in File Explorer!</p>
             </div>
         </div>
 
-        <!-- Window 2: Store -->
+        <!-- Window 2: File Explorer -->
+        <div id="explorerWindow" class="window" style="top: 100px; left: 180px; width: 580px; height: 380px;" onmousedown="focusWindow('explorerWindow')">
+            <div class="title-bar" onmousedown="startDrag(event, 'explorerWindow')">
+                <span>Computer - Windows Explorer</span>
+                <div class="title-bar-controls">
+                    <button class="btn-close" onclick="closeWindow('explorerWindow')" title="Close"></button>
+                </div>
+            </div>
+            <div class="window-content" style="padding: 10px; display: flex; flex-direction: column;">
+                <div style="font-size: 12px; margin-bottom: 8px; color: #fff;">📁 Local Disk (C:) > System</div>
+                <div class="explorer-layout">
+                    <div class="explorer-sidebar">
+                        <ul>
+                            <li>⭐ Quick Access</li>
+                            <li>💻 Desktop</li>
+                            <li>🗂️ Documents</li>
+                            <li>🖼️ Pictures</li>
+                            <li>💾 Local Disk (C:)</li>
+                        </ul>
+                    </div>
+                    <div class="explorer-main">
+                        <div class="file-item" onclick="showOSModal('Opening System Folder...')">
+                            <span class="f-icon">📁</span>
+                            <span class="f-name">System32</span>
+                        </div>
+                        <div class="file-item" onclick="showOSModal('Opening Program Files...')">
+                            <span class="f-icon">📁</span>
+                            <span class="f-name">Programs</span>
+                        </div>
+                        <div class="file-item" onclick="showOSModal('Welcome.txt - File loaded.')">
+                            <span class="f-icon">📄</span>
+                            <span class="f-name">Welcome.txt</span>
+                        </div>
+                        <div class="file-item" onclick="showOSModal('Aero Theme package active.')">
+                            <span class="f-icon">🎨</span>
+                            <span class="f-name">AeroConfig</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Window 3: Store -->
         <div id="storeWindow" class="window" style="top: 140px; left: 220px;" onmousedown="focusWindow('storeWindow')">
             <div class="title-bar" onmousedown="startDrag(event, 'storeWindow')">
                 <span>Aero Glass Store</span>
@@ -287,12 +494,12 @@
                 </div>
             </div>
             <div class="window-content">
-                <h3 style="margin-top:0; color:#72bcff; text-shadow:0 1px 2px rgba(0,0,0,0.9);">🛒 Software Catalog</h3>
+                <h3 style="margin-top:0;">🛒 Software Catalog</h3>
                 <p>Explore games, tweaking tools, and vintage Windows themes.</p>
             </div>
         </div>
 
-        <!-- Window 3: Settings -->
+        <!-- Window 4: Settings -->
         <div id="settingsWindow" class="window" style="top: 180px; left: 300px;" onmousedown="focusWindow('settingsWindow')">
             <div class="title-bar" onmousedown="startDrag(event, 'settingsWindow')">
                 <span>System Preferences & Settings</span>
@@ -301,40 +508,49 @@
                 </div>
             </div>
             <div class="window-content">
-                <h3 style="margin-top:0; color:#72bcff; text-shadow:0 1px 2px rgba(0,0,0,0.9);">⚙️ Desktop Customization</h3>
+                <h3 style="margin-top:0;">⚙️ Desktop Customization</h3>
                 
                 <div class="settings-group">
-                    <label for="wallpaperSelect">Select Wallpaper Theme:</label>
-                    <select id="wallpaperSelect" onchange="changeWallpaper(this.value)">
-                        <option value="vista-black">Vista Black Widescreen (Current)</option>
-                        <option value="aurora-blue">Classic Aurora Blue</option>
-                        <option value="nature-green">Frutiger Aero Nature Green</option>
+                    <label for="themeSelect">Select Theme Color Style:</label>
+                    <select id="themeSelect" onchange="changeThemeColor(this.value)">
+                        <option value="original">Original Grey Black (Vista)</option>
+                        <option value="lightblue">Classic Light Blue (Aero)</option>
+                        <option value="naturegreen">Nature Green (Frutiger Aero)</option>
                     </select>
                 </div>
 
                 <div class="settings-group">
-                    <label>System Information:</label>
-                    <p style="margin: 4px 0; font-size: 13px;">OS Version: Frutiger Aero Web OS 2.1 (Glossy Controls)</p>
-                    <p style="margin: 4px 0; font-size: 13px;">Renderer: Hardware-Accelerated CSS3 Transitions</p>
+                    <label for="wallpaperFile">Browse Local Wallpaper Image:</label>
+                    <input type="file" id="wallpaperFile" accept="image/*" onchange="loadLocalWallpaper(event)">
                 </div>
 
                 <div class="settings-group" style="margin-top: 20px;">
-                    <button onclick="alert('Settings saved and applied successfully!')">Apply Changes</button>
+                    <button onclick="showOSModal('Settings saved and applied successfully!')">Apply Changes</button>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- In-OS Modal Dialog Popup Box -->
+    <div id="osModal">
+        <div class="modal-box">
+            <div class="modal-header">Frutiger Aero Web OS Notice</div>
+            <div class="modal-body" id="modalText">Message content goes here.</div>
+            <div class="modal-footer">
+                <button onclick="closeOSModal()">OK</button>
             </div>
         </div>
     </div>
 
     <!-- Bottom Taskbar -->
     <div id="taskbar">
-        <div class="start-btn" title="Start Menu">🪟</div>
+        <div class="start-btn" title="Start Menu" onclick="showOSModal('Frutiger Aero Web OS Start Menu Initialized.')">🪟</div>
         <div class="taskbar-tray" id="clock">12:00 PM</div>
     </div>
 
     <script>
         let highestZIndex = 10;
 
-        // Window Management Functions with Smooth Animations
         function openWindow(id) {
             const win = document.getElementById(id);
             win.classList.add('active');
@@ -350,7 +566,7 @@
             document.getElementById(id).style.zIndex = highestZIndex;
         }
 
-        // Draggable Windows Logic with Smooth Dragging
+        // Draggable Windows Logic
         function startDrag(e, windowId) {
             const win = document.getElementById(windowId);
             focusWindow(windowId);
@@ -372,16 +588,40 @@
             document.addEventListener('mouseup', onMouseUp);
         }
 
-        // Animated Wallpaper Changer Function
-        function changeWallpaper(theme) {
-            if (theme === 'vista-black') {
-                document.body.style.background = "url('https://raw.githubusercontent.com/leonardo-leonardo/FrutigerAeroOperatingSystem/refs/heads/main/Vista%20Black%20Widescreen%20Pixel4k.jpg') no-repeat center center fixed";
-            } else if (theme === 'aurora-blue') {
-                document.body.style.background = "url('https://raw.githubusercontent.com/leonardo-leonardo/FrutigerAeroOperatingSystem/refs/heads/main/watermarked_img_12575410826232940056.jpg') no-repeat center center fixed";
-            } else if (theme === 'nature-green') {
-                document.body.style.background = "url('https://raw.githubusercontent.com/leonardo-leonardo/FrutigerAeroOperatingSystem/refs/heads/main/watermarked_img_7515292174151527399.jpg') no-repeat center center fixed";
+        // Theme Color Switcher
+        function changeThemeColor(theme) {
+            document.body.className = '';
+            if (theme === 'lightblue') {
+                document.body.classList.add('theme-lightblue');
+            } else if (theme === 'naturegreen') {
+                document.body.classList.add('theme-naturegreen');
+            } else {
+                document.body.classList.add('theme-original');
             }
-            document.body.style.backgroundSize = "cover";
+        }
+
+        // Local Wallpaper Browser Upload Loader
+        function loadLocalWallpaper(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.body.style.background = `url('${e.target.result}') no-repeat center center fixed`;
+                    document.body.style.backgroundSize = "cover";
+                    showOSModal('Local wallpaper loaded successfully!');
+                }
+                reader.readAsDataURL(file);
+            }
+        }
+
+        // In-OS Modal Popup Dialog System
+        function showOSModal(message) {
+            document.getElementById('modalText').innerText = message;
+            document.getElementById('osModal').classList.add('active');
+        }
+
+        function closeOSModal() {
+            document.getElementById('osModal').classList.remove('active');
         }
 
         // Live Windows 7 Taskbar Clock
