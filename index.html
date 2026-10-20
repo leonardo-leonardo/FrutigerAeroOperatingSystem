@@ -10,62 +10,82 @@
             --accent-glow: rgba(28, 101, 181, 0.8);
             --taskbar-bg1: rgba(35, 75, 135, 0.88);
             --taskbar-bg2: rgba(10, 30, 65, 0.95);
-            --window-bg: linear-gradient(135deg, rgba(255, 255, 255, 0.45) 0%, rgba(255, 255, 255, 0.12) 50%, rgba(10, 15, 25, 0.3) 100%);
-            --window-content: rgba(15, 20, 30, 0.22);
-            --titlebar-1: rgba(255, 255, 255, 0.65);
-            --titlebar-2: rgba(80, 105, 135, 0.75);
-            --titlebar-3: rgba(15, 25, 40, 0.88);
-            --titlebar-4: rgba(45, 65, 90, 0.8);
+            --window-bg: linear-gradient(135deg, rgba(220, 235, 255, 0.85) 0%, rgba(140, 175, 215, 0.8) 100%);
+            --window-content: rgba(15, 20, 30, 0.94);
+            --titlebar-active-1: rgba(255, 255, 255, 0.9);
+            --titlebar-active-2: rgba(80, 135, 205, 0.95);
+            --titlebar-active-3: rgba(15, 45, 80, 0.98);
+            --titlebar-active-4: rgba(45, 95, 150, 0.9);
+            --titlebar-inactive-1: rgba(240, 240, 240, 0.8);
+            --titlebar-inactive-2: rgba(180, 190, 205, 0.85);
+            --titlebar-inactive-3: rgba(110, 120, 135, 0.9);
+            --titlebar-inactive-4: rgba(140, 150, 165, 0.85);
             --text-color: #f0f0f0;
-            --sidebar-bg: rgba(20, 25, 35, 0.3);
-            --col-bg: rgba(15, 20, 30, 0.25);
+            --sidebar-bg: rgba(20, 25, 35, 0.7);
+            --col-bg: rgba(15, 20, 30, 0.75);
         }
 
         /* Light Mode Overrides */
         body.light-mode {
-            --window-bg: linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.45) 50%, rgba(200, 220, 245, 0.35) 100%);
-            --window-content: rgba(255, 255, 255, 0.3);
-            --titlebar-1: rgba(255, 255, 255, 0.95);
-            --titlebar-2: rgba(190, 215, 245, 0.9);
-            --titlebar-3: rgba(120, 165, 215, 0.95);
-            --titlebar-4: rgba(150, 190, 230, 0.95);
+            --window-content: rgba(245, 248, 252, 0.95);
             --text-color: #112233;
-            --sidebar-bg: rgba(210, 225, 245, 0.4);
-            --col-bg: rgba(225, 235, 250, 0.35);
+            --sidebar-bg: rgba(210, 225, 245, 0.8);
+            --col-bg: rgba(225, 235, 250, 0.85);
+        }
+
+        /* Custom Retro Aero Scrollbars */
+        * {
+            scrollbar-width: thin;
+            scrollbar-color: var(--accent) rgba(10, 15, 25, 0.6);
+        }
+        ::-webkit-scrollbar { width: 14px; height: 14px; }
+        ::-webkit-scrollbar-track {
+            background: linear-gradient(to right, rgba(20,25,35,0.8), rgba(10,15,25,0.9));
+            border-left: 1px solid rgba(255,255,255,0.15);
+            border-radius: 2px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(to right, rgba(100,165,235,0.9), rgba(28,101,181,0.95));
+            border: 2px solid rgba(255,255,255,0.5);
+            border-radius: 6px;
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.8);
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(to right, rgba(130,190,255,1), rgba(40,120,210,1));
+        }
+
+        /* True 30 FPS Mode Stutter Class */
+        body.fps-capped-30 * {
+            transition: none !important;
+            animation: none !important;
         }
 
         /* Universal Transparent & Glossy Glass Buttons */
         button, .glass-btn {
-            background: linear-gradient(to bottom, rgba(255, 255, 255, 0.35) 0%, rgba(255, 255, 255, 0.1) 50%, rgba(0, 0, 0, 0.2) 51%, rgba(28, 101, 181, 0.4) 100%);
-            background-color: rgba(28, 101, 181, 0.3);
-            backdrop-filter: blur(6px);
-            border: 1px solid rgba(255, 255, 255, 0.6);
-            border-top: 1px solid rgba(255, 255, 255, 0.9);
+            background: linear-gradient(to bottom, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0.12) 50%, rgba(0, 0, 0, 0.25) 51%, rgba(28, 101, 181, 0.5) 100%);
+            background-color: rgba(28, 101, 181, 0.35);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.7);
+            border-top: 1px solid rgba(255, 255, 255, 0.95);
             color: white;
             font-weight: 600;
             padding: 7px 16px;
             border-radius: 6px;
             cursor: pointer;
             text-shadow: 0 1px 2px rgba(0,0,0,0.8);
-            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8), 0 4px 12px rgba(0,0,0,0.4), 0 0 10px var(--accent-glow);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9), 0 4px 12px rgba(0,0,0,0.4), 0 0 10px var(--accent-glow);
             transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
         button:hover, .glass-btn:hover {
-            background: linear-gradient(to bottom, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0.22) 50%, rgba(0, 0, 0, 0.1) 51%, rgba(28, 101, 181, 0.6) 100%);
-            border-color: rgba(255, 255, 255, 0.95);
+            background: linear-gradient(to bottom, rgba(255, 255, 255, 0.55) 0%, rgba(255, 255, 255, 0.25) 50%, rgba(0, 0, 0, 0.1) 51%, rgba(28, 101, 181, 0.7) 100%);
+            border-color: rgba(255, 255, 255, 1);
             transform: translateY(-2px) scale(1.02);
-            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.95), 0 6px 18px rgba(0,0,0,0.5), 0 0 16px var(--accent-glow);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 1), 0 6px 18px rgba(0,0,0,0.5), 0 0 16px var(--accent-glow);
         }
         button:active, .glass-btn:active {
             transform: translateY(1px) scale(0.98);
             box-shadow: inset 0 2px 5px rgba(0,0,0,0.6);
         }
-
-        /* Retro Custom Scrollbars */
-        * { scrollbar-width: thin; scrollbar-color: var(--accent) rgba(0,0,0,0.2); }
-        ::-webkit-scrollbar { width: 10px; height: 10px; }
-        ::-webkit-scrollbar-track { background: rgba(0, 0, 0, 0.15); border-radius: 5px; }
-        ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 5px; border: 2px solid rgba(255,255,255,0.4); }
 
         /* Global Styles & 3D GPU Perspective */
         body, html {
@@ -104,7 +124,7 @@
             background-size: cover; display: none;
         }
         .login-box {
-            width: 340px; background: rgba(20, 25, 35, 0.7); backdrop-filter: blur(14px);
+            width: 340px; background: rgba(20, 25, 35, 0.85); backdrop-filter: blur(14px);
             border: 1px solid var(--accent); border-radius: 12px; padding: 30px; box-shadow: 0 25px 50px rgba(0,0,0,0.8), 0 0 20px var(--accent-glow); text-align: center;
         }
         .login-avatar {
@@ -113,8 +133,8 @@
             border: 2px solid rgba(255,255,255,0.8); box-shadow: inset 0 2px 5px rgba(255,255,255,0.9);
         }
         .login-box input {
-            width: 100%; padding: 8px 12px; margin: 10px 0; background: rgba(10, 15, 25, 0.8);
-            border: 1px solid rgba(255, 255, 255, 0.3); border-radius: 4px; color: white; box-sizing: border-box; font-size: 14px;
+            width: 100%; padding: 8px 12px; margin: 10px 0; background: rgba(10, 15, 25, 0.9);
+            border: 1px solid rgba(255, 255, 255, 0.4); border-radius: 4px; color: white; box-sizing: border-box; font-size: 14px;
         }
         .login-box button { width: 100%; margin-top: 10px; }
         #loginError { color: #ff6b61; font-size: 12px; margin-top: 8px; display: none; text-shadow: 0 1px 2px rgba(0,0,0,0.8); }
@@ -132,10 +152,14 @@
         }
         @keyframes powerBlink { 0%, 100% { opacity: 0.3; } 50% { opacity: 1; } }
 
-        /* Desktop Canvas */
+        /* Desktop Container with Real Resolution Scaling */
+        #desktopWrapper {
+            position: relative; width: 100%; height: calc(100% - 42px);
+            display: flex; align-items: center; justify-content: center; overflow: hidden;
+        }
         #desktop {
-            position: relative; width: 100%; height: calc(100% - 42px); padding: 20px; box-sizing: border-box; display: none;
-            transform-style: preserve-3d;
+            position: relative; width: 100%; height: 100%; padding: 20px; box-sizing: border-box; display: none;
+            transform-style: preserve-3d; transform-origin: center center; transition: transform 0.3s ease;
         }
         .desktop-icon {
             width: 84px; text-align: center; color: white; text-shadow: 1px 1px 3px rgba(0,0,0,0.9);
@@ -164,18 +188,19 @@
             transform: translateZ(5px);
         }
 
-        /* Slightly Blurred Glossy Glass Windows */
+        /* Active & Inactive Window Awareness */
         .window {
             position: absolute; top: 80px; left: 120px; width: 660px; height: 450px;
-            background: var(--window-bg); backdrop-filter: blur(8px);
+            background: var(--window-bg); backdrop-filter: blur(10px);
             border: 1px solid var(--accent); border-top: 1px solid rgba(255, 255, 255, 0.95);
             box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.85), inset 0 0 30px rgba(255, 255, 255, 0.1), 0 30px 60px rgba(0, 0, 0, 0.75), 0 0 20px var(--accent-glow);
             border-radius: 8px 8px 5px 5px; display: flex; flex-direction: column; overflow: hidden; z-index: 10;
             transform: scale(0.7) translateY(30px) translateZ(-50px); opacity: 0; visibility: hidden;
-            transition: transform 0.3s cubic-bezier(0.1, 0.9, 0.2, 1), opacity 0.3s ease, visibility 0.3s ease;
+            transition: transform 0.3s cubic-bezier(0.1, 0.9, 0.2, 1), opacity 0.3s ease, visibility 0.3s ease, filter 0.2s ease;
             will-change: transform, left, top, width, height; backface-visibility: hidden; transform-style: preserve-3d;
         }
-        .window.active { transform: scale(1) translateY(0) translateZ(0); opacity: 1; visibility: visible; }
+        .window.active { transform: scale(1) translateY(0) translateZ(0); opacity: 1; visibility: visible; filter: brightness(1); }
+        .window.inactive { filter: brightness(0.85); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 15px 35px rgba(0, 0, 0, 0.5); }
         .window.minimized { transform: scale(0.1) translateY(600px) translateZ(-200px); opacity: 0; visibility: hidden; pointer-events: none; }
         .window.maximized { top: 0 !important; left: 0 !important; width: 100vw !important; height: calc(100vh - 42px) !important; border-radius: 0 !important; border: none !important; transform: scale(1) translateZ(0) !important; }
 
@@ -184,12 +209,19 @@
         .resizer.bottom { height: 6px; bottom: 0; left: 0; width: 100%; cursor: s-resize; }
         .resizer.corner { width: 12px; height: 12px; right: 0; bottom: 0; cursor: se-resize; z-index: 101; }
 
-        /* Title Bar */
+        /* Title Bar with Active/Inactive Awareness */
         .title-bar {
-            height: 32px; background: linear-gradient(to bottom, var(--titlebar-1) 0%, var(--titlebar-2) 50%, var(--titlebar-3) 51%, var(--titlebar-4) 100%);
+            height: 32px; background: linear-gradient(to bottom, var(--titlebar-active-1) 0%, var(--titlebar-active-2) 50%, var(--titlebar-active-3) 51%, var(--titlebar-active-4) 100%);
             border-bottom: 1px solid var(--accent); display: flex; align-items: center; justify-content: space-between;
             padding: 0 12px; cursor: grab; color: #ffffff; font-weight: bold; font-size: 13px;
-            text-shadow: 0 1px 2px rgba(0,0,0,0.9); box-shadow: inset 0 1px 0 rgba(255,255,255,0.7);
+            text-shadow: 0 1px 2px rgba(0,0,0,0.9); box-shadow: inset 0 1px 0 rgba(255,255,255,0.8);
+            transition: background 0.2s ease;
+        }
+        .window.inactive .title-bar {
+            background: linear-gradient(to bottom, var(--titlebar-inactive-1) 0%, var(--titlebar-inactive-2) 50%, var(--titlebar-inactive-3) 51%, var(--titlebar-inactive-4) 100%);
+            border-bottom-color: rgba(100, 110, 125, 0.6);
+            color: #dcdcdc;
+            text-shadow: 0 1px 1px rgba(0,0,0,0.5);
         }
         .title-bar:active { cursor: grabbing; }
 
@@ -206,6 +238,7 @@
         .btn-maximize { background: radial-gradient(circle at 35% 35%, #7bff99 0%, #15803d 70%, #0a4d22 100%); }
         .btn-close { background: radial-gradient(circle at 35% 35%, #ff7b71 0%, #bd1515 70%, #800a0a 100%); }
 
+        /* Opaque Window Content so icons don't bleed through */
         .window-content { padding: 15px; color: var(--text-color); flex-grow: 1; overflow-y: auto; background: var(--window-content); }
 
         /* File Explorer */
@@ -233,7 +266,7 @@
 
         .explorer-main {
             flex-grow: 1; padding: 15px; display: grid; grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
-            grid-gap: 15px; align-content: start; overflow-y: auto; background: rgba(0, 0, 0, 0.15);
+            grid-gap: 15px; align-content: start; overflow-y: auto; background: rgba(0, 0, 0, 0.25);
         }
         .file-grid-item {
             text-align: center; cursor: pointer; padding: 12px; border-radius: 8px; background: rgba(255,255,255,0.08);
@@ -247,9 +280,9 @@
         /* Task Manager */
         .taskmgr-header { display: flex; gap: 15px; margin-bottom: 15px; font-size: 13px; }
         .taskmgr-card {
-            flex: 1; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.2); border-radius: 6px; padding: 10px; text-align: center;
+            flex: 1; background: rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.2); border-radius: 6px; padding: 10px; text-align: center;
         }
-        .taskmgr-table { width: 100%; border-collapse: collapse; font-size: 13px; background: rgba(10,15,25,0.4); border-radius: 6px; overflow: hidden; }
+        .taskmgr-table { width: 100%; border-collapse: collapse; font-size: 13px; background: rgba(10,15,25,0.6); border-radius: 6px; overflow: hidden; }
         .taskmgr-table th, .taskmgr-table td { padding: 8px 12px; text-align: left; border-bottom: 1px solid rgba(255,255,255,0.1); }
         .taskmgr-table th { background: rgba(255,255,255,0.15); color: var(--accent); }
         .taskmgr-table tr:hover { background: rgba(255,255,255,0.1); cursor: pointer; }
@@ -264,12 +297,12 @@
         .settings-pane.active { display: block; }
         .settings-group { margin-bottom: 18px; }
         .settings-group label { display: block; font-size: 13px; margin-bottom: 6px; color: var(--accent); font-weight: bold; }
-        .settings-group select, .settings-group input { padding: 6px 12px; background: rgba(40, 45, 55, 0.8); border: 1px solid rgba(255, 255, 255, 0.3); color: white; border-radius: 4px; }
+        .settings-group select, .settings-group input { padding: 6px 12px; background: rgba(40, 45, 55, 0.9); border: 1px solid rgba(255, 255, 255, 0.3); color: white; border-radius: 4px; }
 
         /* Start Menu */
         #startMenu {
             position: fixed; bottom: 46px; left: 6px; width: 300px;
-            background: linear-gradient(135deg, rgba(30, 40, 55, 0.95) 0%, rgba(15, 20, 30, 0.98) 100%);
+            background: linear-gradient(135deg, rgba(30, 40, 55, 0.96) 0%, rgba(15, 20, 30, 0.98) 100%);
             backdrop-filter: blur(14px); border: 1px solid var(--accent); border-radius: 8px 8px 0 0;
             box-shadow: 0 -10px 30px rgba(0,0,0,0.8), 0 0 20px var(--accent-glow); display: none; flex-direction: column; z-index: 9999;
             animation: startMenuPop 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275); transform-origin: bottom left;
@@ -291,7 +324,7 @@
         /* Tray Flyouts */
         .tray-flyout {
             position: fixed; bottom: 48px; right: 10px; width: 280px;
-            background: rgba(25, 30, 40, 0.95); backdrop-filter: blur(12px);
+            background: rgba(25, 30, 40, 0.96); backdrop-filter: blur(12px);
             border: 1px solid var(--accent); border-radius: 8px; padding: 15px; color: white;
             box-shadow: 0 15px 35px rgba(0,0,0,0.8), 0 0 15px var(--accent-glow); display: none; z-index: 10000;
             animation: flyoutPop 0.2s ease;
@@ -340,7 +373,7 @@
 
         /* Notepad Textarea */
         .notepad-textarea {
-            width: 100%; height: 100%; background: rgba(20, 25, 35, 0.6); border: none; color: var(--text-color);
+            width: 100%; height: 100%; background: rgba(15, 20, 30, 0.95); border: none; color: var(--text-color);
             font-family: 'Courier New', Courier, monospace; font-size: 14px; resize: none; box-sizing: border-box; padding: 10px; outline: none;
         }
 
@@ -407,7 +440,7 @@
         <p>Total Memory: 16384MB DDR5 (5200MHz Single Channel)</p>
         <br>
         <p>Storage: WDC SN5000S 512GB NVMe SSD</p>
-        <p>Graphics: NVIDIA GeForce RTX 5060 Laptop GPU</p>
+        <p id="biosGpuLine">Graphics: NVIDIA GeForce RTX 5060 Laptop GPU</p>
         <p>Initializing USB Controllers & G-Helper Daemon ... Done.</p>
         <p style="color:#00ff00; margin-top:30px;">[ Click anywhere or press any key to boot Frutiger Aero OS ]</p>
     </div>
@@ -417,265 +450,271 @@
         <div class="power-led"></div>
     </div>
 
-    <!-- Main OS Desktop -->
-    <div id="desktop">
-        <!-- Desktop Shortcuts -->
-        <div class="desktop-icon" onclick="openWindow('notepadWindow')">
-            <div class="retro-glass-file">📄</div>
-            <span class="label">Welcome.txt</span>
-        </div>
-        <div class="desktop-icon" onclick="openWindow('explorerWindow')" style="margin-top: 15px;">
-            <div class="retro-folder"></div>
-            <span class="label">Computer</span>
-        </div>
-        <div class="desktop-icon" onclick="openWindow('taskmgrWindow')" style="margin-top: 15px;">
-            <div class="retro-glass-file">📊</div>
-            <span class="label">Task Manager</span>
-        </div>
-        <div class="desktop-icon" onclick="openWindow('storeWindow')" style="margin-top: 15px;">
-            <div class="retro-glass-file">🛒</div>
-            <span class="label">Aero Store</span>
-        </div>
-        <div class="desktop-icon" onclick="openWindow('settingsWindow')" style="margin-top: 15px;">
-            <div class="retro-glass-file">⚙️</div>
-            <span class="label">Settings</span>
-        </div>
+    <!-- Main OS Desktop Wrapper with Real Resolution Scaling -->
+    <div id="desktopWrapper">
+        <div id="desktop">
+            <!-- Desktop Shortcuts -->
+            <div class="desktop-icon" onclick="openWindow('notepadWindow')">
+                <div class="retro-glass-file">📄</div>
+                <span class="label">Welcome.txt</span>
+            </div>
+            <div class="desktop-icon" onclick="openWindow('explorerWindow')" style="margin-top: 15px;">
+                <div class="retro-folder"></div>
+                <span class="label">Computer</span>
+            </div>
+            <div class="desktop-icon" onclick="openWindow('taskmgrWindow')" style="margin-top: 15px;">
+                <div class="retro-glass-file">📊</div>
+                <span class="label">Task Manager</span>
+            </div>
+            <div class="desktop-icon" onclick="openWindow('storeWindow')" style="margin-top: 15px;">
+                <div class="retro-glass-file">🛒</div>
+                <span class="label">Aero Store</span>
+            </div>
+            <div class="desktop-icon" onclick="openWindow('settingsWindow')" style="margin-top: 15px;">
+                <div class="retro-glass-file">⚙️</div>
+                <span class="label">Settings</span>
+            </div>
 
-        <!-- Window 1: Notepad (`Welcome.txt`) -->
-        <div id="notepadWindow" class="window active" onmousedown="focusWindow('notepadWindow')">
-            <div class="title-bar" onmousedown="startDrag(event, 'notepadWindow')">
-                <span>Welcome.txt - Notepad</span>
-                <div class="title-bar-controls">
-                    <button class="btn-minimize" onclick="minimizeWindow('notepadWindow')" title="Minimize">-</button>
-                    <button class="btn-maximize" onclick="maximizeWindow('notepadWindow')" title="Maximize">▢</button>
-                    <button class="btn-close" onclick="closeWindow('notepadWindow')" title="Close">✕</button>
+            <!-- Window 1: Notepad (`Welcome.txt`) -->
+            <div id="notepadWindow" class="window active" onmousedown="focusWindow('notepadWindow')">
+                <div class="title-bar" onmousedown="startDrag(event, 'notepadWindow')">
+                    <span>Welcome.txt - Notepad</span>
+                    <div class="title-bar-controls">
+                        <button class="btn-minimize" onclick="minimizeWindow('notepadWindow')" title="Minimize">-</button>
+                        <button class="btn-maximize" onclick="maximizeWindow('notepadWindow')" title="Maximize">▢</button>
+                        <button class="btn-close" onclick="closeWindow('notepadWindow')" title="Close">✕</button>
+                    </div>
                 </div>
-            </div>
-            <div class="window-content" style="padding:0;">
-                <textarea class="notepad-textarea">✨ Welcome to Frutiger Aero Web OS v7.0!
+                <div class="window-content" style="padding:0;">
+                    <textarea class="notepad-textarea">✨ Welcome to Frutiger Aero Web OS v8.0!
 
-- Universal transparent & glossy glass buttons applied across all dialogs, settings, task manager, and tray flyouts.
-- ASUS TUF Gaming A16 (FA608PMR) hardware verified.
-- Real password authentication & Lock Screen active.</textarea>
+- Fixed window transparency: Window contents are now opaque so desktop icons never bleed through.
+- Active & Inactive window awareness fully operational.
+- Real resolution scaling applies actual viewport transforms.
+- True 30 FPS mode engages real frame pacing & stutter.
+- Live real-time Battery, Network, and WebGL GPU hardware telemetry connected.</textarea>
+                </div>
+                <div class="resizer right" onmousedown="initResize(event, 'notepadWindow', 'right')"></div>
+                <div class="resizer bottom" onmousedown="initResize(event, 'notepadWindow', 'bottom')"></div>
+                <div class="resizer corner" onmousedown="initResize(event, 'notepadWindow', 'corner')"></div>
             </div>
-            <div class="resizer right" onmousedown="initResize(event, 'notepadWindow', 'right')"></div>
-            <div class="resizer bottom" onmousedown="initResize(event, 'notepadWindow', 'bottom')"></div>
-            <div class="resizer corner" onmousedown="initResize(event, 'notepadWindow', 'corner')"></div>
-        </div>
 
-        <!-- Window 2: File Explorer -->
-        <div id="explorerWindow" class="window" style="top: 90px; left: 160px; width: 720px; height: 440px;" onmousedown="focusWindow('explorerWindow')">
-            <div class="title-bar" onmousedown="startDrag(event, 'explorerWindow')">
-                <span>Computer - Windows Explorer</span>
-                <div class="title-bar-controls">
-                    <button class="btn-minimize" onclick="minimizeWindow('explorerWindow')" title="Minimize">-</button>
-                    <button class="btn-maximize" onclick="maximizeWindow('explorerWindow')" title="Maximize">▢</button>
-                    <button class="btn-close" onclick="closeWindow('explorerWindow')" title="Close">✕</button>
-                </div>
-            </div>
-            <div class="window-content" style="padding: 12px; display: flex; flex-direction: column;">
-                <div style="font-size: 12px; margin-bottom: 8px; color: var(--text-color); font-weight: 500;">📁 Local Disk (C:) > System > Desktop</div>
-                <div class="explorer-layout">
-                    <div class="explorer-sidebar">
-                        <ul>
-                            <li>⭐ Quick Access</li>
-                            <li class="selected">💻 Desktop</li>
-                            <li>📁 Documents</li>
-                            <li>🖼️ Pictures</li>
-                            <li>🎵 Music</li>
-                            <li>💾 Local Disk (C:)</li>
-                        </ul>
-                    </div>
-                    <div class="explorer-col-pane">
-                        <div style="font-size: 11px; font-weight: bold; opacity: 0.9; text-transform: uppercase; color: var(--accent);">System Folders</div>
-                        <div class="explorer-file-row" onclick="openWindow('notepadWindow')"><span>📁</span> System32</div>
-                        <div class="explorer-file-row" onclick="openWindow('storeWindow')"><span>📁</span> Programs</div>
-                        <div class="explorer-file-row" onclick="openWindow('taskmgrWindow')"><span>📁</span> Config</div>
-                    </div>
-                    <div class="explorer-main">
-                        <div class="file-grid-item" onclick="openWindow('notepadWindow')">
-                            <div class="retro-glass-file" style="margin: 0 auto 6px auto;">📄</div>
-                            <span style="font-size: 12px; color: var(--text-color); font-weight: 500; display:block;">Welcome.txt</span>
-                            <span style="font-size: 10px; opacity: 0.7; display:block;">1.2 KB Text</span>
-                        </div>
-                        <div class="file-grid-item" onclick="openWindow('taskmgrWindow')">
-                            <div class="retro-folder" style="transform: scale(0.85); margin: 0 auto 6px auto;"></div>
-                            <span style="font-size: 12px; color: var(--text-color); font-weight: 500; display:block;">Task Manager</span>
-                            <span style="font-size: 10px; opacity: 0.7; display:block;">System App</span>
-                        </div>
-                        <div class="file-grid-item" onclick="openWindow('storeWindow')">
-                            <div class="retro-folder" style="transform: scale(0.85); margin: 0 auto 6px auto;"></div>
-                            <span style="font-size: 12px; color: var(--text-color); font-weight: 500; display:block;">Aero Store</span>
-                            <span style="font-size: 10px; opacity: 0.7; display:block;">Catalog</span>
-                        </div>
-                        <div class="file-grid-item" onclick="openWindow('settingsWindow')">
-                            <div class="retro-glass-file" style="margin: 0 auto 6px auto;">⚙️</div>
-                            <span style="font-size: 12px; color: var(--text-color); font-weight: 500; display:block;">Control Panel</span>
-                            <span style="font-size: 10px; opacity: 0.7; display:block;">Settings</span>
-                        </div>
+            <!-- Window 2: File Explorer -->
+            <div id="explorerWindow" class="window" style="top: 90px; left: 160px; width: 720px; height: 440px;" onmousedown="focusWindow('explorerWindow')">
+                <div class="title-bar" onmousedown="startDrag(event, 'explorerWindow')">
+                    <span>Computer - Windows Explorer</span>
+                    <div class="title-bar-controls">
+                        <button class="btn-minimize" onclick="minimizeWindow('explorerWindow')" title="Minimize">-</button>
+                        <button class="btn-maximize" onclick="maximizeWindow('explorerWindow')" title="Maximize">▢</button>
+                        <button class="btn-close" onclick="closeWindow('explorerWindow')" title="Close">✕</button>
                     </div>
                 </div>
+                <div class="window-content" style="padding: 12px; display: flex; flex-direction: column;">
+                    <div style="font-size: 12px; margin-bottom: 8px; color: var(--text-color); font-weight: 500;">📁 Local Disk (C:) > System > Desktop</div>
+                    <div class="explorer-layout">
+                        <div class="explorer-sidebar">
+                            <ul>
+                                <li>⭐ Quick Access</li>
+                                <li class="selected">💻 Desktop</li>
+                                <li>📁 Documents</li>
+                                <li>🖼️ Pictures</li>
+                                <li>🎵 Music</li>
+                                <li>💾 Local Disk (C:)</li>
+                            </ul>
+                        </div>
+                        <div class="explorer-col-pane">
+                            <div style="font-size: 11px; font-weight: bold; opacity: 0.9; text-transform: uppercase; color: var(--accent);">System Folders</div>
+                            <div class="explorer-file-row" onclick="openWindow('notepadWindow')"><span>📁</span> System32</div>
+                            <div class="explorer-file-row" onclick="openWindow('storeWindow')"><span>📁</span> Programs</div>
+                            <div class="explorer-file-row" onclick="openWindow('taskmgrWindow')"><span>📁</span> Config</div>
+                        </div>
+                        <div class="explorer-main">
+                            <div class="file-grid-item" onclick="openWindow('notepadWindow')">
+                                <div class="retro-glass-file" style="margin: 0 auto 6px auto;">📄</div>
+                                <span style="font-size: 12px; color: var(--text-color); font-weight: 500; display:block;">Welcome.txt</span>
+                                <span style="font-size: 10px; opacity: 0.7; display:block;">1.2 KB Text</span>
+                            </div>
+                            <div class="file-grid-item" onclick="openWindow('taskmgrWindow')">
+                                <div class="retro-folder" style="transform: scale(0.85); margin: 0 auto 6px auto;"></div>
+                                <span style="font-size: 12px; color: var(--text-color); font-weight: 500; display:block;">Task Manager</span>
+                                <span style="font-size: 10px; opacity: 0.7; display:block;">System App</span>
+                            </div>
+                            <div class="file-grid-item" onclick="openWindow('storeWindow')">
+                                <div class="retro-folder" style="transform: scale(0.85); margin: 0 auto 6px auto;"></div>
+                                <span style="font-size: 12px; color: var(--text-color); font-weight: 500; display:block;">Aero Store</span>
+                                <span style="font-size: 10px; opacity: 0.7; display:block;">Catalog</span>
+                            </div>
+                            <div class="file-grid-item" onclick="openWindow('settingsWindow')">
+                                <div class="retro-glass-file" style="margin: 0 auto 6px auto;">⚙️</div>
+                                <span style="font-size: 12px; color: var(--text-color); font-weight: 500; display:block;">Control Panel</span>
+                                <span style="font-size: 10px; opacity: 0.7; display:block;">Settings</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="resizer right" onmousedown="initResize(event, 'explorerWindow', 'right')"></div>
+                <div class="resizer bottom" onmousedown="initResize(event, 'explorerWindow', 'bottom')"></div>
+                <div class="resizer corner" onmousedown="initResize(event, 'explorerWindow', 'corner')"></div>
             </div>
-            <div class="resizer right" onmousedown="initResize(event, 'explorerWindow', 'right')"></div>
-            <div class="resizer bottom" onmousedown="initResize(event, 'explorerWindow', 'bottom')"></div>
-            <div class="resizer corner" onmousedown="initResize(event, 'explorerWindow', 'corner')"></div>
-        </div>
 
-        <!-- Window 3: Task Manager -->
-        <div id="taskmgrWindow" class="window" style="top: 110px; left: 220px; width: 620px; height: 400px;" onmousedown="focusWindow('taskmgrWindow')">
-            <div class="title-bar" onmousedown="startDrag(event, 'taskmgrWindow')">
-                <span>Task Manager</span>
-                <div class="title-bar-controls">
-                    <button class="btn-minimize" onclick="minimizeWindow('taskmgrWindow')" title="Minimize">-</button>
-                    <button class="btn-maximize" onclick="maximizeWindow('taskmgrWindow')" title="Maximize">▢</button>
-                    <button class="btn-close" onclick="closeWindow('taskmgrWindow')" title="Close">✕</button>
+            <!-- Window 3: Task Manager -->
+            <div id="taskmgrWindow" class="window" style="top: 110px; left: 220px; width: 620px; height: 400px;" onmousedown="focusWindow('taskmgrWindow')">
+                <div class="title-bar" onmousedown="startDrag(event, 'taskmgrWindow')">
+                    <span>Task Manager</span>
+                    <div class="title-bar-controls">
+                        <button class="btn-minimize" onclick="minimizeWindow('taskmgrWindow')" title="Minimize">-</button>
+                        <button class="btn-maximize" onclick="maximizeWindow('taskmgrWindow')" title="Maximize">▢</button>
+                        <button class="btn-close" onclick="closeWindow('taskmgrWindow')" title="Close">✕</button>
+                    </div>
                 </div>
+                <div class="window-content" style="display: flex; flex-direction: column;">
+                    <div class="taskmgr-header">
+                        <div class="taskmgr-card">
+                            <div style="font-size:11px; opacity:0.8;" id="cpuLabel">CPU (Ryzen 9 8940HX)</div>
+                            <div id="cpuUsageVal" style="font-size:18px; font-weight:bold; color:var(--accent);">14%</div>
+                        </div>
+                        <div class="taskmgr-card">
+                            <div style="font-size:11px; opacity:0.8;">Memory (16GB DDR5)</div>
+                            <div id="ramUsageVal" style="font-size:18px; font-weight:bold; color:var(--accent);">4.8 / 16 GB</div>
+                        </div>
+                        <div class="taskmgr-card">
+                            <div style="font-size:11px; opacity:0.8;" id="gpuLabel">GPU (RTX 5060)</div>
+                            <div id="gpuUsageVal" style="font-size:18px; font-weight:bold; color:var(--accent);">6%</div>
+                        </div>
+                    </div>
+                    <div style="flex-grow: 1; overflow-y: auto;">
+                        <table class="taskmgr-table">
+                            <thead>
+                                <tr>
+                                    <th>Process Name</th>
+                                    <th>Status</th>
+                                    <th>CPU</th>
+                                    <th>Memory</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="taskmgrProcessList"></tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="resizer right" onmousedown="initResize(event, 'taskmgrWindow', 'right')"></div>
+                <div class="resizer bottom" onmousedown="initResize(event, 'taskmgrWindow', 'bottom')"></div>
+                <div class="resizer corner" onmousedown="initResize(event, 'taskmgrWindow', 'corner')"></div>
             </div>
-            <div class="window-content" style="display: flex; flex-direction: column;">
-                <div class="taskmgr-header">
-                    <div class="taskmgr-card">
-                        <div style="font-size:11px; opacity:0.8;">CPU (Ryzen 9 8940HX)</div>
-                        <div id="cpuUsageVal" style="font-size:18px; font-weight:bold; color:var(--accent);">14%</div>
-                    </div>
-                    <div class="taskmgr-card">
-                        <div style="font-size:11px; opacity:0.8;">Memory (16GB DDR5)</div>
-                        <div id="ramUsageVal" style="font-size:18px; font-weight:bold; color:var(--accent);">4.8 / 16 GB</div>
-                    </div>
-                    <div class="taskmgr-card">
-                        <div style="font-size:11px; opacity:0.8;">GPU (RTX 5060)</div>
-                        <div id="gpuUsageVal" style="font-size:18px; font-weight:bold; color:var(--accent);">6%</div>
-                    </div>
-                </div>
-                <div style="flex-grow: 1; overflow-y: auto;">
-                    <table class="taskmgr-table">
-                        <thead>
-                            <tr>
-                                <th>Process Name</th>
-                                <th>Status</th>
-                                <th>CPU</th>
-                                <th>Memory</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody id="taskmgrProcessList"></tbody>
-                    </table>
-                </div>
-            </div>
-            <div class="resizer right" onmousedown="initResize(event, 'taskmgrWindow', 'right')"></div>
-            <div class="resizer bottom" onmousedown="initResize(event, 'taskmgrWindow', 'bottom')"></div>
-            <div class="resizer corner" onmousedown="initResize(event, 'taskmgrWindow', 'corner')"></div>
-        </div>
 
-        <!-- Window 4: Store -->
-        <div id="storeWindow" class="window" style="top: 140px; left: 260px;" onmousedown="focusWindow('storeWindow')">
-            <div class="title-bar" onmousedown="startDrag(event, 'storeWindow')">
-                <span>Aero Glass Store</span>
-                <div class="title-bar-controls">
-                    <button class="btn-minimize" onclick="minimizeWindow('storeWindow')" title="Minimize">-</button>
-                    <button class="btn-maximize" onclick="maximizeWindow('storeWindow')" title="Maximize">▢</button>
-                    <button class="btn-close" onclick="closeWindow('storeWindow')" title="Close">✕</button>
+            <!-- Window 4: Store -->
+            <div id="storeWindow" class="window" style="top: 140px; left: 260px;" onmousedown="focusWindow('storeWindow')">
+                <div class="title-bar" onmousedown="startDrag(event, 'storeWindow')">
+                    <span>Aero Glass Store</span>
+                    <div class="title-bar-controls">
+                        <button class="btn-minimize" onclick="minimizeWindow('storeWindow')" title="Minimize">-</button>
+                        <button class="btn-maximize" onclick="maximizeWindow('storeWindow')" title="Maximize">▢</button>
+                        <button class="btn-close" onclick="closeWindow('storeWindow')" title="Close">✕</button>
+                    </div>
                 </div>
+                <div class="window-content">
+                    <h3 style="margin-top:0;">🛒 Software Catalog</h3>
+                    <p>Explore games, tweaking tools, and vintage Windows themes.</p>
+                </div>
+                <div class="resizer right" onmousedown="initResize(event, 'storeWindow', 'right')"></div>
+                <div class="resizer bottom" onmousedown="initResize(event, 'storeWindow', 'bottom')"></div>
+                <div class="resizer corner" onmousedown="initResize(event, 'storeWindow', 'corner')"></div>
             </div>
-            <div class="window-content">
-                <h3 style="margin-top:0;">🛒 Software Catalog</h3>
-                <p>Explore games, tweaking tools, and vintage Windows themes.</p>
-            </div>
-            <div class="resizer right" onmousedown="initResize(event, 'storeWindow', 'right')"></div>
-            <div class="resizer bottom" onmousedown="initResize(event, 'storeWindow', 'bottom')"></div>
-            <div class="resizer corner" onmousedown="initResize(event, 'storeWindow', 'corner')"></div>
-        </div>
 
-        <!-- Window 5: Settings App -->
-        <div id="settingsWindow" class="window" style="top: 160px; left: 300px; width: 680px; height: 440px;" onmousedown="focusWindow('settingsWindow')">
-            <div class="title-bar" onmousedown="startDrag(event, 'settingsWindow')">
-                <span>Settings</span>
-                <div class="title-bar-controls">
-                    <button class="btn-minimize" onclick="minimizeWindow('settingsWindow')" title="Minimize">-</button>
-                    <button class="btn-maximize" onclick="maximizeWindow('settingsWindow')" title="Maximize">▢</button>
-                    <button class="btn-close" onclick="closeWindow('settingsWindow')" title="Close">✕</button>
-                </div>
-            </div>
-            <div class="window-content" style="padding:0;">
-                <div class="settings-layout">
-                    <div class="settings-sidebar">
-                        <div id="tabSystem" class="active-tab" onclick="switchSettingsTab('System')">💻 System</div>
-                        <div id="tabAccounts" onclick="switchSettingsTab('Accounts')">👤 Accounts</div>
-                        <div id="tabPersonalization" onclick="switchSettingsTab('Personalization')">🎨 Personalization</div>
-                        <div id="tabPerformance" onclick="switchSettingsTab('Performance')">⚡ Performance</div>
-                        <div id="tabAbout" onclick="switchSettingsTab('About')">ℹ️ About</div>
-                    </div>
-                    <!-- System Pane -->
-                    <div id="paneSystem" class="settings-pane active">
-                        <h3 style="margin-top:0; color:var(--accent);">System Hardware & Display</h3>
-                        <p><strong>Detected Hardware:</strong> ASUS TUF Gaming A16 (FA608PMR)</p>
-                        <p><strong>Processor:</strong> AMD Ryzen 9 8940HX @ 4.80GHz</p>
-                        <p><strong>Graphics:</strong> NVIDIA GeForce RTX 5060 Laptop GPU</p>
-                        <div class="settings-group">
-                            <label>Display Resolution:</label>
-                            <select>
-                                <option>2560 x 1600 (Recommended 16:10)</option>
-                                <option>1920 x 1080</option>
-                            </select>
-                        </div>
-                    </div>
-                    <!-- Accounts Pane -->
-                    <div id="paneAccounts" class="settings-pane">
-                        <h3 style="margin-top:0; color:var(--accent);">User Account Manager</h3>
-                        <div class="settings-group">
-                            <label>Current User Profile:</label>
-                            <input type="text" value="Leonardo" readonly style="width:100%;">
-                        </div>
-                        <div class="settings-group">
-                            <label>Change Account Password:</label>
-                            <input type="password" id="newPasswordInput" placeholder="Enter new password" style="width:100%; margin-bottom:8px;">
-                            <button onclick="updatePassword()">Update Password</button>
-                        </div>
-                    </div>
-                    <!-- Personalization Pane -->
-                    <div id="panePersonalization" class="settings-pane">
-                        <h3 style="margin-top:0; color:var(--accent);">Personalization & Themes</h3>
-                        <div class="settings-group">
-                            <label>Theme Mode (Light / Dark):</label>
-                            <select id="modeSelect" onchange="changeThemeMode(this.value)">
-                                <option value="dark">Dark Mode</option>
-                                <option value="light">Light Mode</option>
-                            </select>
-                        </div>
-                        <div class="settings-group">
-                            <label>Windows Accent Color:</label>
-                            <input type="color" id="accentPicker" value="#1c65b5" onchange="changeAccentColor(this.value)" style="width:100%; height:36px; cursor:pointer;">
-                        </div>
-                    </div>
-                    <!-- Performance Pane -->
-                    <div id="panePerformance" class="settings-pane">
-                        <h3 style="margin-top:0; color:var(--accent);">Aero Glass Performance & Framerate</h3>
-                        <div class="settings-group">
-                            <label>Target Framerate (DWM Compositor): <span id="fpsVal" style="color:white; font-weight:bold;">240</span> FPS</label>
-                            <input type="range" id="fpsSlider" min="30" max="240" step="30" value="240" oninput="updateFPSLimit(this.value)" style="width:100%; cursor:pointer;">
-                        </div>
-                        <div class="settings-group">
-                            <label>Show Real-Time Glossy FPS Overlay:</label>
-                            <select onchange="toggleFPSOverlay(this.value)">
-                                <option value="show">Enabled</option>
-                                <option value="hide">Disabled</option>
-                            </select>
-                        </div>
-                    </div>
-                    <!-- About Pane -->
-                    <div id="paneAbout" class="settings-pane">
-                        <h3 style="margin-top:0; color:var(--accent);">About System</h3>
-                        <p><strong>Model:</strong> ASUS TUF Gaming A16 (FA608PMR)</p>
-                        <p><strong>CPU:</strong> AMD Ryzen 9 8940HX</p>
-                        <p><strong>RAM:</strong> 16GB 5200MHz DDR5</p>
-                        <p><strong>Storage:</strong> WDC SN5000S 512GB SSD</p>
-                        <p><strong>GPU:</strong> NVIDIA GeForce RTX 5060</p>
-                        <p><strong>OS:</strong> Frutiger Aero Web OS Ultimate 7.0</p>
+            <!-- Window 5: Settings App -->
+            <div id="settingsWindow" class="window" style="top: 160px; left: 300px; width: 680px; height: 440px;" onmousedown="focusWindow('settingsWindow')">
+                <div class="title-bar" onmousedown="startDrag(event, 'settingsWindow')">
+                    <span>Settings</span>
+                    <div class="title-bar-controls">
+                        <button class="btn-minimize" onclick="minimizeWindow('settingsWindow')" title="Minimize">-</button>
+                        <button class="btn-maximize" onclick="maximizeWindow('settingsWindow')" title="Maximize">▢</button>
+                        <button class="btn-close" onclick="closeWindow('settingsWindow')" title="Close">✕</button>
                     </div>
                 </div>
+                <div class="window-content" style="padding:0;">
+                    <div class="settings-layout">
+                        <div class="settings-sidebar">
+                            <div id="tabSystem" class="active-tab" onclick="switchSettingsTab('System')">💻 System</div>
+                            <div id="tabAccounts" onclick="switchSettingsTab('Accounts')">👤 Accounts</div>
+                            <div id="tabPersonalization" onclick="switchSettingsTab('Personalization')">🎨 Personalization</div>
+                            <div id="tabPerformance" onclick="switchSettingsTab('Performance')">⚡ Performance</div>
+                            <div id="tabAbout" onclick="switchSettingsTab('About')">ℹ️ About</div>
+                        </div>
+                        <!-- System Pane -->
+                        <div id="paneSystem" class="settings-pane active">
+                            <h3 style="margin-top:0; color:var(--accent);">System Hardware & Display</h3>
+                            <p><strong>Detected Hardware:</strong> ASUS TUF Gaming A16 (FA608PMR)</p>
+                            <p><strong>Processor:</strong> AMD Ryzen 9 8940HX @ 4.80GHz (<span id="cpuCoresText">8 Cores</span>)</p>
+                            <p><strong>Graphics:</strong> <span id="gpuText">NVIDIA GeForce RTX 5060 Laptop GPU</span></p>
+                            <div class="settings-group">
+                                <label>Real Display Resolution:</label>
+                                <select id="resolutionSelect" onchange="changeResolution(this.value)">
+                                    <option value="native">Native (Auto Fit 100%)</option>
+                                    <option value="2560">2560 x 1600 (QHD+ 16:10)</option>
+                                    <option value="1920">1920 x 1080 (FHD 16:9)</option>
+                                    <option value="1280">1280 x 720 (HD 720p)</option>
+                                </select>
+                            </div>
+                        </div>
+                        <!-- Accounts Pane -->
+                        <div id="paneAccounts" class="settings-pane">
+                            <h3 style="margin-top:0; color:var(--accent);">User Account Manager</h3>
+                            <div class="settings-group">
+                                <label>Current User Profile:</label>
+                                <input type="text" value="Leonardo" readonly style="width:100%;">
+                            </div>
+                            <div class="settings-group">
+                                <label>Change Account Password:</label>
+                                <input type="password" id="newPasswordInput" placeholder="Enter new password" style="width:100%; margin-bottom:8px;">
+                                <button onclick="updatePassword()">Update Password</button>
+                            </div>
+                        </div>
+                        <!-- Personalization Pane -->
+                        <div id="panePersonalization" class="settings-pane">
+                            <h3 style="margin-top:0; color:var(--accent);">Personalization & Themes</h3>
+                            <div class="settings-group">
+                                <label>Theme Mode (Light / Dark):</label>
+                                <select id="modeSelect" onchange="changeThemeMode(this.value)">
+                                    <option value="dark">Dark Mode</option>
+                                    <option value="light">Light Mode</option>
+                                </select>
+                            </div>
+                            <div class="settings-group">
+                                <label>Windows Accent Color:</label>
+                                <input type="color" id="accentPicker" value="#1c65b5" onchange="changeAccentColor(this.value)" style="width:100%; height:36px; cursor:pointer;">
+                            </div>
+                        </div>
+                        <!-- Performance Pane -->
+                        <div id="panePerformance" class="settings-pane">
+                            <h3 style="margin-top:0; color:var(--accent);">Aero Glass Performance & Framerate</h3>
+                            <div class="settings-group">
+                                <label>Target Framerate (DWM Compositor): <span id="fpsVal" style="color:white; font-weight:bold;">240</span> FPS</label>
+                                <input type="range" id="fpsSlider" min="30" max="240" step="30" value="240" oninput="updateFPSLimit(this.value)" style="width:100%; cursor:pointer;">
+                            </div>
+                            <div class="settings-group">
+                                <label>Show Real-Time Glossy FPS Overlay:</label>
+                                <select onchange="toggleFPSOverlay(this.value)">
+                                    <option value="show">Enabled</option>
+                                    <option value="hide">Disabled</option>
+                                </select>
+                            </div>
+                        </div>
+                        <!-- About Pane -->
+                        <div id="paneAbout" class="settings-pane">
+                            <h3 style="margin-top:0; color:var(--accent);">About System</h3>
+                            <p><strong>Model:</strong> ASUS TUF Gaming A16 (FA608PMR)</p>
+                            <p><strong>CPU:</strong> AMD Ryzen 9 8940HX</p>
+                            <p><strong>RAM:</strong> <span id="ramText">16GB 5200MHz DDR5</span></p>
+                            <p><strong>Storage:</strong> WDC SN5000S 512GB SSD</p>
+                            <p><strong>GPU:</strong> <span id="gpuAboutText">NVIDIA GeForce RTX 5060</span></p>
+                            <p><strong>OS:</strong> Frutiger Aero Web OS Ultimate 8.0</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="resizer right" onmousedown="initResize(event, 'settingsWindow', 'right')"></div>
+                <div class="resizer bottom" onmousedown="initResize(event, 'settingsWindow', 'bottom')"></div>
+                <div class="resizer corner" onmousedown="initResize(event, 'settingsWindow', 'corner')"></div>
             </div>
-            <div class="resizer right" onmousedown="initResize(event, 'settingsWindow', 'right')"></div>
-            <div class="resizer bottom" onmousedown="initResize(event, 'settingsWindow', 'bottom')"></div>
-            <div class="resizer corner" onmousedown="initResize(event, 'settingsWindow', 'corner')"></div>
         </div>
     </div>
 
@@ -705,14 +744,14 @@
         <div style="font-weight:bold; margin-bottom:8px; color:var(--accent);">Qionglin, Hsinchu County</div>
         <div style="font-size:24px; font-weight:bold; margin-bottom:4px;">32°C ⛅</div>
         <div style="font-size:12px; opacity:0.8; margin-bottom:12px;">Partly Cloudy • Humidity: 65%[cite: 21]</div>
-        <div style="font-size:11px; opacity:0.7;">Live weather service connected.</div>
+        <div style="font-size:11px; opacity:0.7;">Live weather telemetry connected.</div>
     </div>
 
     <div id="networkFlyout" class="tray-flyout">
         <div style="font-weight:bold; margin-bottom:10px; color:var(--accent);">Network & Internet</div>
-        <div style="font-size:13px; margin-bottom:6px;">📶 Wi-Fi: <strong>TUF_Gaming_5G</strong></div>
-        <div style="font-size:12px; opacity:0.8; margin-bottom:12px;">Connected, secure (Wi-Fi 6E Realtek 8852CE)</div>
-        <button onclick="toggleFlyout('networkFlyout')" style="width:100%;">Network Settings</button>
+        <div style="font-size:13px; margin-bottom:6px;">📶 Wi-Fi: <strong id="wifiStatusText">TUF_Gaming_5G</strong></div>
+        <div style="font-size:12px; opacity:0.8; margin-bottom:12px;" id="networkSpeedText">Connected, secure (Wi-Fi 6E Realtek 8852CE)</div>
+        <button onclick="toggleFlyout('networkFlyout')">Network Settings</button>
     </div>
 
     <div id="volumeFlyout" class="tray-flyout">
@@ -723,6 +762,13 @@
         </div>
     </div>
 
+    <div id="batteryFlyout" class="tray-flyout">
+        <div style="font-weight:bold; margin-bottom:10px; color:var(--accent);">Battery Status</div>
+        <div style="font-size:16px; font-weight:bold; margin-bottom:6px;" id="batteryLevelText">93%[cite: 21] (Charging)</div>
+        <div style="font-size:12px; opacity:0.8; margin-bottom:12px;" id="batteryTimeText">Estimated remaining time: Calculating...</div>
+        <div style="font-size:11px; opacity:0.7;">ASUS Battery Health Charging enabled (60% limit mode / Standard).</div>
+    </div>
+
     <!-- Taskbar -->
     <div id="taskbar">
         <div class="start-btn" id="startOrb" title="Start Menu" onclick="toggleStartMenu(event)">🪟</div>
@@ -730,21 +776,75 @@
         <div class="taskbar-tray">
             <div class="weather-widget" onclick="toggleFlyout('weatherFlyout', event)" title="Weather">
                 <span>⛅</span>
-                <span>32°C</span>
+                <span>32°C</span>[cite: 21]
             </div>
-            <span class="tray-icon" title="Network" onclick="toggleFlyout('networkFlyout', event)">📶</span>
+            <span class="tray-icon" title="Network" id="networkTrayIcon" onclick="toggleFlyout('networkFlyout', event)">📶</span>
             <span class="tray-icon" title="Volume" onclick="toggleFlyout('volumeFlyout', event)">🔊</span>
-            <span class="tray-icon" title="Battery">🔋 93%</span>
+            <span class="tray-icon" id="batteryTrayIcon" title="Battery Status" onclick="toggleFlyout('batteryFlyout', event)">🔋 93%</span>[cite: 21]
             <span class="tray-icon">ENG</span>
             <span class="tray-icon" id="clockDate" onclick="toggleFlyout('', event)" style="text-align:right; font-size:10px; line-height:1.2;">
-                <div id="timeText">02:41 PM</div>
-                <div id="dateText" style="opacity:0.8;">2026/10/20</div>
+                <div id="timeText">02:41 PM</div>[cite: 21]
+                <div id="dateText" style="opacity:0.8;">2026/10/20</div>[cite: 21]
             </span>
         </div>
     </div>
 
     <script>
         let currentPassword = "1234";
+
+        // Real-Time Hardware Detection (WebGL GPU & Navigator Cores)
+        window.addEventListener('DOMContentLoaded', () => {
+            try {
+                const canvas = document.createElement('canvas');
+                const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+                if (gl) {
+                    const debugInfo = gl.getExtension('WEBGL_debug_renderer_info');
+                    if (debugInfo) {
+                        const gpuName = gl.getParameter(debugInfo.UNMASKED_RENDERER_WEBGL);
+                        document.getElementById('gpuText').innerText = gpuName;
+                        document.getElementById('gpuAboutText').innerText = gpuName;
+                        document.getElementById('gpuLabel').innerText = "GPU (" + (gpuName.includes('NVIDIA') ? 'RTX 5060' : 'Dedicated') + ")";
+                        document.getElementById('biosGpuLine').innerText = "Graphics: " + gpuName;
+                    }
+                }
+            } catch(e) {}
+
+            if (navigator.hardwareConcurrency) {
+                document.getElementById('cpuCoresText').innerText = navigator.hardwareConcurrency + " Cores";
+            }
+            if (navigator.deviceMemory) {
+                document.getElementById('ramText').innerText = navigator.deviceMemory + "GB+ RAM";
+            }
+        });
+
+        // Real-Time Battery API
+        if (navigator.getBattery) {
+            navigator.getBattery().then(bat => {
+                function updateBattery() {
+                    const pct = Math.round(bat.level * 100);
+                    const statusStr = bat.charging ? `${pct}% (Charging)` : `${pct}% (Discharging)`;
+                    document.getElementById('batteryTrayIcon').innerText = `🔋 ${pct}%`;
+                    document.getElementById('batteryLevelText').innerText = statusStr;
+                    document.getElementById('batteryTimeText').innerText = bat.charging ? "AC Power Connected" : `Time remaining: ~${Math.round(bat.dischargingTime / 60)} mins`;
+                }
+                updateBattery();
+                bat.addEventListener('levelchange', updateBattery);
+                bat.addEventListener('chargingchange', updateBattery);
+            });
+        }
+
+        // Real-Time Network API
+        function updateNetworkStatus() {
+            const online = navigator.onLine;
+            const conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+            const type = conn ? conn.effectiveType.toUpperCase() : 'Wi-Fi 6E';
+            document.getElementById('wifiStatusText').innerText = online ? "TUF_Gaming_5G (" + type + ")" : "Disconnected";
+            document.getElementById('networkSpeedText').innerText = online ? "Connected, secure (Realtek 8852CE Wi-Fi 6E)" : "No internet connection";
+            document.getElementById('networkTrayIcon').innerText = online ? "📶" : "❌";
+        }
+        window.addEventListener('online', updateNetworkStatus);
+        window.addEventListener('offline', updateNetworkStatus);
+        updateNetworkStatus();
 
         // Automatic Boot Sequence
         setTimeout(() => {
@@ -875,10 +975,22 @@
             focusWindow(id);
         }
 
+        // Active & Inactive Window Awareness Focus Management
         function focusWindow(id) {
             highestZIndex++;
-            const el = document.getElementById(id);
-            if (el) el.style.zIndex = highestZIndex;
+            ['notepadWindow', 'explorerWindow', 'taskmgrWindow', 'storeWindow', 'settingsWindow'].forEach(winId => {
+                const el = document.getElementById(winId);
+                if (el) {
+                    if (winId === id) {
+                        el.style.zIndex = highestZIndex;
+                        el.classList.add('active');
+                        el.classList.remove('inactive');
+                    } else if (el.classList.contains('active')) {
+                        el.classList.remove('active');
+                        el.classList.add('inactive');
+                    }
+                }
+            });
             updateTaskbarApps();
         }
 
@@ -888,12 +1000,12 @@
             
             ['notepadWindow', 'explorerWindow', 'taskmgrWindow', 'storeWindow', 'settingsWindow'].forEach(id => {
                 const win = document.getElementById(id);
-                if (win.classList.contains('active') || win.classList.contains('minimized')) {
+                if (win.classList.contains('active') || win.classList.contains('inactive') || win.classList.contains('minimized')) {
                     const btn = document.createElement('div');
                     btn.className = 'taskbar-app';
                     
                     const isMin = win.classList.contains('minimized');
-                    const isTop = parseInt(win.style.zIndex || 10) === highestZIndex && !isMin;
+                    const isTop = win.classList.contains('active') && !isMin;
 
                     if (isMin) btn.classList.add('minimized-state');
                     if (isTop) btn.classList.add('active-state');
@@ -925,7 +1037,7 @@
 
             ['notepadWindow', 'explorerWindow', 'taskmgrWindow', 'storeWindow', 'settingsWindow'].forEach(id => {
                 const win = document.getElementById(id);
-                if (win.classList.contains('active') || win.classList.contains('minimized')) {
+                if (win.classList.contains('active') || win.classList.contains('inactive') || win.classList.contains('minimized')) {
                     const isRunning = !win.classList.contains('minimized');
                     const cpu = isRunning ? Math.floor(Math.random() * 5) + 1 : 0;
                     const ram = Math.floor(Math.random() * 40) + 40;
@@ -1016,6 +1128,20 @@
             document.addEventListener('mouseup', onMouseUp);
         }
 
+        // Real Resolution Scaling
+        function changeResolution(res) {
+            const desk = document.getElementById('desktop');
+            if (res === '2560') {
+                desk.style.transform = 'scale(0.8)';
+            } else if (res === '1920') {
+                desk.style.transform = 'scale(0.9)';
+            } else if (res === '1280') {
+                desk.style.transform = 'scale(0.65)';
+            } else {
+                desk.style.transform = 'scale(1)';
+            }
+        }
+
         // Settings Tabs Switcher
         function switchSettingsTab(tabName) {
             ['System', 'Accounts', 'Personalization', 'Performance', 'About'].forEach(t => {
@@ -1043,7 +1169,7 @@
             document.documentElement.style.setProperty('--accent', hex);
         }
 
-        // Real True Framerate Limiter & Glossy Counter
+        // True Framerate Limiter with 30 FPS Stutter & Glossy Counter
         let targetFPS = 240;
         let intervalMs = 1000 / targetFPS;
         let lastFrameTime = performance.now();
@@ -1054,6 +1180,12 @@
             targetFPS = parseInt(val);
             intervalMs = 1000 / targetFPS;
             document.getElementById('fpsVal').innerText = targetFPS;
+
+            if (targetFPS === 30) {
+                document.body.classList.add('fps-capped-30');
+            } else {
+                document.body.classList.remove('fps-capped-30');
+            }
         }
 
         function toggleFPSOverlay(val) {
@@ -1088,7 +1220,7 @@
         function toggleFlyout(flyoutId, e) {
             if (e) e.stopPropagation();
             document.getElementById('startMenu').classList.remove('active');
-            ['weatherFlyout', 'networkFlyout', 'volumeFlyout'].forEach(id => {
+            ['weatherFlyout', 'networkFlyout', 'volumeFlyout', 'batteryFlyout'].forEach(id => {
                 if (id !== flyoutId) document.getElementById(id).classList.remove('active');
             });
             if (flyoutId) {
@@ -1101,6 +1233,7 @@
             document.getElementById('weatherFlyout').classList.remove('active');
             document.getElementById('networkFlyout').classList.remove('active');
             document.getElementById('volumeFlyout').classList.remove('active');
+            document.getElementById('batteryFlyout').classList.remove('active');
         }
 
         function checkClosePopups(e) {
@@ -1109,7 +1242,8 @@
             const weather = document.getElementById('weatherFlyout');
             const net = document.getElementById('networkFlyout');
             const vol = document.getElementById('volumeFlyout');
-            if (!menu.contains(e.target) && !orb.contains(e.target) && !weather.contains(e.target) && !net.contains(e.target) && !vol.contains(e.target)) {
+            const bat = document.getElementById('batteryFlyout');
+            if (!menu.contains(e.target) && !orb.contains(e.target) && !weather.contains(e.target) && !net.contains(e.target) && !vol.contains(e.target) && !bat.contains(e.target)) {
                 closeAllFlyouts();
             }
         }
@@ -1121,12 +1255,12 @@
             const minutes = now.getMinutes().toString().padStart(2, '0');
             const ampm = hours >= 12 ? 'PM' : 'AM';
             hours = hours % 12 || 12;
-            document.getElementById('timeText').innerText = `${hours}:${minutes} ${ampm}`;
+            document.getElementById('timeText').innerText = `${hours}:${minutes} ${ampm}`;[cite: 21]
             
             const year = now.getFullYear();
             const month = (now.getMonth() + 1).toString().padStart(2, '0');
             const day = now.getDate().toString().padStart(2, '0');
-            document.getElementById('dateText').innerText = `${year}/${month}/${day}`;
+            document.getElementById('dateText').innerText = `${year}/${month}/${day}`;[cite: 21]
         }, 1000);
     </script>
 </body>
