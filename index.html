@@ -16,40 +16,40 @@
             --titlebar-4: rgba(30, 40, 55, 0.95);
             --accent-color: #72bcff;
             --text-color: #f0f0f0;
-            --explorer-sidebar-bg: rgba(20, 25, 35, 0.5);
-            --explorer-main-bg: rgba(15, 18, 24, 0.45);
+            --explorer-sidebar-bg: rgba(20, 25, 35, 0.6);
+            --explorer-col-bg: rgba(15, 18, 24, 0.5);
         }
 
-        /* Dark Classic Light Blue Theme */
+        /* Playful & Colorful Playful Light Blue Theme */
         body.theme-lightblue {
-            --taskbar-bg-1: rgba(15, 45, 90, 0.9);
-            --taskbar-bg-2: rgba(5, 20, 45, 0.95);
-            --window-bg: linear-gradient(135deg, rgba(150, 210, 255, 0.2) 0%, rgba(15, 45, 90, 0.75) 50%, rgba(5, 20, 45, 0.9) 100%);
-            --window-content-bg: rgba(10, 25, 50, 0.6);
-            --titlebar-1: rgba(140, 190, 255, 0.9);
-            --titlebar-2: rgba(30, 80, 150, 0.85);
-            --titlebar-3: rgba(10, 35, 75, 0.95);
-            --titlebar-4: rgba(20, 60, 120, 0.95);
-            --accent-color: #6bf2ff;
-            --text-color: #e0f4ff;
-            --explorer-sidebar-bg: rgba(15, 35, 70, 0.5);
-            --explorer-main-bg: rgba(10, 20, 40, 0.5);
+            --taskbar-bg-1: rgba(20, 80, 160, 0.9);
+            --taskbar-bg-2: rgba(8, 30, 70, 0.95);
+            --window-bg: linear-gradient(135deg, rgba(180, 230, 255, 0.25) 0%, rgba(20, 70, 140, 0.75) 50%, rgba(5, 25, 60, 0.9) 100%);
+            --window-content-bg: rgba(10, 35, 70, 0.6);
+            --titlebar-1: rgba(160, 220, 255, 0.9);
+            --titlebar-2: rgba(30, 100, 190, 0.85);
+            --titlebar-3: rgba(10, 45, 90, 0.95);
+            --titlebar-4: rgba(20, 75, 140, 0.95);
+            --accent-color: #33ffcc;
+            --text-color: #e6f7ff;
+            --explorer-sidebar-bg: rgba(15, 55, 110, 0.65);
+            --explorer-col-bg: rgba(10, 30, 65, 0.55);
         }
 
-        /* Dark Nature Green Theme */
+        /* Playful & Colorful Nature Green Theme */
         body.theme-naturegreen {
-            --taskbar-bg-1: rgba(15, 60, 35, 0.9);
-            --taskbar-bg-2: rgba(5, 25, 15, 0.95);
-            --window-bg: linear-gradient(135deg, rgba(150, 255, 190, 0.2) 0%, rgba(15, 60, 35, 0.75) 50%, rgba(5, 25, 15, 0.9) 100%);
-            --window-content-bg: rgba(10, 35, 20, 0.6);
-            --titlebar-1: rgba(140, 255, 180, 0.9);
-            --titlebar-2: rgba(30, 120, 60, 0.85);
-            --titlebar-3: rgba(10, 50, 25, 0.95);
-            --titlebar-4: rgba(20, 90, 45, 0.95);
-            --accent-color: #6bff9e;
-            --text-color: #e2ffe8;
-            --explorer-sidebar-bg: rgba(15, 50, 30, 0.5);
-            --explorer-main-bg: rgba(10, 30, 15, 0.5);
+            --taskbar-bg-1: rgba(20, 120, 60, 0.9);
+            --taskbar-bg-2: rgba(8, 45, 20, 0.95);
+            --window-bg: linear-gradient(135deg, rgba(180, 255, 210, 0.25) 0%, rgba(20, 100, 50, 0.75) 50%, rgba(5, 35, 15, 0.9) 100%);
+            --window-content-bg: rgba(10, 50, 25, 0.6);
+            --titlebar-1: rgba(160, 255, 200, 0.9);
+            --titlebar-2: rgba(30, 150, 75, 0.85);
+            --titlebar-3: rgba(10, 65, 30, 0.95);
+            --titlebar-4: rgba(20, 110, 50, 0.95);
+            --accent-color: #73ff33;
+            --text-color: #e6ffee;
+            --explorer-sidebar-bg: rgba(15, 75, 35, 0.65);
+            --explorer-col-bg: rgba(10, 45, 20, 0.55);
         }
 
         /* Global Styles & Wallpaper */
@@ -106,8 +106,8 @@
             position: absolute;
             top: 80px;
             left: 120px;
-            width: 580px;
-            height: 400px;
+            width: 620px;
+            height: 420px;
             background: var(--window-bg);
             border: 1px solid rgba(255, 255, 255, 0.4);
             border-top: 1px solid rgba(255, 255, 255, 0.7);
@@ -125,8 +125,7 @@
             visibility: hidden;
             transition: transform 0.3s cubic-bezier(0.1, 0.9, 0.2, 1), 
                         opacity 0.3s cubic-bezier(0.1, 0.9, 0.2, 1), 
-                        visibility 0.3s ease,
-                        width 0.2s ease, height 0.2s ease, top 0.2s ease, left 0.2s ease;
+                        visibility 0.3s ease;
         }
 
         .window.active {
@@ -259,11 +258,11 @@
             box-shadow: 0 0 10px var(--accent-color);
         }
 
-        /* Windows Explorer Glass UI */
+        /* Windows Explorer Multi-Column Glass UI */
         .explorer-layout {
             display: flex;
             height: 100%;
-            background: var(--explorer-main-bg);
+            background: var(--window-content-bg);
             border-radius: 6px;
             overflow: hidden;
             border: 1px solid rgba(255, 255, 255, 0.2);
@@ -271,10 +270,10 @@
         }
 
         .explorer-sidebar {
-            width: 160px;
+            width: 170px;
             background: var(--explorer-sidebar-bg);
             backdrop-filter: blur(12px);
-            border-right: 1px solid rgba(255, 255, 255, 0.15);
+            border-right: 1px solid rgba(255, 255, 255, 0.2);
             padding: 12px;
             font-size: 13px;
             color: var(--text-color);
@@ -295,17 +294,37 @@
         }
 
         .explorer-sidebar li:hover {
-            background: rgba(255, 255, 255, 0.15);
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .explorer-sidebar li.selected {
+            background: rgba(255, 255, 255, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            font-weight: bold;
+        }
+
+        /* Colorful Columns Inside Explorer */
+        .explorer-col-pane {
+            width: 180px;
+            background: var(--explorer-col-bg);
+            backdrop-filter: blur(8px);
+            border-right: 1px solid rgba(255, 255, 255, 0.15);
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            overflow-y: auto;
         }
 
         .explorer-main {
             flex-grow: 1;
-            padding: 20px;
+            padding: 15px;
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
-            grid-gap: 20px;
+            grid-gap: 15px;
             align-content: start;
             overflow-y: auto;
+            background: rgba(0, 0, 0, 0.2);
         }
 
         .file-item {
@@ -317,8 +336,8 @@
         }
 
         .file-item:hover {
-            background: rgba(255, 255, 255, 0.12);
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.18);
+            border: 1px solid rgba(255, 255, 255, 0.4);
             transform: translateY(-2px);
         }
 
@@ -335,6 +354,69 @@
             text-shadow: 0 1px 2px rgba(0,0,0,0.8);
         }
 
+        /* Working Start Menu Popup */
+        #startMenu {
+            position: fixed;
+            bottom: 46px;
+            left: 6px;
+            width: 300px;
+            background: linear-gradient(135deg, rgba(30, 40, 55, 0.92) 0%, rgba(15, 20, 30, 0.96) 100%);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            border-radius: 8px 8px 0 0;
+            box-shadow: 0 -5px 25px rgba(0,0,0,0.7);
+            display: none;
+            flex-direction: column;
+            z-index: 9999;
+            overflow: hidden;
+            animation: startMenuPop 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        #startMenu.active {
+            display: flex;
+        }
+
+        @keyframes startMenuPop {
+            0% { transform: translateY(20px) scale(0.95); opacity: 0; }
+            100% { transform: translateY(0) scale(1); opacity: 1; }
+        }
+
+        .start-menu-header {
+            padding: 12px;
+            background: linear-gradient(to right, rgba(50, 80, 120, 0.8), rgba(20, 30, 45, 0.8));
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: white;
+            font-weight: bold;
+        }
+
+        .start-menu-items {
+            padding: 8px;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .start-item {
+            padding: 8px 12px;
+            color: white;
+            font-size: 13px;
+            border-radius: 4px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: background 0.15s ease;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.8);
+        }
+
+        .start-item:hover {
+            background: rgba(114, 188, 255, 0.3);
+            border: 1px solid rgba(114, 188, 255, 0.4);
+        }
+
         /* In-OS Floating Modal Dialog Window */
         #osModal {
             position: absolute;
@@ -349,7 +431,7 @@
             box-shadow: 0 25px 50px rgba(0,0,0,0.7);
             overflow: hidden;
             color: white;
-            z-index: 9999;
+            z-index: 10000;
             opacity: 0;
             visibility: hidden;
             transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.2s ease, visibility 0.2s ease;
@@ -449,7 +531,7 @@
         }
     </style>
 </head>
-<body class="theme-original">
+<body class="theme-original" onclick="checkCloseStartMenu(event)">
 
     <div id="desktop">
         <!-- Desktop Shortcuts -->
@@ -482,12 +564,12 @@
             </div>
             <div class="window-content">
                 <h3 style="margin-top:0;">✨ Welcome to Frutiger Aero Web OS</h3>
-                <p>Fully functional web operating system featuring dark glossy glass themes, translucent left sidebar panes, glowing folder glass icons, and floating modal dialog windows!</p>
+                <p>Fully functional web operating system featuring smooth, lag-free dragging, colorful playful glass themes, a working start menu, and multi-column Windows Explorer!</p>
             </div>
         </div>
 
         <!-- Window 2: File Explorer -->
-        <div id="explorerWindow" class="window" style="top: 100px; left: 180px; width: 620px; height: 400px;" onmousedown="focusWindow('explorerWindow')">
+        <div id="explorerWindow" class="window" style="top: 100px; left: 180px; width: 680px; height: 420px;" onmousedown="focusWindow('explorerWindow')">
             <div class="title-bar" onmousedown="startDrag(event, 'explorerWindow')">
                 <span>Computer - Windows Explorer</span>
                 <div class="title-bar-controls">
@@ -502,11 +584,17 @@
                     <div class="explorer-sidebar">
                         <ul>
                             <li>⭐ Quick Access</li>
-                            <li>💻 Desktop</li>
+                            <li class="selected">💻 Desktop</li>
                             <li>📁 Documents</li>
                             <li>🖼️ Pictures</li>
                             <li>💾 Local Disk (C:)</li>
                         </ul>
+                    </div>
+                    <div class="explorer-col-pane">
+                        <div style="font-size: 11px; font-weight: bold; opacity: 0.8; text-transform: uppercase;">System Folders</div>
+                        <div style="font-size: 13px; cursor: pointer; padding: 4px 6px; border-radius:3px; background: rgba(255,255,255,0.1);" onclick="showOSModal('System32 selected.')">📁 System32</div>
+                        <div style="font-size: 13px; cursor: pointer; padding: 4px 6px; border-radius:3px;" onclick="showOSModal('Programs selected.')">📁 Programs</div>
+                        <div style="font-size: 13px; cursor: pointer; padding: 4px 6px; border-radius:3px;" onclick="showOSModal('Config selected.')">📁 Config</div>
                     </div>
                     <div class="explorer-main">
                         <div class="file-item" onclick="showOSModal('Opening System32 Folder...')">
@@ -560,11 +648,11 @@
                 <h3 style="margin-top:0;">⚙️ Desktop Customization</h3>
                 
                 <div class="settings-group">
-                    <label for="themeSelect">Select Theme Color Style:</label>
+                    <label for="themeSelect">Select Playful Theme Color Style:</label>
                     <select id="themeSelect" onchange="changeThemeColor(this.value)">
                         <option value="original">Original Grey Black (Vista)</option>
-                        <option value="lightblue">Dark Classic Light Blue (Aero)</option>
-                        <option value="naturegreen">Dark Nature Green (Frutiger Aero)</option>
+                        <option value="lightblue">Colorful Playful Light Blue (Aero)</option>
+                        <option value="naturegreen">Colorful Playful Nature Green (Frutiger Aero)</option>
                     </select>
                 </div>
 
@@ -592,9 +680,26 @@
         </div>
     </div>
 
+    <!-- Working Start Menu Popup -->
+    <div id="startMenu">
+        <div class="start-menu-header">
+            <span style="font-size: 20px;">👤</span>
+            <div>
+                <div style="font-size: 13px;">Leonardo (Leo)</div>
+                <div style="font-size: 10px; opacity: 0.8;">Frutiger Aero Web OS</div>
+            </div>
+        </div>
+        <div class="start-menu-items">
+            <div class="start-item" onclick="openWindow('explorerWindow'); toggleStartMenu();">📁 File Explorer</div>
+            <div class="start-item" onclick="openWindow('storeWindow'); toggleStartMenu();">🛒 Aero Store</div>
+            <div class="start-item" onclick="openWindow('settingsWindow'); toggleStartMenu();">⚙️ System Settings</div>
+            <div class="start-item" onclick="showOSModal('Restarting Web OS...'); toggleStartMenu();">🔄 Restart OS</div>
+        </div>
+    </div>
+
     <!-- Bottom Taskbar -->
     <div id="taskbar">
-        <div class="start-btn" title="Start Menu" onclick="showOSModal('Frutiger Aero Web OS Start Menu Initialized.')">🪟</div>
+        <div class="start-btn" id="startOrb" title="Start Menu" onclick="toggleStartMenu(event)">🪟</div>
         <div class="taskbar-tray" id="clock">12:00 PM</div>
     </div>
 
@@ -627,18 +732,25 @@
             if (el) el.style.zIndex = highestZIndex;
         }
 
-        // Draggable Windows Logic
+        // Butter-Smooth Lag-Free Draggable Windows Logic using requestAnimationFrame
         function startDrag(e, windowId) {
             const win = document.getElementById(windowId);
             if (win.classList.contains('maximized')) return;
             focusWindow(windowId);
 
-            let offsetX = e.clientX - win.offsetLeft;
-            let offsetY = e.clientY - win.offsetTop;
+            let startX = e.clientX;
+            let startY = e.clientY;
+            let initialLeft = win.offsetLeft;
+            let initialTop = win.offsetTop;
 
             function onMouseMove(e) {
-                win.style.left = (e.clientX - offsetX) + 'px';
-                win.style.top = (e.clientY - offsetY) + 'px';
+                let dx = e.clientX - startX;
+                let dy = e.clientY - startY;
+
+                requestAnimationFrame(() => {
+                    win.style.left = (initialLeft + dx) + 'px';
+                    win.style.top = (initialTop + dy) + 'px';
+                });
             }
 
             function onMouseUp() {
@@ -650,7 +762,22 @@
             document.addEventListener('mouseup', onMouseUp);
         }
 
-        // Theme Color Switcher
+        // Start Menu Toggle Function
+        function toggleStartMenu(e) {
+            if (e) e.stopPropagation();
+            const menu = document.getElementById('startMenu');
+            menu.classList.toggle('active');
+        }
+
+        function checkCloseStartMenu(e) {
+            const menu = document.getElementById('startMenu');
+            const orb = document.getElementById('startOrb');
+            if (menu.classList.contains('active') && !menu.contains(e.target) && !orb.contains(e.target)) {
+                menu.classList.remove('active');
+            }
+        }
+
+        // Colorful Playful Theme Color Switcher
         function changeThemeColor(theme) {
             document.body.className = '';
             if (theme === 'lightblue') {
