@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Frutiger Aero Web OS</title>
     <style>
-        /* Frutiger Aero Global Styles & Nature Wallpaper Background */
+        /* Frutiger Aero Global Styles & Custom Vista Black Wallpaper */
         body, html {
             margin: 0;
             padding: 0;
@@ -13,7 +13,7 @@
             height: 100%;
             overflow: hidden;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=2000&q=80') no-repeat center center fixed;
+            background: url('https://raw.githubusercontent.com/leonardo-leonardo/FrutigerAeroOperatingSystem/refs/heads/main/Vista%20Black%20Widescreen%20Pixel4k.jpg') no-repeat center center fixed;
             background-size: cover;
         }
 
@@ -55,14 +55,14 @@
             left: 120px;
             width: 480px;
             height: 320px;
-            background: rgba(230, 245, 255, 0.3);
+            background: rgba(30, 30, 35, 0.45);
             backdrop-filter: blur(14px) saturate(180%);
             -webkit-backdrop-filter: blur(14px) saturate(180%);
-            border: 1px solid rgba(255, 255, 255, 0.7);
-            border-top: 1px solid rgba(255, 255, 255, 0.95);
+            border: 1px solid rgba(255, 255, 255, 0.35);
+            border-top: 1px solid rgba(255, 255, 255, 0.6);
             box-shadow: 
-                inset 0 1px 0 rgba(255, 255, 255, 0.9),
-                0 15px 35px rgba(0, 0, 0, 0.4);
+                inset 0 1px 0 rgba(255, 255, 255, 0.4),
+                0 15px 35px rgba(0, 0, 0, 0.6);
             border-radius: 8px 8px 5px 5px;
             display: none;
             flex-direction: column;
@@ -77,17 +77,17 @@
         /* Windows 7 Glossy Title Bar */
         .title-bar {
             height: 32px;
-            background: linear-gradient(to bottom, rgba(255,255,255,0.75) 0%, rgba(200,230,255,0.45) 50%, rgba(140,200,255,0.35) 51%, rgba(90,165,240,0.45) 100%);
-            border-bottom: 1px solid rgba(100,150,200,0.6);
+            background: linear-gradient(to bottom, rgba(100,120,140,0.85) 0%, rgba(50,60,75,0.75) 50%, rgba(20,25,35,0.85) 51%, rgba(40,50,65,0.9) 100%);
+            border-bottom: 1px solid rgba(0,0,0,0.6);
             display: flex;
             align-items: center;
             justify-content: space-between;
             padding: 0 12px;
             cursor: move;
-            color: #002b5c;
+            color: #ffffff;
             font-weight: bold;
             font-size: 13px;
-            text-shadow: 0 1px 0 rgba(255,255,255,0.8);
+            text-shadow: 0 1px 2px rgba(0,0,0,0.9);
         }
 
         .title-bar-controls {
@@ -111,10 +111,14 @@
 
         .window-content {
             padding: 20px;
-            color: #111;
+            color: #f0f0f0;
             flex-grow: 1;
             overflow-y: auto;
-            background: rgba(255, 255, 255, 0.15);
+            background: rgba(20, 20, 25, 0.3);
+        }
+
+        .window-content p {
+            text-shadow: 0 1px 2px rgba(0,0,0,0.8);
         }
 
         /* Windows 7 Taskbar */
@@ -124,16 +128,16 @@
             left: 0;
             width: 100%;
             height: 42px;
-            background: linear-gradient(to bottom, rgba(30, 95, 170, 0.85) 0%, rgba(10, 40, 90, 0.92) 100%);
+            background: linear-gradient(to bottom, rgba(25, 30, 40, 0.9) 0%, rgba(10, 12, 18, 0.95) 100%);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
-            border-top: 1px solid rgba(255, 255, 255, 0.4);
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
             display: flex;
             align-items: center;
             padding: 0 6px;
             box-sizing: border-box;
             z-index: 1000;
-            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);
         }
 
         .start-btn {
@@ -186,9 +190,9 @@
                 </div>
             </div>
             <div class="window-content">
-                <h3 style="margin-top:0; color:#003366;">✨ Welcome to Frutiger Aero Web OS</h3>
-                <p>You are experiencing the peak mid-2000s glossy glass aesthetic right inside your browser.</p>
-                <p>Click desktop icons to open apps, enjoy the translucent borders and aurora wallpaper!</p>
+                <h3 style="margin-top:0; color:#72bcff; text-shadow:0 1px 2px rgba(0,0,0,0.9);">✨ Welcome to Frutiger Aero Web OS</h3>
+                <p>Running on the sleek Black Vista dark glass aesthetic.</p>
+                <p>Click desktop icons to open apps and explore your custom web environment!</p>
             </div>
         </div>
 
@@ -201,7 +205,7 @@
                 </div>
             </div>
             <div class="window-content">
-                <h3 style="margin-top:0; color:#003366;">🛒 Software Catalog</h3>
+                <h3 style="margin-top:0; color:#72bcff; text-shadow:0 1px 2px rgba(0,0,0,0.9);">🛒 Software Catalog</h3>
                 <p>Explore games, tweaking tools, and vintage Windows themes.</p>
             </div>
         </div>
