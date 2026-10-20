@@ -6,53 +6,53 @@
     <title>Frutiger Aero Web OS</title>
     <style>
         :root {
-            --taskbar-bg-1: rgba(25, 30, 40, 0.9);
-            --taskbar-bg-2: rgba(10, 12, 18, 0.95);
-            --window-bg: linear-gradient(135deg, rgba(255, 255, 255, 0.22) 0%, rgba(30, 35, 45, 0.6) 50%, rgba(10, 12, 18, 0.8) 100%);
-            --window-content-bg: rgba(15, 18, 24, 0.5);
+            --accent: #1c65b5;
+            --accent-glow: rgba(28, 101, 181, 0.6);
+            --taskbar-bg1: rgba(55, 110, 190, 0.9);
+            --taskbar-bg2: rgba(15, 45, 90, 0.95);
+            --window-bg: linear-gradient(135deg, rgba(255, 255, 255, 0.25) 0%, rgba(30, 35, 45, 0.65) 50%, rgba(10, 12, 18, 0.8) 100%);
+            --window-content: rgba(15, 18, 24, 0.55);
             --titlebar-1: rgba(110, 130, 150, 0.92);
             --titlebar-2: rgba(45, 55, 70, 0.88);
             --titlebar-3: rgba(15, 20, 28, 0.95);
             --titlebar-4: rgba(30, 40, 55, 0.95);
-            --accent-color: #72bcff;
             --text-color: #f0f0f0;
-            --explorer-sidebar-bg: rgba(20, 25, 35, 0.65);
-            --explorer-col-bg: rgba(15, 20, 30, 0.6);
+            --sidebar-bg: rgba(20, 25, 35, 0.65);
+            --col-bg: rgba(15, 20, 30, 0.6);
         }
 
-        /* Colorful Playful Dark Blue Theme */
-        body.theme-lightblue {
-            --taskbar-bg-1: rgba(15, 50, 110, 0.9);
-            --taskbar-bg-2: rgba(5, 20, 50, 0.95);
-            --window-bg: linear-gradient(135deg, rgba(150, 220, 255, 0.25) 0%, rgba(15, 60, 130, 0.7) 50%, rgba(5, 20, 50, 0.85) 100%);
-            --window-content-bg: rgba(10, 30, 65, 0.55);
-            --titlebar-1: rgba(130, 200, 255, 0.92);
-            --titlebar-2: rgba(20, 80, 160, 0.88);
-            --titlebar-3: rgba(5, 25, 60, 0.95);
-            --titlebar-4: rgba(15, 50, 100, 0.95);
-            --accent-color: #33ffcc;
-            --text-color: #e6f7ff;
-            --explorer-sidebar-bg: rgba(10, 40, 85, 0.7);
-            --explorer-col-bg: rgba(8, 25, 55, 0.65);
+        /* Light Mode Theme Overrides */
+        body.light-mode {
+            --window-bg: linear-gradient(135deg, rgba(255, 255, 255, 0.85) 0%, rgba(220, 235, 250, 0.75) 50%, rgba(190, 210, 235, 0.8) 100%);
+            --window-content: rgba(240, 245, 252, 0.7);
+            --titlebar-1: rgba(255, 255, 255, 0.95);
+            --titlebar-2: rgba(200, 220, 240, 0.9);
+            --titlebar-3: rgba(140, 180, 220, 0.95);
+            --titlebar-4: rgba(160, 200, 235, 0.95);
+            --text-color: #102030;
+            --sidebar-bg: rgba(210, 225, 245, 0.7);
+            --col-bg: rgba(225, 235, 250, 0.65);
         }
 
-        /* Colorful Playful Dark Nature Green Theme */
-        body.theme-naturegreen {
-            --taskbar-bg-1: rgba(15, 90, 45, 0.9);
-            --taskbar-bg-2: rgba(5, 35, 15, 0.95);
-            --window-bg: linear-gradient(135deg, rgba(150, 255, 200, 0.25) 0%, rgba(15, 80, 40, 0.7) 50%, rgba(5, 30, 15, 0.85) 100%);
-            --window-content-bg: rgba(10, 40, 20, 0.55);
-            --titlebar-1: rgba(130, 255, 180, 0.92);
-            --titlebar-2: rgba(20, 110, 55, 0.88);
-            --titlebar-3: rgba(5, 40, 20, 0.95);
-            --titlebar-4: rgba(15, 70, 35, 0.95);
-            --accent-color: #73ff33;
-            --text-color: #e6ffee;
-            --explorer-sidebar-bg: rgba(10, 60, 30, 0.7);
-            --explorer-col-bg: rgba(8, 35, 18, 0.65);
+        /* Native Custom Retro Scrollbars */
+        ::-webkit-scrollbar {
+            width: 12px;
+            height: 12px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.2);
+            border-left: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(to right, rgba(255,255,255,0.4), rgba(100,100,100,0.4));
+            border: 1px solid rgba(0,0,0,0.4);
+            border-radius: 3px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--accent);
         }
 
-        /* Global Styles & Wallpaper with GPU Acceleration */
+        /* Global Styles & GPU Acceleration */
         body, html {
             margin: 0;
             padding: 0;
@@ -64,11 +64,11 @@
             background-size: cover;
             transform: translate3d(0,0,0);
             backface-visibility: hidden;
-            perspective: 1000px;
+            user-select: none;
         }
 
-        /* Boot & Login Screens */
-        #bootScreen, #loginScreen, #shutdownScreen {
+        /* Boot, Login, Shutdown, BIOS, Sleep Screens */
+        #bootScreen, #loginScreen, #shutdownScreen, #biosScreen, #sleepScreen {
             position: fixed;
             top: 0;
             left: 0;
@@ -84,37 +84,23 @@
             transition: opacity 0.5s ease;
         }
 
-        #bootScreen {
-            background: radial-gradient(circle, #152535 0%, #05080c 100%);
-        }
-
-        .boot-logo {
-            font-size: 64px;
-            margin-bottom: 20px;
-            animation: pulseLogo 2s infinite alternate;
-        }
-
+        #bootScreen { background: radial-gradient(circle, #152535 0%, #05080c 100%); }
+        .boot-logo { font-size: 64px; margin-bottom: 20px; animation: pulseLogo 2s infinite alternate; }
         @keyframes pulseLogo {
             0% { transform: scale(1); filter: drop-shadow(0 0 10px rgba(114,188,255,0.5)); }
             100% { transform: scale(1.05); filter: drop-shadow(0 0 25px rgba(114,188,255,0.9)); }
         }
 
         .spinner {
-            width: 40px;
-            height: 40px;
+            width: 40px; height: 40px;
             border: 4px solid rgba(255,255,255,0.2);
-            border-top: 4px solid #72bcff;
+            border-top: 4px solid var(--accent);
             border-radius: 50%;
             animation: spin 1s linear infinite;
             margin-top: 20px;
         }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        /* Login Box */
         #loginScreen {
             background: url('https://raw.githubusercontent.com/leonardo-leonardo/FrutigerAeroOperatingSystem/refs/heads/main/Vista%20Black%20Widescreen%20Pixel4k.jpg') no-repeat center center fixed;
             background-size: cover;
@@ -133,519 +119,223 @@
         }
 
         .login-avatar {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            background: radial-gradient(circle, #72bcff 0%, #1c65b5 100%);
-            margin: 0 auto 15px auto;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 36px;
-            border: 2px solid rgba(255,255,255,0.6);
+            width: 80px; height: 80px; border-radius: 50%;
+            background: radial-gradient(circle, var(--accent) 0%, #1c65b5 100%);
+            margin: 0 auto 15px auto; display: flex; align-items: center; justify-content: center;
+            font-size: 36px; border: 2px solid rgba(255,255,255,0.6);
             box-shadow: inset 0 2px 5px rgba(255,255,255,0.8);
         }
 
         .login-box input {
-            width: 100%;
-            padding: 8px 12px;
-            margin: 10px 0;
-            background: rgba(10, 15, 25, 0.8);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            border-radius: 4px;
-            color: white;
-            box-sizing: border-box;
-            font-size: 14px;
+            width: 100%; padding: 8px 12px; margin: 10px 0;
+            background: rgba(10, 15, 25, 0.8); border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 4px; color: white; box-sizing: border-box; font-size: 14px;
         }
 
         .login-box button {
-            width: 100%;
-            padding: 8px;
-            background: radial-gradient(circle, #72bcff 0%, #1c65b5 100%);
-            border: 1px solid #bce2ff;
-            color: white;
-            font-weight: bold;
-            border-radius: 4px;
-            cursor: pointer;
-            margin-top: 10px;
-            box-shadow: inset 0 1px 2px rgba(255,255,255,0.8);
+            width: 100%; padding: 8px; background: radial-gradient(circle, var(--accent) 0%, #1c65b5 100%);
+            border: 1px solid #bce2ff; color: white; font-weight: bold; border-radius: 4px; cursor: pointer; margin-top: 10px;
         }
 
-        .login-box button:hover {
-            filter: brightness(1.1);
+        #shutdownScreen { display: none; background: #05070a; opacity: 0; transition: opacity 1s ease; }
+
+        /* BIOS Screen */
+        #biosScreen {
+            display: none; background: #000; color: #fff; font-family: 'Courier New', monospace;
+            padding: 40px; align-items: flex-start; justify-content: flex-start; z-index: 999999;
         }
 
-        /* Shutdown Screen */
-        #shutdownScreen {
-            background: #05070a;
-            display: none;
-            opacity: 0;
-            transition: opacity 1s ease;
+        /* Sleep Screen */
+        #sleepScreen {
+            display: none; background: #000; cursor: none; z-index: 999998;
         }
+        .power-led {
+            position: absolute; bottom: 25px; right: 35px; width: 8px; height: 8px;
+            background: #00ff00; border-radius: 50%; box-shadow: 0 0 10px #00ff00;
+            animation: powerBlink 2s infinite ease-in-out;
+        }
+        @keyframes powerBlink { 0%, 100% { opacity: 0.3; } 50% { opacity: 1; } }
 
-        /* Desktop Canvas */
+        /* Desktop */
         #desktop {
-            position: relative;
-            width: 100%;
-            height: calc(100% - 42px);
-            padding: 20px;
-            box-sizing: border-box;
-            display: none;
+            position: relative; width: 100%; height: calc(100% - 42px); padding: 20px; box-sizing: border-box; display: none;
         }
 
         .desktop-icon {
-            width: 80px;
-            text-align: center;
-            color: white;
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
-            cursor: pointer;
-            margin-bottom: 20px;
-            user-select: none;
-            transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), filter 0.2s ease;
-            transform: translate3d(0,0,0);
+            width: 84px; text-align: center; color: white; text-shadow: 1px 1px 3px rgba(0,0,0,0.9);
+            cursor: pointer; margin-bottom: 20px; transition: transform 0.2s ease;
+        }
+        .desktop-icon:hover { transform: scale(1.08); filter: drop-shadow(0 0 8px var(--accent)); }
+        .desktop-icon span.icon { font-size: 40px; display: block; margin-bottom: 4px; }
+        .desktop-icon span.label { font-size: 12px; display: block; }
+
+        /* Retro Glass Icons */
+        .retro-folder {
+            width: 44px; height: 36px; background: linear-gradient(to bottom, #ffea85 0%, #d4a017 100%);
+            margin: 0 auto 4px auto; border-radius: 2px 6px 6px 6px; position: relative;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.8);
+        }
+        .retro-folder::before {
+            content: ''; position: absolute; top: -5px; left: 0; width: 18px; height: 6px;
+            background: #e6b800; border-radius: 2px 2px 0 0;
+        }
+        .retro-glass-file {
+            width: 36px; height: 42px; background: rgba(255,255,255,0.35); backdrop-filter: blur(4px);
+            margin: 0 auto 4px auto; border: 1px solid rgba(255,255,255,0.7); border-radius: 3px;
+            position: relative; box-shadow: 0 4px 8px rgba(0,0,0,0.4), inset 0 1px 2px rgba(255,255,255,0.9);
+            display: flex; align-items: center; justify-content: center; font-size: 18px;
         }
 
-        .desktop-icon:hover {
-            transform: scale(1.08) translate3d(0,0,0);
-            filter: drop-shadow(0 0 8px rgba(114, 188, 255, 0.8));
-        }
-
-        .desktop-icon span.icon {
-            font-size: 36px;
-            display: block;
-            margin-bottom: 5px;
-            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
-        }
-
-        .desktop-icon span.label {
-            font-size: 13px;
-            display: block;
-        }
-
-        /* Glossy Glass Window Component with GPU Acceleration */
+        /* Glass Windows with GPU Acceleration & Resize */
         .window {
-            position: absolute;
-            top: 80px;
-            left: 120px;
-            width: 620px;
-            height: 420px;
-            background: var(--window-bg);
-            border: 1px solid rgba(255, 255, 255, 0.5);
-            border-top: 1px solid rgba(255, 255, 255, 0.8);
-            box-shadow: 
-                inset 0 1px 0 rgba(255, 255, 255, 0.6),
-                inset 0 -1px 0 rgba(0, 0, 0, 0.4),
-                0 25px 50px rgba(0, 0, 0, 0.7);
-            border-radius: 8px 8px 5px 5px;
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
-            z-index: 10;
-            transform: scale(0.7) translateY(20px) translate3d(0,0,0);
-            opacity: 0;
-            visibility: hidden;
-            transition: transform 0.3s cubic-bezier(0.1, 0.9, 0.2, 1), 
-                        opacity 0.3s cubic-bezier(0.1, 0.9, 0.2, 1), 
-                        visibility 0.3s ease;
-            will-change: transform, left, top, width, height;
-            backface-visibility: hidden;
+            position: absolute; top: 80px; left: 120px; width: 640px; height: 440px;
+            background: var(--window-bg); border: 1px solid rgba(255, 255, 255, 0.5);
+            border-top: 1px solid rgba(255, 255, 255, 0.85);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6), 0 25px 50px rgba(0, 0, 0, 0.7);
+            border-radius: 8px 8px 5px 5px; display: flex; flex-direction: column; overflow: hidden; z-index: 10;
+            transform: scale(0.7) translateY(20px) translate3d(0,0,0); opacity: 0; visibility: hidden;
+            transition: transform 0.25s cubic-bezier(0.1, 0.9, 0.2, 1), opacity 0.25s ease, visibility 0.25s ease;
+            will-change: transform, left, top, width, height; backface-visibility: hidden;
         }
+        .window.active { transform: scale(1) translateY(0) translate3d(0,0,0); opacity: 1; visibility: visible; }
+        .window.minimized { transform: scale(0.1) translateY(500px); opacity: 0; visibility: hidden; pointer-events: none; }
+        .window.maximized { top: 0 !important; left: 0 !important; width: 100% !important; height: calc(100% - 42px) !important; border-radius: 0 !important; }
 
-        .window.active {
-            transform: scale(1) translateY(0) translate3d(0,0,0);
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .window.maximized {
-            top: 0 !important;
-            left: 0 !important;
-            width: 100% !important;
-            height: calc(100% - 42px) !important;
-            border-radius: 0 !important;
-        }
-
-        /* Resizable Handles */
-        .resizer {
-            position: absolute;
-            z-index: 100;
-        }
+        /* Resizers */
+        .resizer { position: absolute; z-index: 100; }
         .resizer.right { width: 6px; right: 0; top: 0; height: 100%; cursor: e-resize; }
         .resizer.bottom { height: 6px; bottom: 0; left: 0; width: 100%; cursor: s-resize; }
         .resizer.corner { width: 12px; height: 12px; right: 0; bottom: 0; cursor: se-resize; z-index: 101; }
 
-        /* Glossy Title Bar */
+        /* Title Bar */
         .title-bar {
-            height: 32px;
-            background: linear-gradient(to bottom, var(--titlebar-1) 0%, var(--titlebar-2) 50%, var(--titlebar-3) 51%, var(--titlebar-4) 100%);
-            border-bottom: 1px solid rgba(0,0,0,0.6);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 12px;
-            cursor: grab;
-            color: #ffffff;
-            font-weight: bold;
-            font-size: 13px;
-            text-shadow: 0 1px 2px rgba(0,0,0,0.9);
-            user-select: none;
-            box-shadow: inset 0 1px 0 rgba(255,255,255,0.5);
+            height: 32px; background: linear-gradient(to bottom, var(--titlebar-1) 0%, var(--titlebar-2) 50%, var(--titlebar-3) 51%, var(--titlebar-4) 100%);
+            border-bottom: 1px solid rgba(0,0,0,0.6); display: flex; align-items: center; justify-content: space-between;
+            padding: 0 12px; cursor: grab; color: #ffffff; font-weight: bold; font-size: 13px;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.9); box-shadow: inset 0 1px 0 rgba(255,255,255,0.5);
         }
+        .title-bar:active { cursor: grabbing; }
 
-        .title-bar:active {
-            cursor: grabbing;
-        }
-
-        /* Window Control Buttons */
-        .title-bar-controls {
-            display: flex;
-            align-items: center;
-            gap: 4px;
-        }
-
+        .title-bar-controls { display: flex; align-items: center; gap: 4px; }
         .title-bar-controls button {
-            width: 22px;
-            height: 20px;
-            border-radius: 3px;
-            border: 1px solid rgba(255, 255, 255, 0.6);
-            cursor: pointer;
-            outline: none;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 11px;
-            font-weight: bold;
-            color: white;
-            text-shadow: 0 1px 1px rgba(0,0,0,0.8);
-            box-shadow: 
-                inset 0 1px 2px rgba(255, 255, 255, 0.9), 
-                0 2px 4px rgba(0, 0, 0, 0.4);
+            width: 22px; height: 20px; border-radius: 3px; border: 1px solid rgba(255, 255, 255, 0.6);
+            cursor: pointer; outline: none; display: flex; align-items: center; justify-content: center;
+            font-size: 11px; font-weight: bold; color: white; text-shadow: 0 1px 1px rgba(0,0,0,0.8);
+            box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.9), 0 2px 4px rgba(0, 0, 0, 0.4);
             transition: transform 0.1s ease, filter 0.15s ease;
         }
-
-        .title-bar-controls button:hover {
-            transform: scale(1.1);
-            filter: brightness(1.25);
-        }
-
-        .title-bar-controls button:active {
-            transform: scale(0.92);
-        }
-
+        .title-bar-controls button:hover { transform: scale(1.1); filter: brightness(1.25); }
         .btn-minimize { background: radial-gradient(circle at 35% 35%, #7bc2ff 0%, #1555bd 70%, #0a3380 100%); }
         .btn-maximize { background: radial-gradient(circle at 35% 35%, #7bff99 0%, #15803d 70%, #0a4d22 100%); }
         .btn-close { background: radial-gradient(circle at 35% 35%, #ff7b71 0%, #bd1515 70%, #800a0a 100%); }
 
-        .window-content {
-            padding: 15px;
-            color: var(--text-color);
-            flex-grow: 1;
-            overflow-y: auto;
-            background: var(--window-content-bg);
-        }
+        .window-content { padding: 15px; color: var(--text-color); flex-grow: 1; overflow-y: auto; background: var(--window-content); }
 
-        .window-content p, .window-content label {
-            text-shadow: 0 1px 2px rgba(0,0,0,0.6);
-        }
-
-        /* Settings & Form Controls */
-        .settings-group {
-            margin-bottom: 15px;
-        }
-
-        .settings-group label {
-            display: block;
-            font-size: 13px;
-            margin-bottom: 5px;
-            color: var(--accent-color);
-            font-weight: bold;
-        }
-
-        .settings-group select, .settings-group input[type="file"], .settings-group button {
-            padding: 6px 12px;
-            background: rgba(40, 45, 55, 0.8);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            color: white;
-            border-radius: 4px;
-            cursor: pointer;
-            font-family: 'Segoe UI', Tahoma, sans-serif;
-            transition: background 0.2s ease, box-shadow 0.2s ease;
-        }
-
-        .settings-group select:hover, .settings-group button:hover {
-            background: rgba(60, 70, 85, 0.95);
-            box-shadow: 0 0 10px var(--accent-color);
-        }
-
-        /* Windows 7 Dark Mode Colorful Explorer */
+        /* Explorer UI */
         .explorer-layout {
-            display: flex;
-            height: 100%;
-            background: var(--window-content-bg);
-            border-radius: 6px;
-            overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.25);
-            box-shadow: inset 0 2px 5px rgba(0,0,0,0.5);
+            display: flex; height: 100%; background: var(--window-content); border-radius: 6px; overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.25); box-shadow: inset 0 2px 5px rgba(0,0,0,0.4);
         }
-
         .explorer-sidebar {
-            width: 170px;
-            background: var(--explorer-sidebar-bg);
-            backdrop-filter: blur(12px);
-            border-right: 1px solid rgba(255, 255, 255, 0.2);
-            padding: 12px;
-            font-size: 13px;
-            color: var(--text-color);
+            width: 170px; background: var(--sidebar-bg); backdrop-filter: blur(12px);
+            border-right: 1px solid rgba(255, 255, 255, 0.2); padding: 12px; font-size: 13px; color: var(--text-color);
         }
-
-        .explorer-sidebar ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        .explorer-sidebar li {
-            padding: 6px 10px;
-            cursor: pointer;
-            border-radius: 4px;
-            margin-bottom: 3px;
-            transition: background 0.15s ease;
-        }
-
-        .explorer-sidebar li:hover {
-            background: rgba(255, 255, 255, 0.2);
-        }
-
-        .explorer-sidebar li.selected {
-            background: rgba(255, 255, 255, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.4);
-            font-weight: bold;
-        }
+        .explorer-sidebar ul { list-style: none; padding: 0; margin: 0; }
+        .explorer-sidebar li { padding: 6px 10px; cursor: pointer; border-radius: 4px; margin-bottom: 3px; }
+        .explorer-sidebar li:hover { background: rgba(255, 255, 255, 0.2); }
+        .explorer-sidebar li.selected { background: rgba(255, 255, 255, 0.3); border: 1px solid rgba(255, 255, 255, 0.4); font-weight: bold; }
 
         .explorer-col-pane {
-            width: 180px;
-            background: var(--explorer-col-bg);
-            backdrop-filter: blur(8px);
-            border-right: 1px solid rgba(255, 255, 255, 0.15);
-            padding: 15px;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            overflow-y: auto;
+            width: 180px; background: var(--col-bg); backdrop-filter: blur(8px);
+            border-right: 1px solid rgba(255, 255, 255, 0.15); padding: 15px; display: flex; flex-direction: column; gap: 12px;
         }
-
         .explorer-main {
-            flex-grow: 1;
-            padding: 15px;
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
-            grid-gap: 15px;
-            align-content: start;
-            overflow-y: auto;
-            background: rgba(0, 0, 0, 0.25);
+            flex-grow: 1; padding: 15px; display: grid; grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+            grid-gap: 15px; align-content: start; overflow-y: auto; background: rgba(0, 0, 0, 0.2);
         }
 
-        .file-item {
-            text-align: center;
-            cursor: pointer;
-            padding: 10px;
-            border-radius: 6px;
-            transition: background 0.15s ease, transform 0.15s ease;
+        /* Settings Form */
+        .settings-group { margin-bottom: 18px; }
+        .settings-group label { display: block; font-size: 13px; margin-bottom: 6px; color: var(--accent); font-weight: bold; }
+        .settings-group select, .settings-group input[type="color"], .settings-group input[type="file"], .settings-group button {
+            padding: 6px 12px; background: rgba(40, 45, 55, 0.8); border: 1px solid rgba(255, 255, 255, 0.3);
+            color: white; border-radius: 4px; cursor: pointer; font-family: 'Segoe UI', Tahoma, sans-serif;
         }
 
-        .file-item:hover {
-            background: rgba(255, 255, 255, 0.18);
-            border: 1px solid rgba(255, 255, 255, 0.4);
-            transform: translateY(-2px);
-        }
-
-        .file-item span.f-icon {
-            font-size: 36px;
-            display: block;
-            margin-bottom: 6px;
-            filter: drop-shadow(0 3px 5px rgba(0,0,0,0.6));
-        }
-
-        .file-item span.f-name {
-            font-size: 12px;
-            color: var(--text-color);
-            text-shadow: 0 1px 2px rgba(0,0,0,0.8);
-        }
-
-        /* Working Start Menu */
+        /* Start Menu */
         #startMenu {
-            position: fixed;
-            bottom: 46px;
-            left: 6px;
-            width: 300px;
+            position: fixed; bottom: 46px; left: 6px; width: 300px;
             background: linear-gradient(135deg, rgba(30, 40, 55, 0.95) 0%, rgba(15, 20, 30, 0.98) 100%);
-            backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.5);
-            border-radius: 8px 8px 0 0;
-            box-shadow: 0 -5px 25px rgba(0,0,0,0.7);
-            display: none;
-            flex-direction: column;
-            z-index: 9999;
-            overflow: hidden;
+            backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.5); border-radius: 8px 8px 0 0;
+            box-shadow: 0 -5px 25px rgba(0,0,0,0.7); display: none; flex-direction: column; z-index: 9999;
             animation: startMenuPop 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
-
         #startMenu.active { display: flex; }
-
-        @keyframes startMenuPop {
-            0% { transform: translateY(20px) scale(0.95); opacity: 0; }
-            100% { transform: translateY(0) scale(1); opacity: 1; }
-        }
+        @keyframes startMenuPop { 0% { transform: translateY(20px) scale(0.95); opacity: 0; } 100% { transform: translateY(0) scale(1); opacity: 1; } }
 
         .start-menu-header {
-            padding: 12px;
-            background: linear-gradient(to right, rgba(50, 80, 120, 0.85), rgba(20, 30, 45, 0.85));
-            border-bottom: 1px solid rgba(255,255,255,0.2);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            color: white;
-            font-weight: bold;
+            padding: 12px; background: linear-gradient(to right, rgba(50, 80, 120, 0.85), rgba(20, 30, 45, 0.85));
+            border-bottom: 1px solid rgba(255,255,255,0.2); display: flex; align-items: center; gap: 10px; color: white; font-weight: bold;
         }
-
-        .start-menu-items {
-            padding: 8px;
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-        }
-
+        .start-menu-items { padding: 8px; display: flex; flex-direction: column; gap: 4px; }
         .start-item {
-            padding: 8px 12px;
-            color: white;
-            font-size: 13px;
-            border-radius: 4px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            transition: background 0.15s ease;
-            text-shadow: 0 1px 2px rgba(0,0,0,0.8);
+            padding: 8px 12px; color: white; font-size: 13px; border-radius: 4px; cursor: pointer;
+            display: flex; align-items: center; gap: 10px; text-shadow: 0 1px 2px rgba(0,0,0,0.8); transition: background 0.15s;
         }
+        .start-item:hover { background: rgba(114, 188, 255, 0.3); border: 1px solid rgba(114, 188, 255, 0.4); }
 
-        .start-item:hover {
-            background: rgba(114, 188, 255, 0.3);
-            border: 1px solid rgba(114, 188, 255, 0.4);
-        }
-
-        /* In-OS Modal Dialog Window */
-        #osModal {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) scale(0.8);
-            width: 340px;
-            background: var(--window-bg);
-            border: 1px solid rgba(255, 255, 255, 0.5);
-            border-top: 1px solid rgba(255, 255, 255, 0.8);
-            border-radius: 8px;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.7);
-            overflow: hidden;
-            color: white;
-            z-index: 10000;
-            opacity: 0;
-            visibility: hidden;
-            transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.2s ease, visibility 0.2s ease;
-        }
-
-        #osModal.active {
-            transform: translate(-50%, -50%) scale(1);
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .modal-header {
-            background: linear-gradient(to bottom, var(--titlebar-1), var(--titlebar-2));
-            padding: 8px 12px;
-            font-weight: bold;
-            font-size: 13px;
-            border-bottom: 1px solid rgba(0,0,0,0.5);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .modal-body {
-            padding: 20px;
-            font-size: 14px;
-            text-shadow: 0 1px 2px rgba(0,0,0,0.8);
-            background: var(--window-content-bg);
-        }
-
-        .modal-footer {
-            padding: 10px 15px;
-            background: var(--window-content-bg);
-            display: flex;
-            justify-content: flex-end;
-            border-top: 1px solid rgba(255,255,255,0.15);
-        }
-
-        .modal-footer button {
-            padding: 5px 15px;
-            background: radial-gradient(circle, #72bcff 0%, #1c65b5 100%);
-            border: 1px solid #bce2ff;
-            color: white;
-            border-radius: 4px;
-            cursor: pointer;
-            font-weight: bold;
-            box-shadow: inset 0 1px 2px rgba(255,255,255,0.8);
-        }
-
-        .modal-footer button:hover { filter: brightness(1.1); }
-
-        /* Windows 7 Taskbar */
+        /* Glossy Retro Taskbar & Tray */
         #taskbar {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 42px;
-            background: linear-gradient(to bottom, var(--taskbar-bg-1) 0%, var(--taskbar-bg-2) 100%);
-            border-top: 1px solid rgba(255, 255, 255, 0.3);
-            display: flex;
-            align-items: center;
-            padding: 0 6px;
-            box-sizing: border-box;
-            z-index: 1000;
-            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 -5px 20px rgba(0,0,0,0.5);
+            position: fixed; bottom: 0; left: 0; width: 100%; height: 42px;
+            background: linear-gradient(to bottom, var(--taskbar-bg1) 0%, var(--taskbar-bg2) 100%);
+            border-top: 1px solid rgba(255, 255, 255, 0.4); display: flex; align-items: center; padding: 0 6px;
+            box-sizing: border-box; z-index: 1000; box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 -5px 20px rgba(0,0,0,0.5);
         }
 
         .start-btn {
-            background: radial-gradient(circle, #72bcff 0%, #1c65b5 100%);
-            border: 1px solid #bce2ff;
-            border-radius: 50%;
-            width: 34px;
-            height: 34px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            box-shadow: inset 0 1px 3px rgba(255,255,255,0.9), 0 2px 6px rgba(0,0,0,0.4);
-            font-size: 16px;
-            transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            background: radial-gradient(circle, var(--accent) 0%, #1c65b5 100%);
+            border: 1px solid #bce2ff; border-radius: 50%; width: 34px; height: 34px;
+            display: flex; align-items: center; justify-content: center; cursor: pointer;
+            box-shadow: inset 0 1px 3px rgba(255,255,255,0.9), 0 2px 6px rgba(0,0,0,0.4); font-size: 16px;
+            transition: transform 0.2s ease;
         }
+        .start-btn:hover { transform: scale(1.1); }
 
-        .start-btn:hover {
-            transform: scale(1.1);
-            background: radial-gradient(circle, #92ccff 0%, #2c75c5 100%);
+        /* Taskbar App Items List */
+        #taskbarApps { display: flex; gap: 4px; margin-left: 10px; align-items: center; flex-grow: 1; }
+        .taskbar-app {
+            height: 30px; padding: 0 12px; background: linear-gradient(to bottom, rgba(255,255,255,0.25) 0%, rgba(255,255,255,0.1) 50%, rgba(0,0,0,0.2) 51%, rgba(255,255,255,0.15) 100%);
+            border: 1px solid rgba(255,255,255,0.3); border-radius: 3px; color: white; font-size: 12px;
+            display: flex; align-items: center; gap: 6px; cursor: pointer; text-shadow: 0 1px 1px rgba(0,0,0,0.8);
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.4); transition: background 0.15s;
         }
+        .taskbar-app:hover { background: linear-gradient(to bottom, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.2) 50%, rgba(0,0,0,0.1) 51%, rgba(255,255,255,0.25) 100%); }
+        .taskbar-app.minimized-state { opacity: 0.7; border-style: dashed; }
+        .taskbar-app.active-state { background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(255,255,255,0.1) 100%); box-shadow: inset 0 2px 5px rgba(0,0,0,0.6); }
 
+        /* Taskbar Tray */
         .taskbar-tray {
-            margin-left: auto;
-            color: white;
-            font-size: 12px;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
-            padding-right: 12px;
-            font-weight: 500;
+            display: flex; align-items: center; gap: 10px; margin-left: auto; color: white; font-size: 12px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.8); padding: 0 8px; height: 100%; border-left: 1px solid rgba(255,255,255,0.2);
         }
+        .tray-icon { font-size: 14px; cursor: pointer; filter: drop-shadow(0 1px 1px rgba(0,0,0,0.8)); }
+
+        /* Modal Dialog Box */
+        #osModal {
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0.8);
+            width: 340px; background: var(--window-bg); border: 1px solid rgba(255, 255, 255, 0.5);
+            border-top: 1px solid rgba(255, 255, 255, 0.8); border-radius: 8px; box-shadow: 0 25px 50px rgba(0,0,0,0.7);
+            overflow: hidden; color: white; z-index: 10000; opacity: 0; visibility: hidden;
+            transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.2s ease, visibility 0.2s ease;
+        }
+        #osModal.active { transform: translate(-50%, -50%) scale(1); opacity: 1; visibility: visible; }
+        .modal-header { background: linear-gradient(to bottom, var(--titlebar-1), var(--titlebar-2)); padding: 8px 12px; font-weight: bold; font-size: 13px; border-bottom: 1px solid rgba(0,0,0,0.5); display: flex; justify-content: space-between; align-items: center; }
+        .modal-body { padding: 20px; font-size: 14px; text-shadow: 0 1px 2px rgba(0,0,0,0.8); background: var(--window-content); }
+        .modal-footer { padding: 10px 15px; background: var(--window-content); display: flex; justify-content: flex-end; border-top: 1px solid rgba(255,255,255,0.15); }
+        .modal-footer button { padding: 5px 15px; background: radial-gradient(circle, var(--accent) 0%, #1c65b5 100%); border: 1px solid #bce2ff; color: white; border-radius: 4px; cursor: pointer; font-weight: bold; }
     </style>
 </head>
-<body class="theme-original" onclick="checkCloseStartMenu(event)">
+<body onclick="checkCloseStartMenu(event)">
 
     <!-- Boot Sequence Screen -->
     <div id="bootScreen">
@@ -668,26 +358,42 @@
     <div id="shutdownScreen">
         <div class="spinner" style="margin-bottom: 20px;"></div>
         <div style="font-size: 22px; font-weight: bold; letter-spacing: 1px;">Shutting down...</div>
-        <button onclick="location.reload()" style="margin-top: 30px; padding: 10px 20px; background:#1c65b5; color:white; border:none; border-radius:4px; cursor:pointer;">Power On OS</button>
+    </div>
+
+    <!-- Working BIOS Screen -->
+    <div id="biosScreen" onclick="bootFromBIOS()">
+        <h3>AMI BIOS (C) 2006 American Megatrends, Inc.</h3>
+        <p>ASUS TUF Gaming A16 / Frutiger Aero Edition BIOS v2.50</p>
+        <p>CPU: AMD Ryzen 9 8940HX Processor @ 4.80GHz</p>
+        <p>Total Memory: 16384MB DDR5 (Single Channel)</p>
+        <br>
+        <p>IDE Channel 0 Master : WDC SN5000S 512GB SSD</p>
+        <p>Initializing USB Controllers ... Done.</p>
+        <p style="color:#00ff00; margin-top:30px;">[ Click anywhere or press any key to boot Frutiger Aero OS ]</p>
+    </div>
+
+    <!-- Sleep Screen (Display Off) -->
+    <div id="sleepScreen" onclick="wakeFromSleep()" onmousemove="wakeFromSleep()">
+        <div class="power-led"></div>
     </div>
 
     <!-- Main OS Desktop -->
     <div id="desktop">
-        <!-- Desktop Shortcuts -->
+        <!-- Desktop Shortcuts with Retro Icons -->
         <div class="desktop-icon" onclick="openWindow('welcomeWindow')">
-            <span class="icon">🌐</span>
+            <div class="retro-glass-file">📄</div>
             <span class="label">Welcome.txt</span>
         </div>
         <div class="desktop-icon" onclick="openWindow('explorerWindow')" style="margin-top: 15px;">
-            <span class="icon">📁</span>
+            <div class="retro-folder"></div>
             <span class="label">Computer</span>
         </div>
         <div class="desktop-icon" onclick="openWindow('storeWindow')" style="margin-top: 15px;">
-            <span class="icon">🛒</span>
+            <div class="retro-glass-file">🛒</div>
             <span class="label">Aero Store</span>
         </div>
         <div class="desktop-icon" onclick="openWindow('settingsWindow')" style="margin-top: 15px;">
-            <span class="icon">⚙️</span>
+            <div class="retro-glass-file">⚙️</div>
             <span class="label">Settings</span>
         </div>
 
@@ -702,8 +408,8 @@
                 </div>
             </div>
             <div class="window-content">
-                <h3 style="margin-top:0;">✨ Welcome to Frutiger Aero Web OS</h3>
-                <p>Fully GPU-accelerated, buttery smooth OS featuring authentic boot/login/shutdown sequences, resizable glass windows, and Windows 7 dark mode colorful multi-column file explorer!</p>
+                <h3 style="margin-top:0;">✨ Frutiger Aero Web OS</h3>
+                <p>Fully GPU-accelerated mid-2000s desktop environment featuring light/dark theme toggling, live accent color customization, retro glossy yellow folders, working taskbar minimization, fully operational tray icons, and real Sleep/BIOS modes!</p>
             </div>
             <div class="resizer right" onmousedown="initResize(event, 'welcomeWindow', 'right')"></div>
             <div class="resizer bottom" onmousedown="initResize(event, 'welcomeWindow', 'bottom')"></div>
@@ -733,27 +439,23 @@
                         </ul>
                     </div>
                     <div class="explorer-col-pane">
-                        <div style="font-size: 11px; font-weight: bold; opacity: 0.9; text-transform: uppercase; color: var(--accent-color);">System Folders</div>
+                        <div style="font-size: 11px; font-weight: bold; opacity: 0.9; text-transform: uppercase; color: var(--accent);">System Folders</div>
                         <div style="font-size: 13px; cursor: pointer; padding: 6px 8px; border-radius:4px; background: rgba(255,255,255,0.15);" onclick="showOSModal('System32 selected.')">📁 System32</div>
                         <div style="font-size: 13px; cursor: pointer; padding: 6px 8px; border-radius:4px;" onclick="showOSModal('Programs selected.')">📁 Programs</div>
                         <div style="font-size: 13px; cursor: pointer; padding: 6px 8px; border-radius:4px;" onclick="showOSModal('Config selected.')">📁 Config</div>
                     </div>
                     <div class="explorer-main">
                         <div class="file-item" onclick="showOSModal('Opening System32 Folder...')">
-                            <span class="f-icon">📁</span>
-                            <span class="f-name">System32</span>
+                            <div class="retro-folder" style="transform:scale(0.8); margin-bottom:2px;"></div>
+                            <span class="file-item f-name" style="font-size:12px;">System32</span>
                         </div>
                         <div class="file-item" onclick="showOSModal('Opening Programs Directory...')">
-                            <span class="f-icon">📁</span>
-                            <span class="f-name">Programs</span>
+                            <div class="retro-folder" style="transform:scale(0.8); margin-bottom:2px;"></div>
+                            <span class="file-item f-name" style="font-size:12px;">Programs</span>
                         </div>
-                        <div class="file-item" onclick="showOSModal('Welcome.txt - File loaded successfully.')">
-                            <span class="f-icon">📄</span>
-                            <span class="f-name">Welcome.txt</span>
-                        </div>
-                        <div class="file-item" onclick="showOSModal('AeroConfig package active.')">
-                            <span class="f-icon">🎨</span>
-                            <span class="f-name">AeroConfig</span>
+                        <div class="file-item" onclick="showOSModal('Welcome.txt - File loaded.')">
+                            <div class="retro-glass-file" style="transform:scale(0.8); margin-bottom:2px;">📄</div>
+                            <span class="file-item f-name" style="font-size:12px;">Welcome.txt</span>
                         </div>
                     </div>
                 </div>
@@ -796,21 +498,21 @@
                 <h3 style="margin-top:0;">⚙️ Desktop Customization</h3>
                 
                 <div class="settings-group">
-                    <label for="themeSelect">Select Playful Theme Color Style:</label>
-                    <select id="themeSelect" onchange="changeThemeColor(this.value)">
-                        <option value="original">Original Grey Black (Vista)</option>
-                        <option value="lightblue">Colorful Playful Dark Blue (Aero)</option>
-                        <option value="naturegreen">Colorful Playful Dark Nature Green (Frutiger Aero)</option>
+                    <label for="modeSelect">Select Theme Mode:</label>
+                    <select id="modeSelect" onchange="changeThemeMode(this.value)">
+                        <option value="dark">Dark Mode (Default)</option>
+                        <option value="light">Light Mode</option>
                     </select>
+                </div>
+
+                <div class="settings-group">
+                    <label for="accentPicker">Custom Accent Color:</label>
+                    <input type="color" id="accentPicker" value="#1c65b5" onchange="changeAccentColor(this.value)">
                 </div>
 
                 <div class="settings-group">
                     <label for="wallpaperFile">Browse Local Wallpaper Image:</label>
                     <input type="file" id="wallpaperFile" accept="image/*" onchange="loadLocalWallpaper(event)">
-                </div>
-
-                <div class="settings-group" style="margin-top: 20px;">
-                    <button onclick="showOSModal('Settings saved and applied successfully!')">Apply Changes</button>
                 </div>
             </div>
             <div class="resizer right" onmousedown="initResize(event, 'settingsWindow', 'right')"></div>
@@ -844,14 +546,20 @@
             <div class="start-item" onclick="openWindow('explorerWindow'); toggleStartMenu();">📁 File Explorer</div>
             <div class="start-item" onclick="openWindow('storeWindow'); toggleStartMenu();">🛒 Aero Store</div>
             <div class="start-item" onclick="openWindow('settingsWindow'); toggleStartMenu();">⚙️ System Settings</div>
+            <div class="start-item" onclick="triggerSleep(); toggleStartMenu();">💤 Sleep</div>
             <div class="start-item" onclick="triggerShutdown(); toggleStartMenu();" style="color: #ff8888;">🔌 Shut Down</div>
         </div>
     </div>
 
-    <!-- Bottom Taskbar -->
+    <!-- Glossy Retro Taskbar & Working Tray Area -->
     <div id="taskbar">
         <div class="start-btn" id="startOrb" title="Start Menu" onclick="toggleStartMenu(event)">🪟</div>
-        <div class="taskbar-tray" id="clock">12:00 PM</div>
+        <div id="taskbarApps"></div>
+        <div class="taskbar-tray">
+            <span class="tray-icon" title="Network Connected">📶</span>
+            <span class="tray-icon" title="Volume: 100%">🔊</span>
+            <span class="tray-icon" id="clock">12:00 PM</span>
+        </div>
     </div>
 
     <script>
@@ -861,8 +569,7 @@
             boot.style.opacity = '0';
             setTimeout(() => {
                 boot.style.display = 'none';
-                const login = document.getElementById('loginScreen');
-                login.style.display = 'flex';
+                document.getElementById('loginScreen').style.display = 'flex';
             }, 500);
         }, 2000);
 
@@ -874,34 +581,75 @@
                 setTimeout(() => {
                     login.style.display = 'none';
                     document.getElementById('desktop').style.display = 'block';
+                    updateTaskbarApps();
                 }, 500);
             } else {
                 alert('Please enter password.');
             }
         }
 
+        // Real Shutdown to BIOS Sequence
         function triggerShutdown() {
             const shutdown = document.getElementById('shutdownScreen');
             shutdown.style.display = 'flex';
+            setTimeout(() => { shutdown.style.opacity = '1'; }, 50);
             setTimeout(() => {
-                shutdown.style.opacity = '1';
-            }, 50);
+                shutdown.style.display = 'none';
+                shutdown.style.opacity = '0';
+                document.getElementById('biosScreen').style.display = 'flex';
+            }, 2000);
+        }
+
+        function bootFromBIOS() {
+            document.getElementById('biosScreen').style.display = 'none';
+            document.getElementById('bootScreen').style.display = 'flex';
+            document.getElementById('bootScreen').style.opacity = '1';
+            setTimeout(() => {
+                document.getElementById('bootScreen').style.opacity = '0';
+                setTimeout(() => {
+                    document.getElementById('bootScreen').style.display = 'none';
+                    document.getElementById('desktop').style.display = 'block';
+                }, 500);
+            }, 1500);
+        }
+
+        // Working Sleep Mode (Display Off -> Wake on mouse)
+        function triggerSleep() {
+            document.getElementById('sleepScreen').style.display = 'flex';
+            document.getElementById('desktop').style.display = 'none';
+        }
+
+        function wakeFromSleep() {
+            document.getElementById('sleepScreen').style.display = 'none';
+            document.getElementById('desktop').style.display = 'block';
         }
 
         let highestZIndex = 10;
+        const windowTitles = {
+            'welcomeWindow': 'Welcome.txt',
+            'explorerWindow': 'Computer',
+            'storeWindow': 'Aero Store',
+            'settingsWindow': 'Settings'
+        };
 
         function openWindow(id) {
             const win = document.getElementById(id);
+            win.classList.remove('minimized');
             win.classList.add('active');
             focusWindow(id);
+            updateTaskbarApps();
         }
 
         function closeWindow(id) {
-            document.getElementById(id).classList.remove('active');
+            const win = document.getElementById(id);
+            win.classList.remove('active', 'minimized');
+            updateTaskbarApps();
         }
 
         function minimizeWindow(id) {
-            document.getElementById(id).classList.remove('active');
+            const win = document.getElementById(id);
+            win.classList.add('minimized');
+            updateTaskbarApps();
         }
 
         function maximizeWindow(id) {
@@ -914,6 +662,40 @@
             highestZIndex++;
             const el = document.getElementById(id);
             if (el) el.style.zIndex = highestZIndex;
+            updateTaskbarApps();
+        }
+
+        // Update Taskbar App Buttons State
+        function updateTaskbarApps() {
+            const container = document.getElementById('taskbarApps');
+            container.innerHTML = '';
+            
+            ['welcomeWindow', 'explorerWindow', 'storeWindow', 'settingsWindow'].forEach(id => {
+                const win = document.getElementById(id);
+                if (win.classList.contains('active') || win.classList.contains('minimized')) {
+                    const btn = document.createElement('div');
+                    btn.className = 'taskbar-app';
+                    
+                    const isMin = win.classList.contains('minimized');
+                    const isTop = parseInt(win.style.zIndex || 10) === highestZIndex && !isMin;
+
+                    if (isMin) btn.classList.add('minimized-state');
+                    if (isTop) btn.classList.add('active-state');
+
+                    btn.innerHTML = `<span>📂</span> <span>${windowTitles[id]}</span>`;
+                    btn.onclick = () => {
+                        if (isMin) {
+                            win.classList.remove('minimized');
+                            focusWindow(id);
+                        } else if (isTop) {
+                            minimizeWindow(id);
+                        } else {
+                            focusWindow(id);
+                        }
+                    };
+                    container.appendChild(btn);
+                }
+            });
         }
 
         // GPU-Accelerated Lag-Free Draggable Windows Logic
@@ -982,7 +764,34 @@
             document.addEventListener('mouseup', onMouseUp);
         }
 
-        // Start Menu Toggle Function
+        // Theme and Accent Customizer
+        function changeThemeMode(mode) {
+            if (mode === 'light') {
+                document.body.classList.add('light-mode');
+            } else {
+                document.body.classList.remove('light-mode');
+            }
+        }
+
+        function changeAccentColor(hex) {
+            document.documentElement.style.setProperty('--accent', hex);
+        }
+
+        // Local Wallpaper Browser Upload
+        function loadLocalWallpaper(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.body.style.background = `url('${e.target.result}') no-repeat center center fixed`;
+                    document.body.style.backgroundSize = "cover";
+                    showOSModal('Local wallpaper loaded successfully!');
+                }
+                reader.readAsDataURL(file);
+            }
+        }
+
+        // Start Menu Toggle
         function toggleStartMenu(e) {
             if (e) e.stopPropagation();
             const menu = document.getElementById('startMenu');
@@ -997,33 +806,7 @@
             }
         }
 
-        // Theme Color Switcher
-        function changeThemeColor(theme) {
-            document.body.className = '';
-            if (theme === 'lightblue') {
-                document.body.classList.add('theme-lightblue');
-            } else if (theme === 'naturegreen') {
-                document.body.classList.add('theme-naturegreen');
-            } else {
-                document.body.classList.add('theme-original');
-            }
-        }
-
-        // Local Wallpaper Browser Upload Loader
-        function loadLocalWallpaper(event) {
-            const file = event.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    document.body.style.background = `url('${e.target.result}') no-repeat center center fixed`;
-                    document.body.style.backgroundSize = "cover";
-                    showOSModal('Local wallpaper loaded successfully!');
-                }
-                reader.readAsDataURL(file);
-            }
-        }
-
-        // In-OS Floating Modal Dialog System
+        // Modal Dialogs
         function showOSModal(message) {
             document.getElementById('modalText').innerText = message;
             const modal = document.getElementById('osModal');
@@ -1035,7 +818,7 @@
             document.getElementById('osModal').classList.remove('active');
         }
 
-        // Live Windows 7 Taskbar Clock
+        // Live Clock
         setInterval(() => {
             const now = new Date();
             let hours = now.getHours();
