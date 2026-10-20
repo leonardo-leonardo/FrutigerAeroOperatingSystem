@@ -34,6 +34,33 @@
             --col-bg: rgba(225, 235, 250, 0.35);
         }
 
+        /* Universal Transparent & Glossy Glass Buttons */
+        button, .glass-btn {
+            background: linear-gradient(to bottom, rgba(255, 255, 255, 0.35) 0%, rgba(255, 255, 255, 0.1) 50%, rgba(0, 0, 0, 0.2) 51%, rgba(28, 101, 181, 0.4) 100%);
+            background-color: rgba(28, 101, 181, 0.3);
+            backdrop-filter: blur(6px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            border-top: 1px solid rgba(255, 255, 255, 0.9);
+            color: white;
+            font-weight: 600;
+            padding: 7px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.8);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8), 0 4px 12px rgba(0,0,0,0.4), 0 0 10px var(--accent-glow);
+            transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        button:hover, .glass-btn:hover {
+            background: linear-gradient(to bottom, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0.22) 50%, rgba(0, 0, 0, 0.1) 51%, rgba(28, 101, 181, 0.6) 100%);
+            border-color: rgba(255, 255, 255, 0.95);
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.95), 0 6px 18px rgba(0,0,0,0.5), 0 0 16px var(--accent-glow);
+        }
+        button:active, .glass-btn:active {
+            transform: translateY(1px) scale(0.98);
+            box-shadow: inset 0 2px 5px rgba(0,0,0,0.6);
+        }
+
         /* Retro Custom Scrollbars */
         * { scrollbar-width: thin; scrollbar-color: var(--accent) rgba(0,0,0,0.2); }
         ::-webkit-scrollbar { width: 10px; height: 10px; }
@@ -49,7 +76,7 @@
             perspective: 1200px; transform-style: preserve-3d; user-select: none;
         }
 
-        /* System Screens (Boot, Login, Lock, Shutdown, BIOS, Sleep) */
+        /* System Screens */
         #bootScreen, #loginScreen, #lockScreen, #shutdownScreen, #biosScreen, #sleepScreen {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 99999;
             display: flex; flex-direction: column; align-items: center; justify-content: center; background: #000; color: white;
@@ -89,10 +116,7 @@
             width: 100%; padding: 8px 12px; margin: 10px 0; background: rgba(10, 15, 25, 0.8);
             border: 1px solid rgba(255, 255, 255, 0.3); border-radius: 4px; color: white; box-sizing: border-box; font-size: 14px;
         }
-        .login-box button {
-            width: 100%; padding: 8px; background: radial-gradient(circle, var(--accent) 0%, #1c65b5 100%);
-            border: 1px solid #bce2ff; color: white; font-weight: bold; border-radius: 4px; cursor: pointer; margin-top: 10px;
-        }
+        .login-box button { width: 100%; margin-top: 10px; }
         #loginError { color: #ff6b61; font-size: 12px; margin-top: 8px; display: none; text-shadow: 0 1px 2px rgba(0,0,0,0.8); }
 
         #shutdownScreen { display: none; background: #05070a; opacity: 0; transition: opacity 1s ease; }
@@ -175,7 +199,7 @@
             cursor: pointer; outline: none; display: flex; align-items: center; justify-content: center;
             font-size: 11px; font-weight: bold; color: white; text-shadow: 0 1px 1px rgba(0,0,0,0.8);
             box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.9), 0 2px 4px rgba(0, 0, 0, 0.4);
-            transition: transform 0.1s ease, filter 0.15s ease;
+            transition: transform 0.1s ease, filter 0.15s ease; padding: 0;
         }
         .title-bar-controls button:hover { transform: scale(1.12); filter: brightness(1.25); }
         .btn-minimize { background: radial-gradient(circle at 35% 35%, #7bc2ff 0%, #1555bd 70%, #0a3380 100%); }
@@ -264,7 +288,7 @@
         }
         .start-item:hover { background: rgba(114, 188, 255, 0.35); border: 1px solid rgba(114, 188, 255, 0.5); }
 
-        /* Tray Flyouts (Network, Volume, Weather, Clock) */
+        /* Tray Flyouts */
         .tray-flyout {
             position: fixed; bottom: 48px; right: 10px; width: 280px;
             background: rgba(25, 30, 40, 0.95); backdrop-filter: blur(12px);
@@ -275,7 +299,7 @@
         .tray-flyout.active { display: block; }
         @keyframes flyoutPop { 0% { transform: translateY(15px) scale(0.95); opacity: 0; } 100% { transform: translateY(0) scale(1); opacity: 1; } }
 
-        /* Taskbar (Matching Reference Screenshot Layout) */
+        /* Taskbar */
         #taskbar {
             position: fixed; bottom: 0; left: 0; width: 100%; height: 42px;
             background: linear-gradient(to bottom, var(--taskbar-bg1) 0%, var(--taskbar-bg2) 100%);
@@ -302,7 +326,6 @@
         .taskbar-app.minimized-state { opacity: 0.7; border-style: dashed; }
         .taskbar-app.active-state { background: linear-gradient(to bottom, rgba(0,0,0,0.4) 0%, rgba(255,255,255,0.15) 100%); box-shadow: inset 0 2px 5px rgba(0,0,0,0.6); border-color: var(--accent); }
 
-        /* Taskbar Tray matching reference screenshot */
         .taskbar-tray {
             display: flex; align-items: center; gap: 8px; margin-left: auto; color: white; font-size: 11px;
             text-shadow: 1px 1px 2px rgba(0,0,0,0.8); padding: 0 6px; height: 100%; border-left: 1px solid rgba(255,255,255,0.25);
@@ -339,14 +362,14 @@
     <!-- Glossy Real FPS Counter Overlay -->
     <div id="fpsCounter">FPS: 240</div>
 
-    <!-- Enhanced Windows 7 Boot Sequence Screen -->
+    <!-- Boot Sequence Screen -->
     <div id="bootScreen">
         <div class="boot-logo">🪟</div>
         <div style="font-size: 20px; font-weight: 500; letter-spacing: 1px;">Starting Frutiger Aero OS...</div>
         <div class="spinner"></div>
     </div>
 
-    <!-- Login Screen with Real Password Validation -->
+    <!-- Login Screen -->
     <div id="loginScreen">
         <div class="login-box">
             <div class="login-avatar">👤</div>
@@ -358,7 +381,7 @@
         </div>
     </div>
 
-    <!-- Real Lock Screen -->
+    <!-- Lock Screen -->
     <div id="lockScreen">
         <div class="login-box">
             <div class="login-avatar">🔒</div>
@@ -429,12 +452,11 @@
                 </div>
             </div>
             <div class="window-content" style="padding:0;">
-                <textarea class="notepad-textarea">✨ Welcome to Frutiger Aero Web OS v6.0!
+                <textarea class="notepad-textarea">✨ Welcome to Frutiger Aero Web OS v7.0!
 
-- Hardware Identified: ASUS TUF Gaming A16 (FA608PMR), AMD Ryzen 9 8940HX, 16GB DDR5, RTX 5060, WDC SN5000S SSD.
-- Real Password Authentication & Lock Screen enforced.
-- User Account Manager active for Leonardo.
-- Taskbar precisely matches your reference layout with weather, battery, and date.</textarea>
+- Universal transparent & glossy glass buttons applied across all dialogs, settings, task manager, and tray flyouts.
+- ASUS TUF Gaming A16 (FA608PMR) hardware verified.
+- Real password authentication & Lock Screen active.</textarea>
             </div>
             <div class="resizer right" onmousedown="initResize(event, 'notepadWindow', 'right')"></div>
             <div class="resizer bottom" onmousedown="initResize(event, 'notepadWindow', 'bottom')"></div>
@@ -563,7 +585,7 @@
             <div class="resizer corner" onmousedown="initResize(event, 'storeWindow', 'corner')"></div>
         </div>
 
-        <!-- Window 5: Settings App with Hardware & User Accounts Manager -->
+        <!-- Window 5: Settings App -->
         <div id="settingsWindow" class="window" style="top: 160px; left: 300px; width: 680px; height: 440px;" onmousedown="focusWindow('settingsWindow')">
             <div class="title-bar" onmousedown="startDrag(event, 'settingsWindow')">
                 <span>Settings</span>
@@ -605,8 +627,8 @@
                         </div>
                         <div class="settings-group">
                             <label>Change Account Password:</label>
-                            <input type="password" id="newPasswordInput" placeholder="Enter new password" style="width:100%; margin-bottom:6px;">
-                            <button onclick="updatePassword()" style="padding:5px 12px; background:var(--accent); border:none; color:white; border-radius:3px; cursor:pointer; font-weight:bold;">Update Password</button>
+                            <input type="password" id="newPasswordInput" placeholder="Enter new password" style="width:100%; margin-bottom:8px;">
+                            <button onclick="updatePassword()">Update Password</button>
                         </div>
                     </div>
                     <!-- Personalization Pane -->
@@ -647,7 +669,7 @@
                         <p><strong>RAM:</strong> 16GB 5200MHz DDR5</p>
                         <p><strong>Storage:</strong> WDC SN5000S 512GB SSD</p>
                         <p><strong>GPU:</strong> NVIDIA GeForce RTX 5060</p>
-                        <p><strong>OS:</strong> Frutiger Aero Web OS Ultimate 6.0</p>
+                        <p><strong>OS:</strong> Frutiger Aero Web OS Ultimate 7.0</p>
                     </div>
                 </div>
             </div>
@@ -678,11 +700,11 @@
         </div>
     </div>
 
-    <!-- Tray Flyouts (Weather, Network, Volume, Clock) -->
+    <!-- Tray Flyouts -->
     <div id="weatherFlyout" class="tray-flyout">
         <div style="font-weight:bold; margin-bottom:8px; color:var(--accent);">Qionglin, Hsinchu County</div>
         <div style="font-size:24px; font-weight:bold; margin-bottom:4px;">32°C ⛅</div>
-        <div style="font-size:12px; opacity:0.8; margin-bottom:12px;">Partly Cloudy • Humidity: 65%</div>
+        <div style="font-size:12px; opacity:0.8; margin-bottom:12px;">Partly Cloudy • Humidity: 65%[cite: 21]</div>
         <div style="font-size:11px; opacity:0.7;">Live weather service connected.</div>
     </div>
 
@@ -690,7 +712,7 @@
         <div style="font-weight:bold; margin-bottom:10px; color:var(--accent);">Network & Internet</div>
         <div style="font-size:13px; margin-bottom:6px;">📶 Wi-Fi: <strong>TUF_Gaming_5G</strong></div>
         <div style="font-size:12px; opacity:0.8; margin-bottom:12px;">Connected, secure (Wi-Fi 6E Realtek 8852CE)</div>
-        <button onclick="toggleFlyout('networkFlyout')" style="width:100%; padding:5px; background:var(--accent); border:none; color:white; border-radius:3px; cursor:pointer;">Network Settings</button>
+        <button onclick="toggleFlyout('networkFlyout')" style="width:100%;">Network Settings</button>
     </div>
 
     <div id="volumeFlyout" class="tray-flyout">
@@ -701,7 +723,7 @@
         </div>
     </div>
 
-    <!-- Taskbar (Matching Reference Screenshot Layout) -->
+    <!-- Taskbar -->
     <div id="taskbar">
         <div class="start-btn" id="startOrb" title="Start Menu" onclick="toggleStartMenu(event)">🪟</div>
         <div id="taskbarApps"></div>
@@ -916,7 +938,7 @@
                         <td>${isRunning ? 'Running' : 'Suspended'}</td>
                         <td>${cpu}%</td>
                         <td>${ram} MB</td>
-                        <td><button onclick="closeWindow('${id}'); updateTaskManager();" style="padding:2px 8px; background:#bd1515; color:white; border:none; border-radius:3px; cursor:pointer;">End Task</button></td>
+                        <td><button onclick="closeWindow('${id}'); updateTaskManager();" style="padding:2px 8px; background:linear-gradient(to bottom, rgba(255,100,100,0.4), rgba(150,10,10,0.6)); border-color:#ff8888;">End Task</button></td>
                     `;
                     tbody.appendChild(tr);
                 }
