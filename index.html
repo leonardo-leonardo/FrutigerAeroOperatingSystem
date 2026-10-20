@@ -15,6 +15,7 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: url('https://raw.githubusercontent.com/leonardo-leonardo/FrutigerAeroOperatingSystem/refs/heads/main/Vista%20Black%20Widescreen%20Pixel4k.jpg') no-repeat center center fixed;
             background-size: cover;
+            transition: background 0.5s ease;
         }
 
         /* Desktop Canvas */
@@ -53,8 +54,8 @@
             position: absolute;
             top: 80px;
             left: 120px;
-            width: 480px;
-            height: 320px;
+            width: 500px;
+            height: 350px;
             background: rgba(30, 30, 35, 0.45);
             backdrop-filter: blur(14px) saturate(180%);
             -webkit-backdrop-filter: blur(14px) saturate(180%);
@@ -83,11 +84,16 @@
             align-items: center;
             justify-content: space-between;
             padding: 0 12px;
-            cursor: move;
+            cursor: grab;
             color: #ffffff;
             font-weight: bold;
             font-size: 13px;
             text-shadow: 0 1px 2px rgba(0,0,0,0.9);
+            user-select: none;
+        }
+
+        .title-bar:active {
+            cursor: grabbing;
         }
 
         .title-bar-controls {
@@ -117,8 +123,35 @@
             background: rgba(20, 20, 25, 0.3);
         }
 
-        .window-content p {
+        .window-content p, .window-content label {
             text-shadow: 0 1px 2px rgba(0,0,0,0.8);
+        }
+
+        /* Settings Form Styling */
+        .settings-group {
+            margin-bottom: 15px;
+        }
+
+        .settings-group label {
+            display: block;
+            font-size: 13px;
+            margin-bottom: 5px;
+            color: #72bcff;
+            font-weight: bold;
+        }
+
+        .settings-group select, .settings-group button {
+            padding: 6px 12px;
+            background: rgba(50, 60, 75, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            border-radius: 4px;
+            cursor: pointer;
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+        }
+
+        .settings-group select:hover, .settings-group button:hover {
+            background: rgba(70, 85, 105, 0.9);
         }
 
         /* Windows 7 Taskbar */
@@ -180,10 +213,14 @@
             <span class="icon">🛒</span>
             <span class="label">Aero Store</span>
         </div>
+        <div class="desktop-icon" onclick="openWindow('settingsWindow')" style="margin-top: 15px;">
+            <span class="icon">⚙️</span>
+            <span class="label">Settings</span>
+        </div>
 
         <!-- Window 1: Welcome -->
-        <div id="welcomeWindow" class="window active">
-            <div class="title-bar">
+        <div id="welcomeWindow" class="window active" onmousedown="focusWindow('welcomeWindow')">
+            <div class="title-bar" onmousedown="startDrag(event, 'welcomeWindow')">
                 <span>Welcome - Frutiger Aero OS</span>
                 <div class="title-bar-controls">
                     <button onclick="closeWindow('welcomeWindow')"></button>
@@ -192,13 +229,13 @@
             <div class="window-content">
                 <h3 style="margin-top:0; color:#72bcff; text-shadow:0 1px 2px rgba(0,0,0,0.9);">✨ Welcome to Frutiger Aero Web OS</h3>
                 <p>Running on the sleek Black Vista dark glass aesthetic.</p>
-                <p>Click desktop icons to open apps and explore your custom web environment!</p>
+                <p>Click and drag any window by its title bar to move it around your desktop!</p>
             </div>
         </div>
 
         <!-- Window 2: Store -->
-        <div id="storeWindow" class="window" style="top: 140px; left: 220px;">
-            <div class="title-bar">
+        <div id="storeWindow" class="window" style="top: 140px; left: 220px;" onmousedown="focusWindow('storeWindow')">
+            <div class="title-bar" onmousedown="startDrag(event, 'storeWindow')">
                 <span>Aero Glass Store</span>
                 <div class="title-bar-controls">
                     <button onclick="closeWindow('storeWindow')"></button>
@@ -207,6 +244,38 @@
             <div class="window-content">
                 <h3 style="margin-top:0; color:#72bcff; text-shadow:0 1px 2px rgba(0,0,0,0.9);">🛒 Software Catalog</h3>
                 <p>Explore games, tweaking tools, and vintage Windows themes.</p>
+            </div>
+        </div>
+
+        <!-- Window 3: Settings -->
+        <div id="settingsWindow" class="window" style="top: 180px; left: 300px;" onmousedown="focusWindow('settingsWindow')">
+            <div class="title-bar" onmousedown="startDrag(event, 'settingsWindow')">
+                <span>System Preferences & Settings</span>
+                <div class="title-bar-controls">
+                    <button onclick="closeWindow('settingsWindow')"></button>
+                </div>
+            </div>
+            <div class="window-content">
+                <h3 style="margin-top:0; color:#72bcff; text-shadow:0 1px 2px rgba(0,0,0,0.9);">⚙️ Desktop Customization</h3>
+                
+                <div class="settings-group">
+                    <label for="wallpaperSelect">Select Wallpaper Theme:</label>
+                    <select id="wallpaperSelect" onchange="changeWallpaper(this.value)">
+                        <option value="vista-black">Vista Black Widescreen (Current)</option>
+                        <option value="aurora-blue">Classic Aurora Blue</option>
+                        <option value="nature-green">Frutiger Aero Nature Green</option>
+                    </select>
+                </div>
+
+                <div class="settings-group">
+                    <label>System Information:</label>
+                    <p style="margin: 4px 0; font-size: 13px;">OS Version: Frutiger Aero Web OS 1.0</p>
+                    <p style="margin: 4px 0; font-size: 13px;">Renderer: HTML5 / CSS3 / JavaScript</p>
+                </div>
+
+                <div class="settings-group" style="margin-top: 20px;">
+                    <button onclick="alert('Settings saved successfully!')">Apply Changes</button>
+                </div>
             </div>
         </div>
     </div>
@@ -218,13 +287,56 @@
     </div>
 
     <script>
+        let highestZIndex = 10;
+
         // Window Management Functions
         function openWindow(id) {
-            document.getElementById(id).classList.add('active');
+            const win = document.getElementById(id);
+            win.classList.add('active');
+            focusWindow(id);
         }
 
         function closeWindow(id) {
             document.getElementById(id).classList.remove('active');
+        }
+
+        function focusWindow(id) {
+            highestZIndex++;
+            document.getElementById(id).style.zIndex = highestZIndex;
+        }
+
+        // Draggable Windows Logic
+        function startDrag(e, windowId) {
+            const win = document.getElementById(windowId);
+            focusWindow(windowId);
+
+            let offsetX = e.clientX - win.offsetLeft;
+            let offsetY = e.clientY - win.offsetTop;
+
+            function onMouseMove(e) {
+                win.style.left = (e.clientX - offsetX) + 'px';
+                win.style.top = (e.clientY - offsetY) + 'px';
+            }
+
+            function onMouseUp() {
+                document.removeEventListener('mousemove', onMouseMove);
+                document.removeEventListener('mouseup', onMouseUp);
+            }
+
+            document.addEventListener('mousemove', onMouseMove);
+            document.addEventListener('mouseup', onMouseUp);
+        }
+
+        // Wallpaper Changer Function
+        function changeWallpaper(theme) {
+            if (theme === 'vista-black') {
+                document.body.style.background = "url('https://raw.githubusercontent.com/leonardo-leonardo/FrutigerAeroOperatingSystem/refs/heads/main/Vista%20Black%20Widescreen%20Pixel4k.jpg') no-repeat center center fixed";
+            } else if (theme === 'aurora-blue') {
+                document.body.style.background = "url('https://raw.githubusercontent.com/leonardo-leonardo/FrutigerAeroOperatingSystem/refs/heads/main/watermarked_img_12575410826232940056.jpg') no-repeat center center fixed";
+            } else if (theme === 'nature-green') {
+                document.body.style.background = "url('https://raw.githubusercontent.com/leonardo-leonardo/FrutigerAeroOperatingSystem/refs/heads/main/watermarked_img_7515292174151527399.jpg') no-repeat center center fixed";
+            }
+            document.body.style.backgroundSize = "cover";
         }
 
         // Live Windows 7 Taskbar Clock
