@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frutiger Aero Web OS</title>
+    <style>
+        /* Frutiger Aero Global Styles & Nature Wallpaper Background */
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=2000&q=80') no-repeat center center fixed;
+            background-size: cover;
+        }
+
+        /* Desktop Canvas */
+        #desktop {
+            position: relative;
+            width: 100%;
+            height: calc(100% - 40px);
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .desktop-icon {
+            width: 80px;
+            text-align: center;
+            color: white;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
+            cursor: pointer;
+            margin-bottom: 20px;
+            user-select: none;
+        }
+
+        .desktop-icon span.icon {
+            font-size: 36px;
+            display: block;
+            margin-bottom: 5px;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
+        }
+
+        .desktop-icon span.label {
+            font-size: 13px;
+            display: block;
+        }
+
+        /* Aero Glass Window Component */
+        .window {
+            position: absolute;
+            top: 80px;
+            left: 120px;
+            width: 480px;
+            height: 320px;
+            background: rgba(230, 245, 255, 0.3);
+            backdrop-filter: blur(14px) saturate(180%);
+            -webkit-backdrop-filter: blur(14px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.7);
+            border-top: 1px solid rgba(255, 255, 255, 0.95);
+            box-shadow: 
+                inset 0 1px 0 rgba(255, 255, 255, 0.9),
+                0 15px 35px rgba(0, 0, 0, 0.4);
+            border-radius: 8px 8px 5px 5px;
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+            z-index: 10;
+        }
+
+        .window.active {
+            display: flex;
+        }
+
+        /* Windows 7 Glossy Title Bar */
+        .title-bar {
+            height: 32px;
+            background: linear-gradient(to bottom, rgba(255,255,255,0.75) 0%, rgba(200,230,255,0.45) 50%, rgba(140,200,255,0.35) 51%, rgba(90,165,240,0.45) 100%);
+            border-bottom: 1px solid rgba(100,150,200,0.6);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 12px;
+            cursor: move;
+            color: #002b5c;
+            font-weight: bold;
+            font-size: 13px;
+            text-shadow: 0 1px 0 rgba(255,255,255,0.8);
+        }
+
+        .title-bar-controls {
+            display: flex;
+            gap: 4px;
+        }
+
+        .title-bar-controls button {
+            background: linear-gradient(to bottom, #ff6b61 0%, #d93830 100%);
+            border: 1px solid #99231e;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.6);
+        }
+
+        .title-bar-controls button:hover {
+            filter: brightness(1.1);
+        }
+
+        .window-content {
+            padding: 20px;
+            color: #111;
+            flex-grow: 1;
+            overflow-y: auto;
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        /* Windows 7 Taskbar */
+        #taskbar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 42px;
+            background: linear-gradient(to bottom, rgba(30, 95, 170, 0.85) 0%, rgba(10, 40, 90, 0.92) 100%);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-top: 1px solid rgba(255, 255, 255, 0.4);
+            display: flex;
+            align-items: center;
+            padding: 0 6px;
+            box-sizing: border-box;
+            z-index: 1000;
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4);
+        }
+
+        .start-btn {
+            background: radial-gradient(circle, #72bcff 0%, #1c65b5 100%);
+            border: 1px solid #bce2ff;
+            border-radius: 50%;
+            width: 34px;
+            height: 34px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: inset 0 1px 3px rgba(255,255,255,0.9), 0 2px 6px rgba(0,0,0,0.4);
+            font-size: 16px;
+        }
+
+        .start-btn:hover {
+            background: radial-gradient(circle, #92ccff 0%, #2c75c5 100%);
+        }
+
+        .taskbar-tray {
+            margin-left: auto;
+            color: white;
+            font-size: 12px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+            padding-right: 12px;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="desktop">
+        <!-- Desktop Shortcuts -->
+        <div class="desktop-icon" onclick="openWindow('welcomeWindow')">
+            <span class="icon">🌐</span>
+            <span class="label">Welcome.txt</span>
+        </div>
+        <div class="desktop-icon" onclick="openWindow('storeWindow')" style="margin-top: 15px;">
+            <span class="icon">🛒</span>
+            <span class="label">Aero Store</span>
+        </div>
+
+        <!-- Window 1: Welcome -->
+        <div id="welcomeWindow" class="window active">
+            <div class="title-bar">
+                <span>Welcome - Frutiger Aero OS</span>
+                <div class="title-bar-controls">
+                    <button onclick="closeWindow('welcomeWindow')"></button>
+                </div>
+            </div>
+            <div class="window-content">
+                <h3 style="margin-top:0; color:#003366;">✨ Welcome to Frutiger Aero Web OS</h3>
+                <p>You are experiencing the peak mid-2000s glossy glass aesthetic right inside your browser.</p>
+                <p>Click desktop icons to open apps, enjoy the translucent borders and aurora wallpaper!</p>
+            </div>
+        </div>
+
+        <!-- Window 2: Store -->
+        <div id="storeWindow" class="window" style="top: 140px; left: 220px;">
+            <div class="title-bar">
+                <span>Aero Glass Store</span>
+                <div class="title-bar-controls">
+                    <button onclick="closeWindow('storeWindow')"></button>
+                </div>
+            </div>
+            <div class="window-content">
+                <h3 style="margin-top:0; color:#003366;">🛒 Software Catalog</h3>
+                <p>Explore games, tweaking tools, and vintage Windows themes.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bottom Taskbar -->
+    <div id="taskbar">
+        <div class="start-btn" title="Start Menu">🪟</div>
+        <div class="taskbar-tray" id="clock">12:00 PM</div>
+    </div>
+
+    <script>
+        // Window Management Functions
+        function openWindow(id) {
+            document.getElementById(id).classList.add('active');
+        }
+
+        function closeWindow(id) {
+            document.getElementById(id).classList.remove('active');
+        }
+
+        // Live Windows 7 Taskbar Clock
+        setInterval(() => {
+            const now = new Date();
+            let hours = now.getHours();
+            const minutes = now.getMinutes().toString().padStart(2, '0');
+            const ampm = hours >= 12 ? 'PM' : 'AM';
+            hours = hours % 12 || 12;
+            document.getElementById('clock').innerText = `${hours}:${minutes} ${ampm}`;
+        }, 1000);
+    </script>
+</body>
+</html>
