@@ -10,70 +10,75 @@
             --accent-glow: rgba(28, 101, 181, 0.8);
             --taskbar-bg1: rgba(35, 75, 135, 0.88);
             --taskbar-bg2: rgba(10, 30, 65, 0.95);
-            --window-bg: linear-gradient(135deg, rgba(255, 255, 255, 0.55) 0%, rgba(255, 255, 255, 0.15) 50%, rgba(10, 15, 25, 0.35) 100%);
-            --window-content: rgba(15, 20, 30, 0.25);
-            --titlebar-1: rgba(255, 255, 255, 0.7);
-            --titlebar-2: rgba(80, 105, 135, 0.8);
-            --titlebar-3: rgba(15, 25, 40, 0.9);
-            --titlebar-4: rgba(45, 65, 90, 0.85);
+            --window-bg: linear-gradient(135deg, rgba(255, 255, 255, 0.45) 0%, rgba(255, 255, 255, 0.12) 50%, rgba(10, 15, 25, 0.3) 100%);
+            --window-content: rgba(15, 20, 30, 0.22);
+            --titlebar-1: rgba(255, 255, 255, 0.65);
+            --titlebar-2: rgba(80, 105, 135, 0.75);
+            --titlebar-3: rgba(15, 25, 40, 0.88);
+            --titlebar-4: rgba(45, 65, 90, 0.8);
             --text-color: #f0f0f0;
-            --sidebar-bg: rgba(20, 25, 35, 0.35);
-            --col-bg: rgba(15, 20, 30, 0.3);
+            --sidebar-bg: rgba(20, 25, 35, 0.3);
+            --col-bg: rgba(15, 20, 30, 0.25);
         }
 
         /* Light Mode Overrides */
         body.light-mode {
-            --window-bg: linear-gradient(135deg, rgba(255, 255, 255, 0.85) 0%, rgba(255, 255, 255, 0.5) 50%, rgba(200, 220, 245, 0.4) 100%);
-            --window-content: rgba(255, 255, 255, 0.35);
+            --window-bg: linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.45) 50%, rgba(200, 220, 245, 0.35) 100%);
+            --window-content: rgba(255, 255, 255, 0.3);
             --titlebar-1: rgba(255, 255, 255, 0.95);
             --titlebar-2: rgba(190, 215, 245, 0.9);
             --titlebar-3: rgba(120, 165, 215, 0.95);
             --titlebar-4: rgba(150, 190, 230, 0.95);
             --text-color: #112233;
-            --sidebar-bg: rgba(210, 225, 245, 0.45);
-            --col-bg: rgba(225, 235, 250, 0.4);
+            --sidebar-bg: rgba(210, 225, 245, 0.4);
+            --col-bg: rgba(225, 235, 250, 0.35);
         }
 
         /* Retro Custom Scrollbars */
+        * { scrollbar-width: thin; scrollbar-color: var(--accent) rgba(0,0,0,0.2); }
         ::-webkit-scrollbar { width: 10px; height: 10px; }
-        ::-webkit-scrollbar-track { background: rgba(0, 0, 0, 0.1); }
-        ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 3px; border: 1px solid rgba(255,255,255,0.4); }
+        ::-webkit-scrollbar-track { background: rgba(0, 0, 0, 0.15); border-radius: 5px; }
+        ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 5px; border: 2px solid rgba(255,255,255,0.4); }
 
-        /* Global Styles & GPU Acceleration */
+        /* Global Styles & 3D GPU Perspective */
         body, html {
             margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: url('https://raw.githubusercontent.com/leonardo-leonardo/FrutigerAeroOperatingSystem/refs/heads/main/Vista%20Black%20Widescreen%20Pixel4k.jpg') no-repeat center center fixed;
             background-size: cover;
-            transform: translate3d(0,0,0); backface-visibility: hidden; user-select: none;
+            perspective: 1200px; transform-style: preserve-3d; user-select: none;
         }
 
-        /* System Screens */
-        #bootScreen, #loginScreen, #shutdownScreen, #biosScreen, #sleepScreen {
+        /* System Screens (Boot, Login, Lock, Shutdown, BIOS, Sleep) */
+        #bootScreen, #loginScreen, #lockScreen, #shutdownScreen, #biosScreen, #sleepScreen {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 99999;
             display: flex; flex-direction: column; align-items: center; justify-content: center; background: #000; color: white;
             transition: opacity 0.5s ease;
         }
         #bootScreen { background: radial-gradient(circle, #152535 0%, #05080c 100%); }
-        .boot-logo { font-size: 64px; margin-bottom: 20px; animation: pulseLogo 2s infinite alternate; }
+        .boot-logo {
+            width: 80px; height: 80px; border-radius: 50%; background: radial-gradient(circle, #72bcff 0%, #1c65b5 100%);
+            display: flex; align-items: center; justify-content: center; font-size: 40px; margin-bottom: 25px;
+            box-shadow: 0 0 35px rgba(114,188,255,0.9); animation: pulseLogo 2s infinite alternate;
+        }
         @keyframes pulseLogo {
             0% { transform: scale(1); filter: drop-shadow(0 0 10px rgba(114,188,255,0.5)); }
-            100% { transform: scale(1.05); filter: drop-shadow(0 0 25px rgba(114,188,255,0.9)); }
+            100% { transform: scale(1.08); filter: drop-shadow(0 0 30px rgba(114,188,255,1)); }
         }
         .spinner {
-            width: 40px; height: 40px; border: 4px solid rgba(255,255,255,0.2);
+            width: 36px; height: 36px; border: 4px solid rgba(255,255,255,0.2);
             border-top: 4px solid var(--accent); border-radius: 50%;
             animation: spin 1s linear infinite; margin-top: 20px;
         }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
-        #loginScreen {
+        #loginScreen, #lockScreen {
             background: url('https://raw.githubusercontent.com/leonardo-leonardo/FrutigerAeroOperatingSystem/refs/heads/main/Vista%20Black%20Widescreen%20Pixel4k.jpg') no-repeat center center fixed;
             background-size: cover; display: none;
         }
         .login-box {
-            width: 320px; background: rgba(20, 25, 35, 0.6); backdrop-filter: blur(8px);
-            border: 1px solid var(--accent); border-radius: 10px; padding: 30px; box-shadow: 0 20px 50px rgba(0,0,0,0.8); text-align: center;
+            width: 340px; background: rgba(20, 25, 35, 0.7); backdrop-filter: blur(14px);
+            border: 1px solid var(--accent); border-radius: 12px; padding: 30px; box-shadow: 0 25px 50px rgba(0,0,0,0.8), 0 0 20px var(--accent-glow); text-align: center;
         }
         .login-avatar {
             width: 80px; height: 80px; border-radius: 50%; background: radial-gradient(circle, var(--accent) 0%, #1c65b5 100%);
@@ -88,6 +93,7 @@
             width: 100%; padding: 8px; background: radial-gradient(circle, var(--accent) 0%, #1c65b5 100%);
             border: 1px solid #bce2ff; color: white; font-weight: bold; border-radius: 4px; cursor: pointer; margin-top: 10px;
         }
+        #loginError { color: #ff6b61; font-size: 12px; margin-top: 8px; display: none; text-shadow: 0 1px 2px rgba(0,0,0,0.8); }
 
         #shutdownScreen { display: none; background: #05070a; opacity: 0; transition: opacity 1s ease; }
         #biosScreen {
@@ -105,53 +111,49 @@
         /* Desktop Canvas */
         #desktop {
             position: relative; width: 100%; height: calc(100% - 42px); padding: 20px; box-sizing: border-box; display: none;
+            transform-style: preserve-3d;
         }
         .desktop-icon {
             width: 84px; text-align: center; color: white; text-shadow: 1px 1px 3px rgba(0,0,0,0.9);
-            cursor: pointer; margin-bottom: 20px; transition: transform 0.2s ease;
+            cursor: pointer; margin-bottom: 20px; transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transform: translateZ(10px);
         }
-        .desktop-icon:hover { transform: scale(1.08); filter: drop-shadow(0 0 8px var(--accent)); }
+        .desktop-icon:hover { transform: scale(1.12) translateZ(25px); filter: drop-shadow(0 5px 12px var(--accent)); }
         .desktop-icon span.icon { font-size: 40px; display: block; margin-bottom: 4px; }
         .desktop-icon span.label { font-size: 12px; display: block; }
 
         .retro-folder {
             width: 44px; height: 36px; background: linear-gradient(to bottom, #ffea85 0%, #d4a017 100%);
             margin: 0 auto 4px auto; border-radius: 2px 6px 6px 6px; position: relative;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.8);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.8);
+            transform: translateZ(5px);
         }
         .retro-folder::before {
             content: ''; position: absolute; top: -5px; left: 0; width: 18px; height: 6px;
             background: #e6b800; border-radius: 2px 2px 0 0;
         }
         .retro-glass-file {
-            width: 36px; height: 42px; background: rgba(255,255,255,0.4);
-            margin: 0 auto 4px auto; border: 1px solid rgba(255,255,255,0.8); border-radius: 3px;
-            position: relative; box-shadow: 0 4px 8px rgba(0,0,0,0.4), inset 0 1px 2px rgba(255,255,255,0.9);
+            width: 36px; height: 42px; background: rgba(255,255,255,0.45);
+            margin: 0 auto 4px auto; border: 1px solid rgba(255,255,255,0.9); border-radius: 3px;
+            position: relative; box-shadow: 0 6px 12px rgba(0,0,0,0.4), inset 0 1px 2px rgba(255,255,255,0.9);
             display: flex; align-items: center; justify-content: center; font-size: 18px;
+            transform: translateZ(5px);
         }
 
-        /* Glossy Transparent Glass Windows (Zero Cloudiness, Perfect Maximization) */
+        /* Slightly Blurred Glossy Glass Windows */
         .window {
-            position: absolute; top: 80px; left: 120px; width: 640px; height: 440px;
-            background: var(--window-bg);
-            border: 1px solid var(--accent);
-            border-top: 1px solid rgba(255, 255, 255, 0.95);
-            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9), inset 0 0 30px rgba(255, 255, 255, 0.15), 0 25px 50px rgba(0, 0, 0, 0.7);
+            position: absolute; top: 80px; left: 120px; width: 660px; height: 450px;
+            background: var(--window-bg); backdrop-filter: blur(8px);
+            border: 1px solid var(--accent); border-top: 1px solid rgba(255, 255, 255, 0.95);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.85), inset 0 0 30px rgba(255, 255, 255, 0.1), 0 30px 60px rgba(0, 0, 0, 0.75), 0 0 20px var(--accent-glow);
             border-radius: 8px 8px 5px 5px; display: flex; flex-direction: column; overflow: hidden; z-index: 10;
-            transform: scale(0.7) translateY(20px) translate3d(0,0,0); opacity: 0; visibility: hidden;
-            transition: transform 0.25s cubic-bezier(0.1, 0.9, 0.2, 1), opacity 0.25s ease, visibility 0.25s ease;
-            will-change: transform, left, top, width, height; backface-visibility: hidden;
+            transform: scale(0.7) translateY(30px) translateZ(-50px); opacity: 0; visibility: hidden;
+            transition: transform 0.3s cubic-bezier(0.1, 0.9, 0.2, 1), opacity 0.3s ease, visibility 0.3s ease;
+            will-change: transform, left, top, width, height; backface-visibility: hidden; transform-style: preserve-3d;
         }
-        .window.active { transform: scale(1) translateY(0) translate3d(0,0,0); opacity: 1; visibility: visible; }
-        .window.minimized { transform: scale(0.1) translateY(500px); opacity: 0; visibility: hidden; pointer-events: none; }
-        .window.maximized {
-            top: 0 !important;
-            left: 0 !important;
-            width: 100vw !important;
-            height: calc(100vh - 42px) !important;
-            border-radius: 0 !important;
-            border: none !important;
-        }
+        .window.active { transform: scale(1) translateY(0) translateZ(0); opacity: 1; visibility: visible; }
+        .window.minimized { transform: scale(0.1) translateY(600px) translateZ(-200px); opacity: 0; visibility: hidden; pointer-events: none; }
+        .window.maximized { top: 0 !important; left: 0 !important; width: 100vw !important; height: calc(100vh - 42px) !important; border-radius: 0 !important; border: none !important; transform: scale(1) translateZ(0) !important; }
 
         .resizer { position: absolute; z-index: 100; }
         .resizer.right { width: 6px; right: 0; top: 0; height: 100%; cursor: e-resize; }
@@ -175,40 +177,63 @@
             box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.9), 0 2px 4px rgba(0, 0, 0, 0.4);
             transition: transform 0.1s ease, filter 0.15s ease;
         }
-        .title-bar-controls button:hover { transform: scale(1.1); filter: brightness(1.25); }
+        .title-bar-controls button:hover { transform: scale(1.12); filter: brightness(1.25); }
         .btn-minimize { background: radial-gradient(circle at 35% 35%, #7bc2ff 0%, #1555bd 70%, #0a3380 100%); }
         .btn-maximize { background: radial-gradient(circle at 35% 35%, #7bff99 0%, #15803d 70%, #0a4d22 100%); }
         .btn-close { background: radial-gradient(circle at 35% 35%, #ff7b71 0%, #bd1515 70%, #800a0a 100%); }
 
         .window-content { padding: 15px; color: var(--text-color); flex-grow: 1; overflow-y: auto; background: var(--window-content); }
 
-        /* Explorer UI */
+        /* File Explorer */
         .explorer-layout {
             display: flex; height: 100%; background: var(--window-content); border-radius: 6px; overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.3); box-shadow: inset 0 2px 5px rgba(0,0,0,0.3);
+            border: 1px solid rgba(255, 255, 255, 0.35); box-shadow: inset 0 2px 8px rgba(0,0,0,0.4);
         }
         .explorer-sidebar {
-            width: 170px; background: var(--sidebar-bg);
+            width: 180px; background: var(--sidebar-bg); backdrop-filter: blur(6px);
             border-right: 1px solid rgba(255, 255, 255, 0.25); padding: 12px; font-size: 13px; color: var(--text-color);
         }
         .explorer-sidebar ul { list-style: none; padding: 0; margin: 0; }
-        .explorer-sidebar li { padding: 6px 10px; cursor: pointer; border-radius: 4px; margin-bottom: 3px; }
+        .explorer-sidebar li { padding: 8px 10px; cursor: pointer; border-radius: 4px; margin-bottom: 4px; transition: background 0.2s; }
         .explorer-sidebar li:hover { background: rgba(255, 255, 255, 0.25); }
-        .explorer-sidebar li.selected { background: rgba(255, 255, 255, 0.35); border: 1px solid rgba(255, 255, 255, 0.5); font-weight: bold; }
+        .explorer-sidebar li.selected { background: var(--accent); color: white; font-weight: bold; box-shadow: 0 2px 6px rgba(0,0,0,0.3); }
 
         .explorer-col-pane {
-            width: 180px; background: var(--col-bg);
-            border-right: 1px solid rgba(255, 255, 255, 0.2); padding: 15px; display: flex; flex-direction: column; gap: 12px;
+            width: 190px; background: var(--col-bg); backdrop-filter: blur(6px);
+            border-right: 1px solid rgba(255, 255, 255, 0.2); padding: 15px; display: flex; flex-direction: column; gap: 10px;
         }
+        .explorer-file-row {
+            display: flex; align-items: center; gap: 8px; padding: 6px 10px; border-radius: 4px; cursor: pointer; font-size: 13px; transition: background 0.15s;
+        }
+        .explorer-file-row:hover { background: rgba(255, 255, 255, 0.2); }
+
         .explorer-main {
-            flex-grow: 1; padding: 15px; display: grid; grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+            flex-grow: 1; padding: 15px; display: grid; grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
             grid-gap: 15px; align-content: start; overflow-y: auto; background: rgba(0, 0, 0, 0.15);
         }
+        .file-grid-item {
+            text-align: center; cursor: pointer; padding: 12px; border-radius: 8px; background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.15); transition: transform 0.2s, background 0.2s, box-shadow 0.2s;
+        }
+        .file-grid-item:hover {
+            background: rgba(255,255,255,0.22); transform: translateY(-4px) scale(1.05);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.4), 0 0 10px var(--accent-glow); border-color: rgba(255,255,255,0.5);
+        }
 
-        /* Settings Categories App */
+        /* Task Manager */
+        .taskmgr-header { display: flex; gap: 15px; margin-bottom: 15px; font-size: 13px; }
+        .taskmgr-card {
+            flex: 1; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.2); border-radius: 6px; padding: 10px; text-align: center;
+        }
+        .taskmgr-table { width: 100%; border-collapse: collapse; font-size: 13px; background: rgba(10,15,25,0.4); border-radius: 6px; overflow: hidden; }
+        .taskmgr-table th, .taskmgr-table td { padding: 8px 12px; text-align: left; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .taskmgr-table th { background: rgba(255,255,255,0.15); color: var(--accent); }
+        .taskmgr-table tr:hover { background: rgba(255,255,255,0.1); cursor: pointer; }
+
+        /* Settings App */
         .settings-layout { display: flex; height: 100%; background: var(--window-content); border-radius: 6px; overflow: hidden; border: 1px solid rgba(255,255,255,0.3); }
-        .settings-sidebar { width: 180px; background: var(--sidebar-bg); border-right: 1px solid rgba(255,255,255,0.25); padding: 10px; }
-        .settings-sidebar div { padding: 8px 12px; cursor: pointer; border-radius: 4px; font-size: 13px; color: var(--text-color); margin-bottom: 4px; }
+        .settings-sidebar { width: 180px; background: var(--sidebar-bg); backdrop-filter: blur(6px); border-right: 1px solid rgba(255,255,255,0.25); padding: 10px; }
+        .settings-sidebar div { padding: 8px 12px; cursor: pointer; border-radius: 4px; font-size: 13px; color: var(--text-color); margin-bottom: 4px; transition: background 0.2s; }
         .settings-sidebar div:hover { background: rgba(255,255,255,0.2); }
         .settings-sidebar div.active-tab { background: var(--accent); color: white; font-weight: bold; }
         .settings-pane { flex-grow: 1; padding: 20px; overflow-y: auto; display: none; }
@@ -221,12 +246,12 @@
         #startMenu {
             position: fixed; bottom: 46px; left: 6px; width: 300px;
             background: linear-gradient(135deg, rgba(30, 40, 55, 0.95) 0%, rgba(15, 20, 30, 0.98) 100%);
-            border: 1px solid var(--accent); border-radius: 8px 8px 0 0;
-            box-shadow: 0 -5px 25px rgba(0,0,0,0.7); display: none; flex-direction: column; z-index: 9999;
-            animation: startMenuPop 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            backdrop-filter: blur(14px); border: 1px solid var(--accent); border-radius: 8px 8px 0 0;
+            box-shadow: 0 -10px 30px rgba(0,0,0,0.8), 0 0 20px var(--accent-glow); display: none; flex-direction: column; z-index: 9999;
+            animation: startMenuPop 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275); transform-origin: bottom left;
         }
         #startMenu.active { display: flex; }
-        @keyframes startMenuPop { 0% { transform: translateY(20px) scale(0.95); opacity: 0; } 100% { transform: translateY(0) scale(1); opacity: 1; } }
+        @keyframes startMenuPop { 0% { transform: translateY(25px) scale(0.95); opacity: 0; } 100% { transform: translateY(0) scale(1); opacity: 1; } }
 
         .start-menu-header {
             padding: 12px; background: linear-gradient(to right, rgba(50, 80, 120, 0.85), rgba(20, 30, 45, 0.85));
@@ -237,20 +262,20 @@
             padding: 8px 12px; color: white; font-size: 13px; border-radius: 4px; cursor: pointer;
             display: flex; align-items: center; gap: 10px; text-shadow: 0 1px 2px rgba(0,0,0,0.8); transition: background 0.15s;
         }
-        .start-item:hover { background: rgba(114, 188, 255, 0.3); border: 1px solid rgba(114, 188, 255, 0.4); }
+        .start-item:hover { background: rgba(114, 188, 255, 0.35); border: 1px solid rgba(114, 188, 255, 0.5); }
 
-        /* Tray Flyouts */
+        /* Tray Flyouts (Network, Volume, Weather, Clock) */
         .tray-flyout {
-            position: fixed; bottom: 48px; right: 10px; width: 260px;
-            background: rgba(25, 30, 40, 0.95);
-            border: 1px solid var(--accent); border-radius: 6px; padding: 15px; color: white;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.7); display: none; z-index: 10000;
+            position: fixed; bottom: 48px; right: 10px; width: 280px;
+            background: rgba(25, 30, 40, 0.95); backdrop-filter: blur(12px);
+            border: 1px solid var(--accent); border-radius: 8px; padding: 15px; color: white;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.8), 0 0 15px var(--accent-glow); display: none; z-index: 10000;
             animation: flyoutPop 0.2s ease;
         }
         .tray-flyout.active { display: block; }
-        @keyframes flyoutPop { 0% { transform: translateY(10px) scale(0.95); opacity: 0; } 100% { transform: translateY(0) scale(1); opacity: 1; } }
+        @keyframes flyoutPop { 0% { transform: translateY(15px) scale(0.95); opacity: 0; } 100% { transform: translateY(0) scale(1); opacity: 1; } }
 
-        /* Taskbar */
+        /* Taskbar (Matching Reference Screenshot Layout) */
         #taskbar {
             position: fixed; bottom: 0; left: 0; width: 100%; height: 42px;
             background: linear-gradient(to bottom, var(--taskbar-bg1) 0%, var(--taskbar-bg2) 100%);
@@ -261,10 +286,10 @@
             background: radial-gradient(circle, var(--accent) 0%, #1c65b5 100%);
             border: 1px solid #bce2ff; border-radius: 50%; width: 34px; height: 34px;
             display: flex; align-items: center; justify-content: center; cursor: pointer;
-            box-shadow: inset 0 1px 3px rgba(255,255,255,0.9), 0 2px 6px rgba(0,0,0,0.4); font-size: 16px;
+            box-shadow: inset 0 1px 3px rgba(255,255,255,0.9), 0 2px 8px rgba(0,0,0,0.5), 0 0 10px var(--accent-glow); font-size: 16px;
             transition: transform 0.2s ease;
         }
-        .start-btn:hover { transform: scale(1.1); }
+        .start-btn:hover { transform: scale(1.15); }
 
         #taskbarApps { display: flex; gap: 4px; margin-left: 10px; align-items: center; flex-grow: 1; }
         .taskbar-app {
@@ -277,12 +302,18 @@
         .taskbar-app.minimized-state { opacity: 0.7; border-style: dashed; }
         .taskbar-app.active-state { background: linear-gradient(to bottom, rgba(0,0,0,0.4) 0%, rgba(255,255,255,0.15) 100%); box-shadow: inset 0 2px 5px rgba(0,0,0,0.6); border-color: var(--accent); }
 
+        /* Taskbar Tray matching reference screenshot */
         .taskbar-tray {
-            display: flex; align-items: center; gap: 10px; margin-left: auto; color: white; font-size: 12px;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.8); padding: 0 8px; height: 100%; border-left: 1px solid rgba(255,255,255,0.25);
+            display: flex; align-items: center; gap: 8px; margin-left: auto; color: white; font-size: 11px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.8); padding: 0 6px; height: 100%; border-left: 1px solid rgba(255,255,255,0.25);
         }
-        .tray-icon { font-size: 14px; cursor: pointer; filter: drop-shadow(0 1px 1px rgba(0,0,0,0.8)); padding: 2px 4px; border-radius: 3px; }
+        .tray-icon { font-size: 13px; cursor: pointer; filter: drop-shadow(0 1px 1px rgba(0,0,0,0.8)); padding: 2px 4px; border-radius: 3px; }
         .tray-icon:hover { background: rgba(255,255,255,0.2); }
+        .weather-widget {
+            display: flex; align-items: center; gap: 6px; cursor: pointer; padding: 2px 6px; border-radius: 3px;
+            background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);
+        }
+        .weather-widget:hover { background: rgba(255,255,255,0.2); }
 
         /* Notepad Textarea */
         .notepad-textarea {
@@ -290,33 +321,52 @@
             font-family: 'Courier New', Courier, monospace; font-size: 14px; resize: none; box-sizing: border-box; padding: 10px; outline: none;
         }
 
-        /* Real FPS Counter Overlay */
+        /* Glossy Real FPS Counter Overlay */
         #fpsCounter {
-            position: fixed; top: 10px; right: 15px; background: rgba(0,0,0,0.6); color: #00ff00;
-            font-family: monospace; font-size: 11px; padding: 3px 6px; border-radius: 3px; z-index: 999999; pointer-events: none;
-            border: 1px solid rgba(0,255,0,0.3); display: none;
+            position: fixed; top: 12px; right: 18px;
+            background: linear-gradient(135deg, rgba(255,255,255,0.25) 0%, rgba(0,0,0,0.6) 100%);
+            backdrop-filter: blur(8px); color: #00ff66;
+            font-family: 'Courier New', monospace; font-weight: bold; font-size: 12px;
+            padding: 5px 10px; border-radius: 6px; z-index: 999999; pointer-events: none;
+            border: 1px solid rgba(255,255,255,0.4);
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.6), 0 4px 15px rgba(0,0,0,0.5);
+            display: none; text-shadow: 0 0 8px rgba(0,255,100,0.8);
         }
     </style>
 </head>
 <body onclick="checkClosePopups(event)">
 
-    <!-- Live FPS Overlay -->
+    <!-- Glossy Real FPS Counter Overlay -->
     <div id="fpsCounter">FPS: 240</div>
 
-    <!-- Boot Sequence Screen -->
+    <!-- Enhanced Windows 7 Boot Sequence Screen -->
     <div id="bootScreen">
         <div class="boot-logo">🪟</div>
         <div style="font-size: 20px; font-weight: 500; letter-spacing: 1px;">Starting Frutiger Aero OS...</div>
         <div class="spinner"></div>
     </div>
 
-    <!-- Login Screen -->
+    <!-- Login Screen with Real Password Validation -->
     <div id="loginScreen">
         <div class="login-box">
             <div class="login-avatar">👤</div>
-            <div style="font-size: 18px; font-weight: bold; margin-bottom: 10px;">Leonardo</div>
-            <input type="password" id="loginPassword" placeholder="Password (default: 1234)" value="1234">
+            <div style="font-size: 18px; font-weight: bold; margin-bottom: 4px;">Leonardo</div>
+            <div style="font-size: 11px; opacity: 0.8; margin-bottom: 12px;">ASUS TUF Gaming A16 (FA608PMR)</div>
+            <input type="password" id="loginPassword" placeholder="Password (default: 1234)">
             <button onclick="handleLogin()">Log In</button>
+            <div id="loginError">Incorrect password! Please try again (default: 1234).</div>
+        </div>
+    </div>
+
+    <!-- Real Lock Screen -->
+    <div id="lockScreen">
+        <div class="login-box">
+            <div class="login-avatar">🔒</div>
+            <div style="font-size: 18px; font-weight: bold; margin-bottom: 4px;">Screen Locked</div>
+            <div style="font-size: 11px; opacity: 0.8; margin-bottom: 12px;">Session secure for Leonardo</div>
+            <input type="password" id="lockPassword" placeholder="Enter password to unlock">
+            <button onclick="handleUnlock()">Unlock</button>
+            <div id="lockError" style="color: #ff6b61; font-size: 12px; margin-top: 8px; display: none;">Incorrect password!</div>
         </div>
     </div>
 
@@ -329,12 +379,13 @@
     <!-- Working BIOS Screen -->
     <div id="biosScreen" onclick="bootFromBIOS()">
         <h3>AMI BIOS (C) 2006 American Megatrends, Inc.</h3>
-        <p>ASUS TUF Gaming A16 / Frutiger Aero Edition BIOS v2.50</p>
+        <p>ASUS TUF Gaming A16 (FA608PMR) / Frutiger Aero Edition BIOS v2.50</p>
         <p>CPU: AMD Ryzen 9 8940HX Processor @ 4.80GHz</p>
-        <p>Total Memory: 16384MB DDR5 (Single Channel)</p>
+        <p>Total Memory: 16384MB DDR5 (5200MHz Single Channel)</p>
         <br>
-        <p>IDE Channel 0 Master : WDC SN5000S 512GB SSD</p>
-        <p>Initializing USB Controllers ... Done.</p>
+        <p>Storage: WDC SN5000S 512GB NVMe SSD</p>
+        <p>Graphics: NVIDIA GeForce RTX 5060 Laptop GPU</p>
+        <p>Initializing USB Controllers & G-Helper Daemon ... Done.</p>
         <p style="color:#00ff00; margin-top:30px;">[ Click anywhere or press any key to boot Frutiger Aero OS ]</p>
     </div>
 
@@ -353,6 +404,10 @@
         <div class="desktop-icon" onclick="openWindow('explorerWindow')" style="margin-top: 15px;">
             <div class="retro-folder"></div>
             <span class="label">Computer</span>
+        </div>
+        <div class="desktop-icon" onclick="openWindow('taskmgrWindow')" style="margin-top: 15px;">
+            <div class="retro-glass-file">📊</div>
+            <span class="label">Task Manager</span>
         </div>
         <div class="desktop-icon" onclick="openWindow('storeWindow')" style="margin-top: 15px;">
             <div class="retro-glass-file">🛒</div>
@@ -374,12 +429,12 @@
                 </div>
             </div>
             <div class="window-content" style="padding:0;">
-                <textarea class="notepad-textarea">✨ Welcome to Frutiger Aero Web OS!
+                <textarea class="notepad-textarea">✨ Welcome to Frutiger Aero Web OS v6.0!
 
-This file (`Welcome.txt`) is loaded directly into the real Notepad editor. 
-- Maximizing windows now locks perfectly to the bottom edge right above the taskbar.
-- The new Performance settings page lets you adjust the Aero Glass FPS slider up to 240 FPS!
-- Enjoy true high-transparency crystal glass aesthetics.</textarea>
+- Hardware Identified: ASUS TUF Gaming A16 (FA608PMR), AMD Ryzen 9 8940HX, 16GB DDR5, RTX 5060, WDC SN5000S SSD.
+- Real Password Authentication & Lock Screen enforced.
+- User Account Manager active for Leonardo.
+- Taskbar precisely matches your reference layout with weather, battery, and date.</textarea>
             </div>
             <div class="resizer right" onmousedown="initResize(event, 'notepadWindow', 'right')"></div>
             <div class="resizer bottom" onmousedown="initResize(event, 'notepadWindow', 'bottom')"></div>
@@ -387,17 +442,17 @@ This file (`Welcome.txt`) is loaded directly into the real Notepad editor.
         </div>
 
         <!-- Window 2: File Explorer -->
-        <div id="explorerWindow" class="window" style="top: 100px; left: 180px; width: 680px; height: 420px;" onmousedown="focusWindow('explorerWindow')">
+        <div id="explorerWindow" class="window" style="top: 90px; left: 160px; width: 720px; height: 440px;" onmousedown="focusWindow('explorerWindow')">
             <div class="title-bar" onmousedown="startDrag(event, 'explorerWindow')">
                 <span>Computer - Windows Explorer</span>
                 <div class="title-bar-controls">
                     <button class="btn-minimize" onclick="minimizeWindow('explorerWindow')" title="Minimize">-</button>
-                    <button class="btn-maximize" onclick="minimizeWindow('explorerWindow')" title="Maximize">▢</button>
+                    <button class="btn-maximize" onclick="maximizeWindow('explorerWindow')" title="Maximize">▢</button>
                     <button class="btn-close" onclick="closeWindow('explorerWindow')" title="Close">✕</button>
                 </div>
             </div>
             <div class="window-content" style="padding: 12px; display: flex; flex-direction: column;">
-                <div style="font-size: 12px; margin-bottom: 8px; color: var(--text-color); font-weight: 500;">📁 Local Disk (C:) > System</div>
+                <div style="font-size: 12px; margin-bottom: 8px; color: var(--text-color); font-weight: 500;">📁 Local Disk (C:) > System > Desktop</div>
                 <div class="explorer-layout">
                     <div class="explorer-sidebar">
                         <ul>
@@ -405,23 +460,36 @@ This file (`Welcome.txt`) is loaded directly into the real Notepad editor.
                             <li class="selected">💻 Desktop</li>
                             <li>📁 Documents</li>
                             <li>🖼️ Pictures</li>
+                            <li>🎵 Music</li>
                             <li>💾 Local Disk (C:)</li>
                         </ul>
                     </div>
                     <div class="explorer-col-pane">
                         <div style="font-size: 11px; font-weight: bold; opacity: 0.9; text-transform: uppercase; color: var(--accent);">System Folders</div>
-                        <div style="font-size: 13px; cursor: pointer; padding: 6px 8px; border-radius:4px; background: rgba(255,255,255,0.15);" onclick="openWindow('notepadWindow')">📁 System32</div>
-                        <div style="font-size: 13px; cursor: pointer; padding: 6px 8px; border-radius:4px;" onclick="openWindow('storeWindow')">📁 Programs</div>
-                        <div style="font-size: 13px; cursor: pointer; padding: 6px 8px; border-radius:4px;" onclick="openWindow('settingsWindow')">📁 Config</div>
+                        <div class="explorer-file-row" onclick="openWindow('notepadWindow')"><span>📁</span> System32</div>
+                        <div class="explorer-file-row" onclick="openWindow('storeWindow')"><span>📁</span> Programs</div>
+                        <div class="explorer-file-row" onclick="openWindow('taskmgrWindow')"><span>📁</span> Config</div>
                     </div>
                     <div class="explorer-main">
-                        <div class="file-item" onclick="openWindow('notepadWindow')">
-                            <div class="retro-glass-file" style="transform:scale(0.8); margin-bottom:2px;">📄</div>
-                            <span class="f-name" style="font-size:12px; color:var(--text-color);">Welcome.txt</span>
+                        <div class="file-grid-item" onclick="openWindow('notepadWindow')">
+                            <div class="retro-glass-file" style="margin: 0 auto 6px auto;">📄</div>
+                            <span style="font-size: 12px; color: var(--text-color); font-weight: 500; display:block;">Welcome.txt</span>
+                            <span style="font-size: 10px; opacity: 0.7; display:block;">1.2 KB Text</span>
                         </div>
-                        <div class="file-item" onclick="openWindow('storeWindow')">
-                            <div class="retro-folder" style="transform:scale(0.8); margin-bottom:2px;"></div>
-                            <span class="f-name" style="font-size:12px; color:var(--text-color);">Aero Store</span>
+                        <div class="file-grid-item" onclick="openWindow('taskmgrWindow')">
+                            <div class="retro-folder" style="transform: scale(0.85); margin: 0 auto 6px auto;"></div>
+                            <span style="font-size: 12px; color: var(--text-color); font-weight: 500; display:block;">Task Manager</span>
+                            <span style="font-size: 10px; opacity: 0.7; display:block;">System App</span>
+                        </div>
+                        <div class="file-grid-item" onclick="openWindow('storeWindow')">
+                            <div class="retro-folder" style="transform: scale(0.85); margin: 0 auto 6px auto;"></div>
+                            <span style="font-size: 12px; color: var(--text-color); font-weight: 500; display:block;">Aero Store</span>
+                            <span style="font-size: 10px; opacity: 0.7; display:block;">Catalog</span>
+                        </div>
+                        <div class="file-grid-item" onclick="openWindow('settingsWindow')">
+                            <div class="retro-glass-file" style="margin: 0 auto 6px auto;">⚙️</div>
+                            <span style="font-size: 12px; color: var(--text-color); font-weight: 500; display:block;">Control Panel</span>
+                            <span style="font-size: 10px; opacity: 0.7; display:block;">Settings</span>
                         </div>
                     </div>
                 </div>
@@ -431,8 +499,53 @@ This file (`Welcome.txt`) is loaded directly into the real Notepad editor.
             <div class="resizer corner" onmousedown="initResize(event, 'explorerWindow', 'corner')"></div>
         </div>
 
-        <!-- Window 3: Store -->
-        <div id="storeWindow" class="window" style="top: 140px; left: 220px;" onmousedown="focusWindow('storeWindow')">
+        <!-- Window 3: Task Manager -->
+        <div id="taskmgrWindow" class="window" style="top: 110px; left: 220px; width: 620px; height: 400px;" onmousedown="focusWindow('taskmgrWindow')">
+            <div class="title-bar" onmousedown="startDrag(event, 'taskmgrWindow')">
+                <span>Task Manager</span>
+                <div class="title-bar-controls">
+                    <button class="btn-minimize" onclick="minimizeWindow('taskmgrWindow')" title="Minimize">-</button>
+                    <button class="btn-maximize" onclick="maximizeWindow('taskmgrWindow')" title="Maximize">▢</button>
+                    <button class="btn-close" onclick="closeWindow('taskmgrWindow')" title="Close">✕</button>
+                </div>
+            </div>
+            <div class="window-content" style="display: flex; flex-direction: column;">
+                <div class="taskmgr-header">
+                    <div class="taskmgr-card">
+                        <div style="font-size:11px; opacity:0.8;">CPU (Ryzen 9 8940HX)</div>
+                        <div id="cpuUsageVal" style="font-size:18px; font-weight:bold; color:var(--accent);">14%</div>
+                    </div>
+                    <div class="taskmgr-card">
+                        <div style="font-size:11px; opacity:0.8;">Memory (16GB DDR5)</div>
+                        <div id="ramUsageVal" style="font-size:18px; font-weight:bold; color:var(--accent);">4.8 / 16 GB</div>
+                    </div>
+                    <div class="taskmgr-card">
+                        <div style="font-size:11px; opacity:0.8;">GPU (RTX 5060)</div>
+                        <div id="gpuUsageVal" style="font-size:18px; font-weight:bold; color:var(--accent);">6%</div>
+                    </div>
+                </div>
+                <div style="flex-grow: 1; overflow-y: auto;">
+                    <table class="taskmgr-table">
+                        <thead>
+                            <tr>
+                                <th>Process Name</th>
+                                <th>Status</th>
+                                <th>CPU</th>
+                                <th>Memory</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="taskmgrProcessList"></tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="resizer right" onmousedown="initResize(event, 'taskmgrWindow', 'right')"></div>
+            <div class="resizer bottom" onmousedown="initResize(event, 'taskmgrWindow', 'bottom')"></div>
+            <div class="resizer corner" onmousedown="initResize(event, 'taskmgrWindow', 'corner')"></div>
+        </div>
+
+        <!-- Window 4: Store -->
+        <div id="storeWindow" class="window" style="top: 140px; left: 260px;" onmousedown="focusWindow('storeWindow')">
             <div class="title-bar" onmousedown="startDrag(event, 'storeWindow')">
                 <span>Aero Glass Store</span>
                 <div class="title-bar-controls">
@@ -450,8 +563,8 @@ This file (`Welcome.txt`) is loaded directly into the real Notepad editor.
             <div class="resizer corner" onmousedown="initResize(event, 'storeWindow', 'corner')"></div>
         </div>
 
-        <!-- Window 4: Settings App with Performance & FPS Slider -->
-        <div id="settingsWindow" class="window" style="top: 180px; left: 300px; width: 680px; height: 440px;" onmousedown="focusWindow('settingsWindow')">
+        <!-- Window 5: Settings App with Hardware & User Accounts Manager -->
+        <div id="settingsWindow" class="window" style="top: 160px; left: 300px; width: 680px; height: 440px;" onmousedown="focusWindow('settingsWindow')">
             <div class="title-bar" onmousedown="startDrag(event, 'settingsWindow')">
                 <span>Settings</span>
                 <div class="title-bar-controls">
@@ -464,28 +577,36 @@ This file (`Welcome.txt`) is loaded directly into the real Notepad editor.
                 <div class="settings-layout">
                     <div class="settings-sidebar">
                         <div id="tabSystem" class="active-tab" onclick="switchSettingsTab('System')">💻 System</div>
+                        <div id="tabAccounts" onclick="switchSettingsTab('Accounts')">👤 Accounts</div>
                         <div id="tabPersonalization" onclick="switchSettingsTab('Personalization')">🎨 Personalization</div>
                         <div id="tabPerformance" onclick="switchSettingsTab('Performance')">⚡ Performance</div>
                         <div id="tabAbout" onclick="switchSettingsTab('About')">ℹ️ About</div>
                     </div>
                     <!-- System Pane -->
                     <div id="paneSystem" class="settings-pane active">
-                        <h3 style="margin-top:0; color:var(--accent);">System Display & Power</h3>
+                        <h3 style="margin-top:0; color:var(--accent);">System Hardware & Display</h3>
+                        <p><strong>Detected Hardware:</strong> ASUS TUF Gaming A16 (FA608PMR)</p>
+                        <p><strong>Processor:</strong> AMD Ryzen 9 8940HX @ 4.80GHz</p>
+                        <p><strong>Graphics:</strong> NVIDIA GeForce RTX 5060 Laptop GPU</p>
                         <div class="settings-group">
                             <label>Display Resolution:</label>
                             <select>
-                                <option>3840 x 2160 (Recommended)</option>
-                                <option>2560 x 1440</option>
+                                <option>2560 x 1600 (Recommended 16:10)</option>
                                 <option>1920 x 1080</option>
                             </select>
                         </div>
+                    </div>
+                    <!-- Accounts Pane -->
+                    <div id="paneAccounts" class="settings-pane">
+                        <h3 style="margin-top:0; color:var(--accent);">User Account Manager</h3>
                         <div class="settings-group">
-                            <label>Power Mode:</label>
-                            <select>
-                                <option>High Performance (NVIDIA RTX / Ryzen 9)</option>
-                                <option>Balanced</option>
-                                <option>Power Saver</option>
-                            </select>
+                            <label>Current User Profile:</label>
+                            <input type="text" value="Leonardo" readonly style="width:100%;">
+                        </div>
+                        <div class="settings-group">
+                            <label>Change Account Password:</label>
+                            <input type="password" id="newPasswordInput" placeholder="Enter new password" style="width:100%; margin-bottom:6px;">
+                            <button onclick="updatePassword()" style="padding:5px 12px; background:var(--accent); border:none; color:white; border-radius:3px; cursor:pointer; font-weight:bold;">Update Password</button>
                         </div>
                     </div>
                     <!-- Personalization Pane -->
@@ -502,33 +623,31 @@ This file (`Welcome.txt`) is loaded directly into the real Notepad editor.
                             <label>Windows Accent Color:</label>
                             <input type="color" id="accentPicker" value="#1c65b5" onchange="changeAccentColor(this.value)" style="width:100%; height:36px; cursor:pointer;">
                         </div>
-                        <div class="settings-group">
-                            <label>Browse Local Wallpaper Image:</label>
-                            <input type="file" id="wallpaperFile" accept="image/*" onchange="loadLocalWallpaper(event)" style="width:100%;">
-                        </div>
                     </div>
-                    <!-- Performance Pane (FPS Slider up to 240 FPS) -->
+                    <!-- Performance Pane -->
                     <div id="panePerformance" class="settings-pane">
                         <h3 style="margin-top:0; color:var(--accent);">Aero Glass Performance & Framerate</h3>
                         <div class="settings-group">
                             <label>Target Framerate (DWM Compositor): <span id="fpsVal" style="color:white; font-weight:bold;">240</span> FPS</label>
-                            <input type="range" id="fpsSlider" min="30" max="240" step="10" value="240" oninput="updateFPSLimit(this.value)" style="width:100%; cursor:pointer;">
+                            <input type="range" id="fpsSlider" min="30" max="240" step="30" value="240" oninput="updateFPSLimit(this.value)" style="width:100%; cursor:pointer;">
                         </div>
                         <div class="settings-group">
-                            <label>Show Real-Time FPS Overlay:</label>
+                            <label>Show Real-Time Glossy FPS Overlay:</label>
                             <select onchange="toggleFPSOverlay(this.value)">
                                 <option value="show">Enabled</option>
                                 <option value="hide">Disabled</option>
                             </select>
                         </div>
-                        <p style="font-size:12px; opacity:0.8;">Enables high-refresh rate sub-frame rendering ticks for ultra-fluid window snapping and glassy refraction updates.</p>
                     </div>
                     <!-- About Pane -->
                     <div id="paneAbout" class="settings-pane">
-                        <h3 style="margin-top:0; color:var(--accent);">About Frutiger Aero OS</h3>
-                        <p>OS Version: 4.0 Ultimate GPU-Accelerated Edition</p>
-                        <p>User: Leonardo (Experimental School, Taiwan)</p>
-                        <p>Hardware: ASUS TUF Gaming A16 (Ryzen 9 8940HX, RTX 5060)</p>
+                        <h3 style="margin-top:0; color:var(--accent);">About System</h3>
+                        <p><strong>Model:</strong> ASUS TUF Gaming A16 (FA608PMR)</p>
+                        <p><strong>CPU:</strong> AMD Ryzen 9 8940HX</p>
+                        <p><strong>RAM:</strong> 16GB 5200MHz DDR5</p>
+                        <p><strong>Storage:</strong> WDC SN5000S 512GB SSD</p>
+                        <p><strong>GPU:</strong> NVIDIA GeForce RTX 5060</p>
+                        <p><strong>OS:</strong> Frutiger Aero Web OS Ultimate 6.0</p>
                     </div>
                 </div>
             </div>
@@ -538,30 +657,39 @@ This file (`Welcome.txt`) is loaded directly into the real Notepad editor.
         </div>
     </div>
 
-    <!-- Working Start Menu -->
+    <!-- Start Menu -->
     <div id="startMenu">
         <div class="start-menu-header">
             <span style="font-size: 20px;">👤</span>
             <div>
                 <div style="font-size: 13px;">Leonardo</div>
-                <div style="font-size: 10px; opacity: 0.8;">Frutiger Aero Web OS</div>
+                <div style="font-size: 10px; opacity: 0.8;">ASUS TUF Gaming A16</div>
             </div>
         </div>
         <div class="start-menu-items">
             <div class="start-item" onclick="openWindow('explorerWindow'); toggleStartMenu();">📁 File Explorer</div>
+            <div class="start-item" onclick="openWindow('taskmgrWindow'); toggleStartMenu();">📊 Task Manager</div>
             <div class="start-item" onclick="openWindow('notepadWindow'); toggleStartMenu();">📄 Notepad</div>
             <div class="start-item" onclick="openWindow('storeWindow'); toggleStartMenu();">🛒 Aero Store</div>
             <div class="start-item" onclick="openWindow('settingsWindow'); toggleStartMenu();">⚙️ Settings</div>
+            <div class="start-item" onclick="triggerLockScreen(); toggleStartMenu();">🔒 Lock Screen</div>
             <div class="start-item" onclick="triggerSleep(); toggleStartMenu();">💤 Sleep</div>
             <div class="start-item" onclick="triggerShutdown(); toggleStartMenu();" style="color: #ff8888;">🔌 Shut Down</div>
         </div>
     </div>
 
-    <!-- Working Tray Flyouts -->
+    <!-- Tray Flyouts (Weather, Network, Volume, Clock) -->
+    <div id="weatherFlyout" class="tray-flyout">
+        <div style="font-weight:bold; margin-bottom:8px; color:var(--accent);">Qionglin, Hsinchu County</div>
+        <div style="font-size:24px; font-weight:bold; margin-bottom:4px;">32°C ⛅</div>
+        <div style="font-size:12px; opacity:0.8; margin-bottom:12px;">Partly Cloudy • Humidity: 65%</div>
+        <div style="font-size:11px; opacity:0.7;">Live weather service connected.</div>
+    </div>
+
     <div id="networkFlyout" class="tray-flyout">
         <div style="font-weight:bold; margin-bottom:10px; color:var(--accent);">Network & Internet</div>
         <div style="font-size:13px; margin-bottom:6px;">📶 Wi-Fi: <strong>TUF_Gaming_5G</strong></div>
-        <div style="font-size:12px; opacity:0.8; margin-bottom:12px;">Connected, secure (Wi-Fi 6E)</div>
+        <div style="font-size:12px; opacity:0.8; margin-bottom:12px;">Connected, secure (Wi-Fi 6E Realtek 8852CE)</div>
         <button onclick="toggleFlyout('networkFlyout')" style="width:100%; padding:5px; background:var(--accent); border:none; color:white; border-radius:3px; cursor:pointer;">Network Settings</button>
     </div>
 
@@ -573,18 +701,29 @@ This file (`Welcome.txt`) is loaded directly into the real Notepad editor.
         </div>
     </div>
 
-    <!-- Glossy Retro Taskbar -->
+    <!-- Taskbar (Matching Reference Screenshot Layout) -->
     <div id="taskbar">
         <div class="start-btn" id="startOrb" title="Start Menu" onclick="toggleStartMenu(event)">🪟</div>
         <div id="taskbarApps"></div>
         <div class="taskbar-tray">
+            <div class="weather-widget" onclick="toggleFlyout('weatherFlyout', event)" title="Weather">
+                <span>⛅</span>
+                <span>32°C</span>
+            </div>
             <span class="tray-icon" title="Network" onclick="toggleFlyout('networkFlyout', event)">📶</span>
             <span class="tray-icon" title="Volume" onclick="toggleFlyout('volumeFlyout', event)">🔊</span>
-            <span class="tray-icon" id="clock" onclick="toggleFlyout('', event)">12:00 PM</span>
+            <span class="tray-icon" title="Battery">🔋 93%</span>
+            <span class="tray-icon">ENG</span>
+            <span class="tray-icon" id="clockDate" onclick="toggleFlyout('', event)" style="text-align:right; font-size:10px; line-height:1.2;">
+                <div id="timeText">02:41 PM</div>
+                <div id="dateText" style="opacity:0.8;">2026/10/20</div>
+            </span>
         </div>
     </div>
 
     <script>
+        let currentPassword = "1234";
+
         // Automatic Boot Sequence
         setTimeout(() => {
             const boot = document.getElementById('bootScreen');
@@ -593,20 +732,53 @@ This file (`Welcome.txt`) is loaded directly into the real Notepad editor.
                 boot.style.display = 'none';
                 document.getElementById('loginScreen').style.display = 'flex';
             }, 500);
-        }, 2000);
+        }, 2500);
 
         function handleLogin() {
             const pass = document.getElementById('loginPassword').value;
-            if (pass.length > 0) {
+            const err = document.getElementById('loginError');
+            if (pass === currentPassword) {
+                err.style.display = 'none';
                 const login = document.getElementById('loginScreen');
                 login.style.opacity = '0';
                 setTimeout(() => {
                     login.style.display = 'none';
                     document.getElementById('desktop').style.display = 'block';
                     updateTaskbarApps();
+                    updateTaskManager();
                 }, 500);
             } else {
-                alert('Please enter password.');
+                err.style.display = 'block';
+            }
+        }
+
+        // Lock Screen Logic
+        function triggerLockScreen() {
+            closeAllFlyouts();
+            document.getElementById('lockPassword').value = '';
+            document.getElementById('lockError').style.display = 'none';
+            document.getElementById('lockScreen').style.display = 'flex';
+        }
+
+        function handleUnlock() {
+            const pass = document.getElementById('lockPassword').value;
+            const err = document.getElementById('lockError');
+            if (pass === currentPassword) {
+                err.style.display = 'none';
+                document.getElementById('lockScreen').style.display = 'none';
+            } else {
+                err.style.display = 'block';
+            }
+        }
+
+        function updatePassword() {
+            const newPass = document.getElementById('newPasswordInput').value;
+            if (newPass.length > 0) {
+                currentPassword = newPass;
+                alert('Password updated successfully!');
+                document.getElementById('newPasswordInput').value = '';
+            } else {
+                alert('Please enter a valid password.');
             }
         }
 
@@ -650,6 +822,7 @@ This file (`Welcome.txt`) is loaded directly into the real Notepad editor.
         const windowTitles = {
             'notepadWindow': 'Welcome.txt',
             'explorerWindow': 'Computer',
+            'taskmgrWindow': 'Task Manager',
             'storeWindow': 'Aero Store',
             'settingsWindow': 'Settings'
         };
@@ -691,7 +864,7 @@ This file (`Welcome.txt`) is loaded directly into the real Notepad editor.
             const container = document.getElementById('taskbarApps');
             container.innerHTML = '';
             
-            ['notepadWindow', 'explorerWindow', 'storeWindow', 'settingsWindow'].forEach(id => {
+            ['notepadWindow', 'explorerWindow', 'taskmgrWindow', 'storeWindow', 'settingsWindow'].forEach(id => {
                 const win = document.getElementById(id);
                 if (win.classList.contains('active') || win.classList.contains('minimized')) {
                     const btn = document.createElement('div');
@@ -719,7 +892,44 @@ This file (`Welcome.txt`) is loaded directly into the real Notepad editor.
             });
         }
 
-        // GPU-Accelerated Draggable Windows
+        // Real-Time Task Manager
+        function updateTaskManager() {
+            const tbody = document.getElementById('taskmgrProcessList');
+            if (!tbody) return;
+            tbody.innerHTML = '';
+
+            let totalCpu = 0;
+            let totalRam = 0;
+
+            ['notepadWindow', 'explorerWindow', 'taskmgrWindow', 'storeWindow', 'settingsWindow'].forEach(id => {
+                const win = document.getElementById(id);
+                if (win.classList.contains('active') || win.classList.contains('minimized')) {
+                    const isRunning = !win.classList.contains('minimized');
+                    const cpu = isRunning ? Math.floor(Math.random() * 5) + 1 : 0;
+                    const ram = Math.floor(Math.random() * 40) + 40;
+                    totalCpu += cpu;
+                    totalRam += ram;
+
+                    const tr = document.createElement('tr');
+                    tr.innerHTML = `
+                        <td>${windowTitles[id]}</td>
+                        <td>${isRunning ? 'Running' : 'Suspended'}</td>
+                        <td>${cpu}%</td>
+                        <td>${ram} MB</td>
+                        <td><button onclick="closeWindow('${id}'); updateTaskManager();" style="padding:2px 8px; background:#bd1515; color:white; border:none; border-radius:3px; cursor:pointer;">End Task</button></td>
+                    `;
+                    tbody.appendChild(tr);
+                }
+            });
+
+            document.getElementById('cpuUsageVal').innerText = (totalCpu + 8) + '%';
+            document.getElementById('ramUsageVal').innerText = ((4.2 + (totalRam / 1024))).toFixed(1) + ' / 16 GB';
+            document.getElementById('gpuUsageVal').innerText = (totalCpu + 4) + '%';
+        }
+
+        setInterval(updateTaskManager, 2000);
+
+        // 3D Draggable Windows
         function startDrag(e, windowId) {
             const win = document.getElementById(windowId);
             if (win.classList.contains('maximized')) return;
@@ -737,7 +947,6 @@ This file (`Welcome.txt`) is loaded directly into the real Notepad editor.
                 requestAnimationFrame(() => {
                     win.style.left = (initialLeft + dx) + 'px';
                     win.style.top = (initialTop + dy) + 'px';
-                    win.style.transform = 'translate3d(0,0,0)';
                 });
             }
 
@@ -787,12 +996,16 @@ This file (`Welcome.txt`) is loaded directly into the real Notepad editor.
 
         // Settings Tabs Switcher
         function switchSettingsTab(tabName) {
-            ['System', 'Personalization', 'Performance', 'About'].forEach(t => {
-                document.getElementById('pane' + t).classList.remove('active');
-                document.getElementById('tab' + t).classList.remove('active-tab');
+            ['System', 'Accounts', 'Personalization', 'Performance', 'About'].forEach(t => {
+                const pane = document.getElementById('pane' + t);
+                const tab = document.getElementById('tab' + t);
+                if (pane) pane.classList.remove('active');
+                if (tab) tab.classList.remove('active-tab');
             });
-            document.getElementById('pane' + tabName).classList.add('active');
-            document.getElementById('tab' + tabName).classList.add('active-tab');
+            const targetPane = document.getElementById('pane' + tabName);
+            const targetTab = document.getElementById('tab' + tabName);
+            if (targetPane) targetPane.classList.add('active');
+            if (targetTab) targetTab.classList.add('active-tab');
         }
 
         // Theme and Accent Color Customizer
@@ -808,23 +1021,16 @@ This file (`Welcome.txt`) is loaded directly into the real Notepad editor.
             document.documentElement.style.setProperty('--accent', hex);
         }
 
-        // Local Wallpaper Upload
-        function loadLocalWallpaper(event) {
-            const file = event.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    document.body.style.background = `url('${e.target.result}') no-repeat center center fixed`;
-                    document.body.style.backgroundSize = "cover";
-                }
-                reader.readAsDataURL(file);
-            }
-        }
-
-        // Real FPS Compositor Limiter & Monitor
+        // Real True Framerate Limiter & Glossy Counter
         let targetFPS = 240;
+        let intervalMs = 1000 / targetFPS;
+        let lastFrameTime = performance.now();
+        let frameCount = 0;
+        let lastFpsUpdate = performance.now();
+
         function updateFPSLimit(val) {
             targetFPS = parseInt(val);
+            intervalMs = 1000 / targetFPS;
             document.getElementById('fpsVal').innerText = targetFPS;
         }
 
@@ -833,20 +1039,22 @@ This file (`Welcome.txt`) is loaded directly into the real Notepad editor.
             el.style.display = (val === 'show') ? 'block' : 'none';
         }
 
-        let lastTime = performance.now();
-        let frameCount = 0;
-        function dwmCompositorLoop(now) {
-            frameCount++;
-            if (now - lastTime >= 1000) {
-                document.getElementById('fpsCounter').innerText = `FPS: ${Math.min(targetFPS, frameCount)}`;
-                frameCount = 0;
-                lastTime = now;
+        function trueFramerateLoop(now) {
+            requestAnimationFrame(trueFramerateLoop);
+
+            const elapsed = now - lastFrameTime;
+            if (elapsed >= intervalMs) {
+                lastFrameTime = now - (elapsed % intervalMs);
+                frameCount++;
+
+                if (now - lastFpsUpdate >= 1000) {
+                    document.getElementById('fpsCounter').innerText = `FPS: ${Math.min(targetFPS, frameCount)}`;
+                    frameCount = 0;
+                    lastFpsUpdate = now;
+                }
             }
-            setTimeout(() => {
-                requestAnimationFrame(dwmCompositorLoop);
-            }, 1000 / targetFPS);
         }
-        requestAnimationFrame(dwmCompositorLoop);
+        requestAnimationFrame(trueFramerateLoop);
 
         // Start Menu & Tray Flyout Toggles
         function toggleStartMenu(e) {
@@ -858,7 +1066,7 @@ This file (`Welcome.txt`) is loaded directly into the real Notepad editor.
         function toggleFlyout(flyoutId, e) {
             if (e) e.stopPropagation();
             document.getElementById('startMenu').classList.remove('active');
-            ['networkFlyout', 'volumeFlyout'].forEach(id => {
+            ['weatherFlyout', 'networkFlyout', 'volumeFlyout'].forEach(id => {
                 if (id !== flyoutId) document.getElementById(id).classList.remove('active');
             });
             if (flyoutId) {
@@ -868,6 +1076,7 @@ This file (`Welcome.txt`) is loaded directly into the real Notepad editor.
 
         function closeAllFlyouts() {
             document.getElementById('startMenu').classList.remove('active');
+            document.getElementById('weatherFlyout').classList.remove('active');
             document.getElementById('networkFlyout').classList.remove('active');
             document.getElementById('volumeFlyout').classList.remove('active');
         }
@@ -875,21 +1084,27 @@ This file (`Welcome.txt`) is loaded directly into the real Notepad editor.
         function checkClosePopups(e) {
             const menu = document.getElementById('startMenu');
             const orb = document.getElementById('startOrb');
+            const weather = document.getElementById('weatherFlyout');
             const net = document.getElementById('networkFlyout');
             const vol = document.getElementById('volumeFlyout');
-            if (!menu.contains(e.target) && !orb.contains(e.target) && !net.contains(e.target) && !vol.contains(e.target)) {
+            if (!menu.contains(e.target) && !orb.contains(e.target) && !weather.contains(e.target) && !net.contains(e.target) && !vol.contains(e.target)) {
                 closeAllFlyouts();
             }
         }
 
-        // Live Clock
+        // Live Clock & Date matching 2026/10/20 format
         setInterval(() => {
             const now = new Date();
             let hours = now.getHours();
             const minutes = now.getMinutes().toString().padStart(2, '0');
             const ampm = hours >= 12 ? 'PM' : 'AM';
             hours = hours % 12 || 12;
-            document.getElementById('clock').innerText = `${hours}:${minutes} ${ampm}`;
+            document.getElementById('timeText').innerText = `${hours}:${minutes} ${ampm}`;
+            
+            const year = now.getFullYear();
+            const month = (now.getMonth() + 1).toString().padStart(2, '0');
+            const day = now.getDate().toString().padStart(2, '0');
+            document.getElementById('dateText').innerText = `${year}/${month}/${day}`;
         }, 1000);
     </script>
 </body>
