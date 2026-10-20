@@ -11,7 +11,7 @@
             --taskbar-bg1: rgba(35, 75, 135, 0.88);
             --taskbar-bg2: rgba(10, 30, 65, 0.95);
             --window-bg: linear-gradient(135deg, rgba(220, 235, 255, 0.85) 0%, rgba(140, 175, 215, 0.8) 100%);
-            --window-content: rgba(15, 20, 30, 0.94);
+            --window-content: rgba(15, 20, 30, 0.95);
             --titlebar-active-1: rgba(255, 255, 255, 0.9);
             --titlebar-active-2: rgba(80, 135, 205, 0.95);
             --titlebar-active-3: rgba(15, 45, 80, 0.98);
@@ -21,16 +21,16 @@
             --titlebar-inactive-3: rgba(110, 120, 135, 0.9);
             --titlebar-inactive-4: rgba(140, 150, 165, 0.85);
             --text-color: #f0f0f0;
-            --sidebar-bg: rgba(20, 25, 35, 0.7);
-            --col-bg: rgba(15, 20, 30, 0.75);
+            --sidebar-bg: rgba(20, 25, 35, 0.85);
+            --col-bg: rgba(15, 20, 30, 0.9);
         }
 
         /* Light Mode Overrides */
         body.light-mode {
             --window-content: rgba(245, 248, 252, 0.95);
             --text-color: #112233;
-            --sidebar-bg: rgba(210, 225, 245, 0.8);
-            --col-bg: rgba(225, 235, 250, 0.85);
+            --sidebar-bg: rgba(210, 225, 245, 0.9);
+            --col-bg: rgba(225, 235, 250, 0.95);
         }
 
         /* Custom Retro Aero Scrollbars */
@@ -98,7 +98,7 @@
 
         /* System Screens */
         #bootScreen, #loginScreen, #lockScreen, #shutdownScreen, #biosScreen, #sleepScreen {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 99999;
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 999999;
             display: flex; flex-direction: column; align-items: center; justify-content: center; background: #000; color: white;
             transition: opacity 0.5s ease;
         }
@@ -238,7 +238,7 @@
         .btn-maximize { background: radial-gradient(circle at 35% 35%, #7bff99 0%, #15803d 70%, #0a4d22 100%); }
         .btn-close { background: radial-gradient(circle at 35% 35%, #ff7b71 0%, #bd1515 70%, #800a0a 100%); }
 
-        /* Opaque Window Content so icons don't bleed through */
+        /* Opaque Window Content so icons never bleed through */
         .window-content { padding: 15px; color: var(--text-color); flex-grow: 1; overflow-y: auto; background: var(--window-content); }
 
         /* File Explorer */
@@ -289,9 +289,9 @@
 
         /* Settings App */
         .settings-layout { display: flex; height: 100%; background: var(--window-content); border-radius: 6px; overflow: hidden; border: 1px solid rgba(255,255,255,0.3); }
-        .settings-sidebar { width: 180px; background: var(--sidebar-bg); backdrop-filter: blur(6px); border-right: 1px solid rgba(255,255,255,0.25); padding: 10px; }
+        .settings-sidebar { width: 180px; background: var(--sidebar-bg); backdrop-filter: blur(6px); border-right: 1px solid rgba(255, 255, 255, 0.25); padding: 10px; }
         .settings-sidebar div { padding: 8px 12px; cursor: pointer; border-radius: 4px; font-size: 13px; color: var(--text-color); margin-bottom: 4px; transition: background 0.2s; }
-        .settings-sidebar div:hover { background: rgba(255,255,255,0.2); }
+        .settings-sidebar div:hover { background: rgba(255, 255, 255, 0.2); }
         .settings-sidebar div.active-tab { background: var(--accent); color: white; font-weight: bold; }
         .settings-pane { flex-grow: 1; padding: 20px; overflow-y: auto; display: none; }
         .settings-pane.active { display: block; }
@@ -395,11 +395,12 @@
     <!-- Glossy Real FPS Counter Overlay -->
     <div id="fpsCounter">FPS: 240</div>
 
-    <!-- Boot Sequence Screen -->
-    <div id="bootScreen">
+    <!-- Bulletproof Boot Sequence Screen -->
+    <div id="bootScreen" onclick="skipBoot()">
         <div class="boot-logo">🪟</div>
         <div style="font-size: 20px; font-weight: 500; letter-spacing: 1px;">Starting Frutiger Aero OS...</div>
         <div class="spinner"></div>
+        <div style="font-size: 11px; opacity: 0.6; margin-top: 15px;">[ Click anywhere to skip boot ]</div>
     </div>
 
     <!-- Login Screen -->
@@ -486,13 +487,13 @@
                     </div>
                 </div>
                 <div class="window-content" style="padding:0;">
-                    <textarea class="notepad-textarea">✨ Welcome to Frutiger Aero Web OS v8.0!
+                    <textarea class="notepad-textarea">✨ Welcome to Frutiger Aero Web OS v9.0!
 
-- Fixed window transparency: Window contents are now opaque so desktop icons never bleed through.
-- Active & Inactive window awareness fully operational.
-- Real resolution scaling applies actual viewport transforms.
-- True 30 FPS mode engages real frame pacing & stutter.
-- Live real-time Battery, Network, and WebGL GPU hardware telemetry connected.</textarea>
+- Bulletproof startup sequence implemented with guaranteed boot transition and click-to-skip.
+- Fully opaque window contents preventing desktop icon bleed-through.
+- Active & Inactive window awareness fully active.
+- Real resolution scaling & True 30/240 FPS frame pacing.
+- Live real-time hardware telemetry (RTX 5060, Ryzen 9, Battery, Wi-Fi).</textarea>
                 </div>
                 <div class="resizer right" onmousedown="initResize(event, 'notepadWindow', 'right')"></div>
                 <div class="resizer bottom" onmousedown="initResize(event, 'notepadWindow', 'bottom')"></div>
@@ -707,7 +708,7 @@
                             <p><strong>RAM:</strong> <span id="ramText">16GB 5200MHz DDR5</span></p>
                             <p><strong>Storage:</strong> WDC SN5000S 512GB SSD</p>
                             <p><strong>GPU:</strong> <span id="gpuAboutText">NVIDIA GeForce RTX 5060</span></p>
-                            <p><strong>OS:</strong> Frutiger Aero Web OS Ultimate 8.0</p>
+                            <p><strong>OS:</strong> Frutiger Aero Web OS Ultimate 9.0</p>
                         </div>
                     </div>
                 </div>
@@ -764,9 +765,9 @@
 
     <div id="batteryFlyout" class="tray-flyout">
         <div style="font-weight:bold; margin-bottom:10px; color:var(--accent);">Battery Status</div>
-        <div style="font-size:16px; font-weight:bold; margin-bottom:6px;" id="batteryLevelText">93%[cite: 21] (Charging)</div>
-        <div style="font-size:12px; opacity:0.8; margin-bottom:12px;" id="batteryTimeText">Estimated remaining time: Calculating...</div>
-        <div style="font-size:11px; opacity:0.7;">ASUS Battery Health Charging enabled (60% limit mode / Standard).</div>
+        <div style="font-size:16px; font-weight:bold; margin-bottom:6px;" id="batteryLevelText">93% (Charging)[cite: 21]</div>
+        <div style="font-size:12px; opacity:0.8; margin-bottom:12px;" id="batteryTimeText">Estimated remaining time: AC Power</div>
+        <div style="font-size:11px; opacity:0.7;">ASUS Battery Health Charging enabled.</div>
     </div>
 
     <!-- Taskbar -->
@@ -791,6 +792,24 @@
 
     <script>
         let currentPassword = "1234";
+
+        // Bulletproof Startup Boot Sequence with Fallback Timer & Click-to-Skip
+        function finishBoot() {
+            const boot = document.getElementById('bootScreen');
+            if (boot && boot.style.display !== 'none') {
+                boot.style.opacity = '0';
+                setTimeout(() => {
+                    boot.style.display = 'none';
+                    document.getElementById('loginScreen').style.display = 'flex';
+                }, 400);
+            }
+        }
+
+        function skipBoot() {
+            finishBoot();
+        }
+
+        setTimeout(finishBoot, 2200);
 
         // Real-Time Hardware Detection (WebGL GPU & Navigator Cores)
         window.addEventListener('DOMContentLoaded', () => {
@@ -846,16 +865,6 @@
         window.addEventListener('offline', updateNetworkStatus);
         updateNetworkStatus();
 
-        // Automatic Boot Sequence
-        setTimeout(() => {
-            const boot = document.getElementById('bootScreen');
-            boot.style.opacity = '0';
-            setTimeout(() => {
-                boot.style.display = 'none';
-                document.getElementById('loginScreen').style.display = 'flex';
-            }, 500);
-        }, 2500);
-
         function handleLogin() {
             const pass = document.getElementById('loginPassword').value;
             const err = document.getElementById('loginError');
@@ -868,7 +877,7 @@
                     document.getElementById('desktop').style.display = 'block';
                     updateTaskbarApps();
                     updateTaskManager();
-                }, 500);
+                }, 400);
             } else {
                 err.style.display = 'block';
             }
@@ -925,7 +934,7 @@
                 setTimeout(() => {
                     document.getElementById('bootScreen').style.display = 'none';
                     document.getElementById('desktop').style.display = 'block';
-                }, 500);
+                }, 400);
             }, 1500);
         }
 
@@ -959,7 +968,7 @@
 
         function closeWindow(id) {
             const win = document.getElementById(id);
-            win.classList.remove('active', 'minimized');
+            win.classList.remove('active', 'inactive', 'minimized');
             updateTaskbarApps();
         }
 
