@@ -8,51 +8,51 @@
         :root {
             --taskbar-bg-1: rgba(25, 30, 40, 0.9);
             --taskbar-bg-2: rgba(10, 12, 18, 0.95);
-            --window-bg: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(30, 35, 45, 0.65) 50%, rgba(10, 12, 18, 0.8) 100%);
-            --window-content-bg: rgba(15, 18, 24, 0.55);
-            --titlebar-1: rgba(100, 120, 140, 0.9);
-            --titlebar-2: rgba(40, 50, 65, 0.85);
+            --window-bg: linear-gradient(135deg, rgba(255, 255, 255, 0.22) 0%, rgba(30, 35, 45, 0.6) 50%, rgba(10, 12, 18, 0.8) 100%);
+            --window-content-bg: rgba(15, 18, 24, 0.5);
+            --titlebar-1: rgba(110, 130, 150, 0.92);
+            --titlebar-2: rgba(45, 55, 70, 0.88);
             --titlebar-3: rgba(15, 20, 28, 0.95);
             --titlebar-4: rgba(30, 40, 55, 0.95);
             --accent-color: #72bcff;
             --text-color: #f0f0f0;
-            --explorer-sidebar-bg: rgba(20, 25, 35, 0.6);
-            --explorer-col-bg: rgba(15, 18, 24, 0.5);
+            --explorer-sidebar-bg: rgba(20, 25, 35, 0.65);
+            --explorer-col-bg: rgba(15, 20, 30, 0.6);
         }
 
-        /* Playful & Colorful Playful Light Blue Theme */
+        /* Colorful Playful Dark Blue Theme */
         body.theme-lightblue {
-            --taskbar-bg-1: rgba(20, 80, 160, 0.9);
-            --taskbar-bg-2: rgba(8, 30, 70, 0.95);
-            --window-bg: linear-gradient(135deg, rgba(180, 230, 255, 0.25) 0%, rgba(20, 70, 140, 0.75) 50%, rgba(5, 25, 60, 0.9) 100%);
-            --window-content-bg: rgba(10, 35, 70, 0.6);
-            --titlebar-1: rgba(160, 220, 255, 0.9);
-            --titlebar-2: rgba(30, 100, 190, 0.85);
-            --titlebar-3: rgba(10, 45, 90, 0.95);
-            --titlebar-4: rgba(20, 75, 140, 0.95);
+            --taskbar-bg-1: rgba(15, 50, 110, 0.9);
+            --taskbar-bg-2: rgba(5, 20, 50, 0.95);
+            --window-bg: linear-gradient(135deg, rgba(150, 220, 255, 0.25) 0%, rgba(15, 60, 130, 0.7) 50%, rgba(5, 20, 50, 0.85) 100%);
+            --window-content-bg: rgba(10, 30, 65, 0.55);
+            --titlebar-1: rgba(130, 200, 255, 0.92);
+            --titlebar-2: rgba(20, 80, 160, 0.88);
+            --titlebar-3: rgba(5, 25, 60, 0.95);
+            --titlebar-4: rgba(15, 50, 100, 0.95);
             --accent-color: #33ffcc;
             --text-color: #e6f7ff;
-            --explorer-sidebar-bg: rgba(15, 55, 110, 0.65);
-            --explorer-col-bg: rgba(10, 30, 65, 0.55);
+            --explorer-sidebar-bg: rgba(10, 40, 85, 0.7);
+            --explorer-col-bg: rgba(8, 25, 55, 0.65);
         }
 
-        /* Playful & Colorful Nature Green Theme */
+        /* Colorful Playful Dark Nature Green Theme */
         body.theme-naturegreen {
-            --taskbar-bg-1: rgba(20, 120, 60, 0.9);
-            --taskbar-bg-2: rgba(8, 45, 20, 0.95);
-            --window-bg: linear-gradient(135deg, rgba(180, 255, 210, 0.25) 0%, rgba(20, 100, 50, 0.75) 50%, rgba(5, 35, 15, 0.9) 100%);
-            --window-content-bg: rgba(10, 50, 25, 0.6);
-            --titlebar-1: rgba(160, 255, 200, 0.9);
-            --titlebar-2: rgba(30, 150, 75, 0.85);
-            --titlebar-3: rgba(10, 65, 30, 0.95);
-            --titlebar-4: rgba(20, 110, 50, 0.95);
+            --taskbar-bg-1: rgba(15, 90, 45, 0.9);
+            --taskbar-bg-2: rgba(5, 35, 15, 0.95);
+            --window-bg: linear-gradient(135deg, rgba(150, 255, 200, 0.25) 0%, rgba(15, 80, 40, 0.7) 50%, rgba(5, 30, 15, 0.85) 100%);
+            --window-content-bg: rgba(10, 40, 20, 0.55);
+            --titlebar-1: rgba(130, 255, 180, 0.92);
+            --titlebar-2: rgba(20, 110, 55, 0.88);
+            --titlebar-3: rgba(5, 40, 20, 0.95);
+            --titlebar-4: rgba(15, 70, 35, 0.95);
             --accent-color: #73ff33;
             --text-color: #e6ffee;
-            --explorer-sidebar-bg: rgba(15, 75, 35, 0.65);
-            --explorer-col-bg: rgba(10, 45, 20, 0.55);
+            --explorer-sidebar-bg: rgba(10, 60, 30, 0.7);
+            --explorer-col-bg: rgba(8, 35, 18, 0.65);
         }
 
-        /* Global Styles & Wallpaper */
+        /* Global Styles & Wallpaper with GPU Acceleration */
         body, html {
             margin: 0;
             padding: 0;
@@ -62,15 +62,135 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: url('https://raw.githubusercontent.com/leonardo-leonardo/FrutigerAeroOperatingSystem/refs/heads/main/Vista%20Black%20Widescreen%20Pixel4k.jpg') no-repeat center center fixed;
             background-size: cover;
-            transition: background 0.8s ease-in-out;
+            transform: translate3d(0,0,0);
+            backface-visibility: hidden;
+            perspective: 1000px;
         }
 
+        /* Boot & Login Screens */
+        #bootScreen, #loginScreen, #shutdownScreen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 99999;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: #000;
+            color: white;
+            transition: opacity 0.5s ease;
+        }
+
+        #bootScreen {
+            background: radial-gradient(circle, #152535 0%, #05080c 100%);
+        }
+
+        .boot-logo {
+            font-size: 64px;
+            margin-bottom: 20px;
+            animation: pulseLogo 2s infinite alternate;
+        }
+
+        @keyframes pulseLogo {
+            0% { transform: scale(1); filter: drop-shadow(0 0 10px rgba(114,188,255,0.5)); }
+            100% { transform: scale(1.05); filter: drop-shadow(0 0 25px rgba(114,188,255,0.9)); }
+        }
+
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid rgba(255,255,255,0.2);
+            border-top: 4px solid #72bcff;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-top: 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Login Box */
+        #loginScreen {
+            background: url('https://raw.githubusercontent.com/leonardo-leonardo/FrutigerAeroOperatingSystem/refs/heads/main/Vista%20Black%20Widescreen%20Pixel4k.jpg') no-repeat center center fixed;
+            background-size: cover;
+            display: none;
+        }
+
+        .login-box {
+            width: 320px;
+            background: rgba(20, 25, 35, 0.75);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+            text-align: center;
+        }
+
+        .login-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: radial-gradient(circle, #72bcff 0%, #1c65b5 100%);
+            margin: 0 auto 15px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+            border: 2px solid rgba(255,255,255,0.6);
+            box-shadow: inset 0 2px 5px rgba(255,255,255,0.8);
+        }
+
+        .login-box input {
+            width: 100%;
+            padding: 8px 12px;
+            margin: 10px 0;
+            background: rgba(10, 15, 25, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 4px;
+            color: white;
+            box-sizing: border-box;
+            font-size: 14px;
+        }
+
+        .login-box button {
+            width: 100%;
+            padding: 8px;
+            background: radial-gradient(circle, #72bcff 0%, #1c65b5 100%);
+            border: 1px solid #bce2ff;
+            color: white;
+            font-weight: bold;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+            box-shadow: inset 0 1px 2px rgba(255,255,255,0.8);
+        }
+
+        .login-box button:hover {
+            filter: brightness(1.1);
+        }
+
+        /* Shutdown Screen */
+        #shutdownScreen {
+            background: #05070a;
+            display: none;
+            opacity: 0;
+            transition: opacity 1s ease;
+        }
+
+        /* Desktop Canvas */
         #desktop {
             position: relative;
             width: 100%;
             height: calc(100% - 42px);
             padding: 20px;
             box-sizing: border-box;
+            display: none;
         }
 
         .desktop-icon {
@@ -82,10 +202,11 @@
             margin-bottom: 20px;
             user-select: none;
             transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), filter 0.2s ease;
+            transform: translate3d(0,0,0);
         }
 
         .desktop-icon:hover {
-            transform: scale(1.08);
+            transform: scale(1.08) translate3d(0,0,0);
             filter: drop-shadow(0 0 8px rgba(114, 188, 255, 0.8));
         }
 
@@ -101,7 +222,7 @@
             display: block;
         }
 
-        /* Glossy Glass Window Component */
+        /* Glossy Glass Window Component with GPU Acceleration */
         .window {
             position: absolute;
             top: 80px;
@@ -109,10 +230,10 @@
             width: 620px;
             height: 420px;
             background: var(--window-bg);
-            border: 1px solid rgba(255, 255, 255, 0.4);
-            border-top: 1px solid rgba(255, 255, 255, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            border-top: 1px solid rgba(255, 255, 255, 0.8);
             box-shadow: 
-                inset 0 1px 0 rgba(255, 255, 255, 0.5),
+                inset 0 1px 0 rgba(255, 255, 255, 0.6),
                 inset 0 -1px 0 rgba(0, 0, 0, 0.4),
                 0 25px 50px rgba(0, 0, 0, 0.7);
             border-radius: 8px 8px 5px 5px;
@@ -120,16 +241,18 @@
             flex-direction: column;
             overflow: hidden;
             z-index: 10;
-            transform: scale(0.7) translateY(20px);
+            transform: scale(0.7) translateY(20px) translate3d(0,0,0);
             opacity: 0;
             visibility: hidden;
             transition: transform 0.3s cubic-bezier(0.1, 0.9, 0.2, 1), 
                         opacity 0.3s cubic-bezier(0.1, 0.9, 0.2, 1), 
                         visibility 0.3s ease;
+            will-change: transform, left, top, width, height;
+            backface-visibility: hidden;
         }
 
         .window.active {
-            transform: scale(1) translateY(0);
+            transform: scale(1) translateY(0) translate3d(0,0,0);
             opacity: 1;
             visibility: visible;
         }
@@ -141,6 +264,15 @@
             height: calc(100% - 42px) !important;
             border-radius: 0 !important;
         }
+
+        /* Resizable Handles */
+        .resizer {
+            position: absolute;
+            z-index: 100;
+        }
+        .resizer.right { width: 6px; right: 0; top: 0; height: 100%; cursor: e-resize; }
+        .resizer.bottom { height: 6px; bottom: 0; left: 0; width: 100%; cursor: s-resize; }
+        .resizer.corner { width: 12px; height: 12px; right: 0; bottom: 0; cursor: se-resize; z-index: 101; }
 
         /* Glossy Title Bar */
         .title-bar {
@@ -157,14 +289,14 @@
             font-size: 13px;
             text-shadow: 0 1px 2px rgba(0,0,0,0.9);
             user-select: none;
-            box-shadow: inset 0 1px 0 rgba(255,255,255,0.4);
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.5);
         }
 
         .title-bar:active {
             cursor: grabbing;
         }
 
-        /* Glossy Glass Window Control Buttons (- ▢ ✕) */
+        /* Window Control Buttons */
         .title-bar-controls {
             display: flex;
             align-items: center;
@@ -175,7 +307,7 @@
             width: 22px;
             height: 20px;
             border-radius: 3px;
-            border: 1px solid rgba(255, 255, 255, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.6);
             cursor: pointer;
             outline: none;
             display: flex;
@@ -186,36 +318,23 @@
             color: white;
             text-shadow: 0 1px 1px rgba(0,0,0,0.8);
             box-shadow: 
-                inset 0 1px 2px rgba(255, 255, 255, 0.8), 
+                inset 0 1px 2px rgba(255, 255, 255, 0.9), 
                 0 2px 4px rgba(0, 0, 0, 0.4);
-            transition: transform 0.1s cubic-bezier(0.175, 0.885, 0.32, 1.275), filter 0.15s ease, box-shadow 0.15s ease;
+            transition: transform 0.1s ease, filter 0.15s ease;
         }
 
         .title-bar-controls button:hover {
             transform: scale(1.1);
             filter: brightness(1.25);
-            box-shadow: 
-                inset 0 1px 3px rgba(255, 255, 255, 0.95), 
-                0 3px 6px rgba(0, 0, 0, 0.5);
         }
 
         .title-bar-controls button:active {
             transform: scale(0.92);
-            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.6);
-            filter: brightness(0.85);
         }
 
-        .btn-minimize {
-            background: radial-gradient(circle at 35% 35%, #7bc2ff 0%, #1555bd 70%, #0a3380 100%);
-        }
-
-        .btn-maximize {
-            background: radial-gradient(circle at 35% 35%, #7bff99 0%, #15803d 70%, #0a4d22 100%);
-        }
-
-        .btn-close {
-            background: radial-gradient(circle at 35% 35%, #ff7b71 0%, #bd1515 70%, #800a0a 100%);
-        }
+        .btn-minimize { background: radial-gradient(circle at 35% 35%, #7bc2ff 0%, #1555bd 70%, #0a3380 100%); }
+        .btn-maximize { background: radial-gradient(circle at 35% 35%, #7bff99 0%, #15803d 70%, #0a4d22 100%); }
+        .btn-close { background: radial-gradient(circle at 35% 35%, #ff7b71 0%, #bd1515 70%, #800a0a 100%); }
 
         .window-content {
             padding: 15px;
@@ -258,15 +377,15 @@
             box-shadow: 0 0 10px var(--accent-color);
         }
 
-        /* Windows Explorer Multi-Column Glass UI */
+        /* Windows 7 Dark Mode Colorful Explorer */
         .explorer-layout {
             display: flex;
             height: 100%;
             background: var(--window-content-bg);
             border-radius: 6px;
             overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: inset 0 2px 5px rgba(0,0,0,0.4);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            box-shadow: inset 0 2px 5px rgba(0,0,0,0.5);
         }
 
         .explorer-sidebar {
@@ -303,7 +422,6 @@
             font-weight: bold;
         }
 
-        /* Colorful Columns Inside Explorer */
         .explorer-col-pane {
             width: 180px;
             background: var(--explorer-col-bg);
@@ -312,7 +430,7 @@
             padding: 15px;
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            gap: 12px;
             overflow-y: auto;
         }
 
@@ -324,7 +442,7 @@
             grid-gap: 15px;
             align-content: start;
             overflow-y: auto;
-            background: rgba(0, 0, 0, 0.2);
+            background: rgba(0, 0, 0, 0.25);
         }
 
         .file-item {
@@ -345,7 +463,7 @@
             font-size: 36px;
             display: block;
             margin-bottom: 6px;
-            filter: drop-shadow(0 3px 5px rgba(0,0,0,0.5));
+            filter: drop-shadow(0 3px 5px rgba(0,0,0,0.6));
         }
 
         .file-item span.f-name {
@@ -354,13 +472,13 @@
             text-shadow: 0 1px 2px rgba(0,0,0,0.8);
         }
 
-        /* Working Start Menu Popup */
+        /* Working Start Menu */
         #startMenu {
             position: fixed;
             bottom: 46px;
             left: 6px;
             width: 300px;
-            background: linear-gradient(135deg, rgba(30, 40, 55, 0.92) 0%, rgba(15, 20, 30, 0.96) 100%);
+            background: linear-gradient(135deg, rgba(30, 40, 55, 0.95) 0%, rgba(15, 20, 30, 0.98) 100%);
             backdrop-filter: blur(16px);
             border: 1px solid rgba(255, 255, 255, 0.5);
             border-radius: 8px 8px 0 0;
@@ -372,9 +490,7 @@
             animation: startMenuPop 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
-        #startMenu.active {
-            display: flex;
-        }
+        #startMenu.active { display: flex; }
 
         @keyframes startMenuPop {
             0% { transform: translateY(20px) scale(0.95); opacity: 0; }
@@ -383,7 +499,7 @@
 
         .start-menu-header {
             padding: 12px;
-            background: linear-gradient(to right, rgba(50, 80, 120, 0.8), rgba(20, 30, 45, 0.8));
+            background: linear-gradient(to right, rgba(50, 80, 120, 0.85), rgba(20, 30, 45, 0.85));
             border-bottom: 1px solid rgba(255,255,255,0.2);
             display: flex;
             align-items: center;
@@ -417,7 +533,7 @@
             border: 1px solid rgba(114, 188, 255, 0.4);
         }
 
-        /* In-OS Floating Modal Dialog Window */
+        /* In-OS Modal Dialog Window */
         #osModal {
             position: absolute;
             top: 50%;
@@ -480,9 +596,7 @@
             box-shadow: inset 0 1px 2px rgba(255,255,255,0.8);
         }
 
-        .modal-footer button:hover {
-            filter: brightness(1.1);
-        }
+        .modal-footer button:hover { filter: brightness(1.1); }
 
         /* Windows 7 Taskbar */
         #taskbar {
@@ -533,6 +647,31 @@
 </head>
 <body class="theme-original" onclick="checkCloseStartMenu(event)">
 
+    <!-- Boot Sequence Screen -->
+    <div id="bootScreen">
+        <div class="boot-logo">🪟</div>
+        <div style="font-size: 20px; font-weight: 500; letter-spacing: 1px;">Starting Frutiger Aero OS...</div>
+        <div class="spinner"></div>
+    </div>
+
+    <!-- Login Screen -->
+    <div id="loginScreen">
+        <div class="login-box">
+            <div class="login-avatar">👤</div>
+            <div style="font-size: 18px; font-weight: bold; margin-bottom: 10px;">Leonardo</div>
+            <input type="password" id="loginPassword" placeholder="Password (default: 1234)" value="1234">
+            <button onclick="handleLogin()">Log In</button>
+        </div>
+    </div>
+
+    <!-- Shutdown Sequence Screen -->
+    <div id="shutdownScreen">
+        <div class="spinner" style="margin-bottom: 20px;"></div>
+        <div style="font-size: 22px; font-weight: bold; letter-spacing: 1px;">Shutting down...</div>
+        <button onclick="location.reload()" style="margin-top: 30px; padding: 10px 20px; background:#1c65b5; color:white; border:none; border-radius:4px; cursor:pointer;">Power On OS</button>
+    </div>
+
+    <!-- Main OS Desktop -->
     <div id="desktop">
         <!-- Desktop Shortcuts -->
         <div class="desktop-icon" onclick="openWindow('welcomeWindow')">
@@ -564,8 +703,11 @@
             </div>
             <div class="window-content">
                 <h3 style="margin-top:0;">✨ Welcome to Frutiger Aero Web OS</h3>
-                <p>Fully functional web operating system featuring smooth, lag-free dragging, colorful playful glass themes, a working start menu, and multi-column Windows Explorer!</p>
+                <p>Fully GPU-accelerated, buttery smooth OS featuring authentic boot/login/shutdown sequences, resizable glass windows, and Windows 7 dark mode colorful multi-column file explorer!</p>
             </div>
+            <div class="resizer right" onmousedown="initResize(event, 'welcomeWindow', 'right')"></div>
+            <div class="resizer bottom" onmousedown="initResize(event, 'welcomeWindow', 'bottom')"></div>
+            <div class="resizer corner" onmousedown="initResize(event, 'welcomeWindow', 'corner')"></div>
         </div>
 
         <!-- Window 2: File Explorer -->
@@ -591,10 +733,10 @@
                         </ul>
                     </div>
                     <div class="explorer-col-pane">
-                        <div style="font-size: 11px; font-weight: bold; opacity: 0.8; text-transform: uppercase;">System Folders</div>
-                        <div style="font-size: 13px; cursor: pointer; padding: 4px 6px; border-radius:3px; background: rgba(255,255,255,0.1);" onclick="showOSModal('System32 selected.')">📁 System32</div>
-                        <div style="font-size: 13px; cursor: pointer; padding: 4px 6px; border-radius:3px;" onclick="showOSModal('Programs selected.')">📁 Programs</div>
-                        <div style="font-size: 13px; cursor: pointer; padding: 4px 6px; border-radius:3px;" onclick="showOSModal('Config selected.')">📁 Config</div>
+                        <div style="font-size: 11px; font-weight: bold; opacity: 0.9; text-transform: uppercase; color: var(--accent-color);">System Folders</div>
+                        <div style="font-size: 13px; cursor: pointer; padding: 6px 8px; border-radius:4px; background: rgba(255,255,255,0.15);" onclick="showOSModal('System32 selected.')">📁 System32</div>
+                        <div style="font-size: 13px; cursor: pointer; padding: 6px 8px; border-radius:4px;" onclick="showOSModal('Programs selected.')">📁 Programs</div>
+                        <div style="font-size: 13px; cursor: pointer; padding: 6px 8px; border-radius:4px;" onclick="showOSModal('Config selected.')">📁 Config</div>
                     </div>
                     <div class="explorer-main">
                         <div class="file-item" onclick="showOSModal('Opening System32 Folder...')">
@@ -616,6 +758,9 @@
                     </div>
                 </div>
             </div>
+            <div class="resizer right" onmousedown="initResize(event, 'explorerWindow', 'right')"></div>
+            <div class="resizer bottom" onmousedown="initResize(event, 'explorerWindow', 'bottom')"></div>
+            <div class="resizer corner" onmousedown="initResize(event, 'explorerWindow', 'corner')"></div>
         </div>
 
         <!-- Window 3: Store -->
@@ -632,6 +777,9 @@
                 <h3 style="margin-top:0;">🛒 Software Catalog</h3>
                 <p>Explore games, tweaking tools, and vintage Windows themes.</p>
             </div>
+            <div class="resizer right" onmousedown="initResize(event, 'storeWindow', 'right')"></div>
+            <div class="resizer bottom" onmousedown="initResize(event, 'storeWindow', 'bottom')"></div>
+            <div class="resizer corner" onmousedown="initResize(event, 'storeWindow', 'corner')"></div>
         </div>
 
         <!-- Window 4: Settings -->
@@ -651,8 +799,8 @@
                     <label for="themeSelect">Select Playful Theme Color Style:</label>
                     <select id="themeSelect" onchange="changeThemeColor(this.value)">
                         <option value="original">Original Grey Black (Vista)</option>
-                        <option value="lightblue">Colorful Playful Light Blue (Aero)</option>
-                        <option value="naturegreen">Colorful Playful Nature Green (Frutiger Aero)</option>
+                        <option value="lightblue">Colorful Playful Dark Blue (Aero)</option>
+                        <option value="naturegreen">Colorful Playful Dark Nature Green (Frutiger Aero)</option>
                     </select>
                 </div>
 
@@ -665,6 +813,9 @@
                     <button onclick="showOSModal('Settings saved and applied successfully!')">Apply Changes</button>
                 </div>
             </div>
+            <div class="resizer right" onmousedown="initResize(event, 'settingsWindow', 'right')"></div>
+            <div class="resizer bottom" onmousedown="initResize(event, 'settingsWindow', 'bottom')"></div>
+            <div class="resizer corner" onmousedown="initResize(event, 'settingsWindow', 'corner')"></div>
         </div>
 
         <!-- In-OS Floating Modal Dialog Window -->
@@ -680,12 +831,12 @@
         </div>
     </div>
 
-    <!-- Working Start Menu Popup -->
+    <!-- Working Start Menu -->
     <div id="startMenu">
         <div class="start-menu-header">
             <span style="font-size: 20px;">👤</span>
             <div>
-                <div style="font-size: 13px;">Leonardo (Leo)</div>
+                <div style="font-size: 13px;">Leonardo</div>
                 <div style="font-size: 10px; opacity: 0.8;">Frutiger Aero Web OS</div>
             </div>
         </div>
@@ -693,7 +844,7 @@
             <div class="start-item" onclick="openWindow('explorerWindow'); toggleStartMenu();">📁 File Explorer</div>
             <div class="start-item" onclick="openWindow('storeWindow'); toggleStartMenu();">🛒 Aero Store</div>
             <div class="start-item" onclick="openWindow('settingsWindow'); toggleStartMenu();">⚙️ System Settings</div>
-            <div class="start-item" onclick="showOSModal('Restarting Web OS...'); toggleStartMenu();">🔄 Restart OS</div>
+            <div class="start-item" onclick="triggerShutdown(); toggleStartMenu();" style="color: #ff8888;">🔌 Shut Down</div>
         </div>
     </div>
 
@@ -704,6 +855,39 @@
     </div>
 
     <script>
+        // Automatic Boot Sequence
+        setTimeout(() => {
+            const boot = document.getElementById('bootScreen');
+            boot.style.opacity = '0';
+            setTimeout(() => {
+                boot.style.display = 'none';
+                const login = document.getElementById('loginScreen');
+                login.style.display = 'flex';
+            }, 500);
+        }, 2000);
+
+        function handleLogin() {
+            const pass = document.getElementById('loginPassword').value;
+            if (pass.length > 0) {
+                const login = document.getElementById('loginScreen');
+                login.style.opacity = '0';
+                setTimeout(() => {
+                    login.style.display = 'none';
+                    document.getElementById('desktop').style.display = 'block';
+                }, 500);
+            } else {
+                alert('Please enter password.');
+            }
+        }
+
+        function triggerShutdown() {
+            const shutdown = document.getElementById('shutdownScreen');
+            shutdown.style.display = 'flex';
+            setTimeout(() => {
+                shutdown.style.opacity = '1';
+            }, 50);
+        }
+
         let highestZIndex = 10;
 
         function openWindow(id) {
@@ -732,7 +916,7 @@
             if (el) el.style.zIndex = highestZIndex;
         }
 
-        // Butter-Smooth Lag-Free Draggable Windows Logic using requestAnimationFrame
+        // GPU-Accelerated Lag-Free Draggable Windows Logic
         function startDrag(e, windowId) {
             const win = document.getElementById(windowId);
             if (win.classList.contains('maximized')) return;
@@ -750,6 +934,42 @@
                 requestAnimationFrame(() => {
                     win.style.left = (initialLeft + dx) + 'px';
                     win.style.top = (initialTop + dy) + 'px';
+                    win.style.transform = 'translate3d(0,0,0)';
+                });
+            }
+
+            function onMouseUp() {
+                document.removeEventListener('mousemove', onMouseMove);
+                document.removeEventListener('mouseup', onMouseUp);
+            }
+
+            document.addEventListener('mousemove', onMouseMove);
+            document.addEventListener('mouseup', onMouseUp);
+        }
+
+        // Window Resizing Logic
+        function initResize(e, windowId, direction) {
+            e.stopPropagation();
+            const win = document.getElementById(windowId);
+            if (win.classList.contains('maximized')) return;
+            focusWindow(windowId);
+
+            let startX = e.clientX;
+            let startY = e.clientY;
+            let startWidth = win.offsetWidth;
+            let startHeight = win.offsetHeight;
+
+            function onMouseMove(e) {
+                let dx = e.clientX - startX;
+                let dy = e.clientY - startY;
+
+                requestAnimationFrame(() => {
+                    if (direction === 'right' || direction === 'corner') {
+                        win.style.width = Math.max(300, startWidth + dx) + 'px';
+                    }
+                    if (direction === 'bottom' || direction === 'corner') {
+                        win.style.height = Math.max(200, startHeight + dy) + 'px';
+                    }
                 });
             }
 
@@ -777,7 +997,7 @@
             }
         }
 
-        // Colorful Playful Theme Color Switcher
+        // Theme Color Switcher
         function changeThemeColor(theme) {
             document.body.className = '';
             if (theme === 'lightblue') {
