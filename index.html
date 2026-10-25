@@ -78,17 +78,27 @@
             perspective: 1200px; transform-style: preserve-3d; user-select: none;
         }
 
-        /* System Screens */
-        #loginScreen, #lockScreen, #shutdownScreen, #biosScreen, #sleepScreen, #welcomeScreen {
+        /* System Screens with Win 7 Fade-in/Fade-out Transitions (700ms) */
+        #bootVideoScreen, #loginScreen, #lockScreen, #shutdownScreen, #biosScreen, #sleepScreen, #welcomeScreen {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 99999;
             display: flex; flex-direction: column; align-items: center; justify-content: center; color: white;
-            transition: opacity 0.5s ease;
+            opacity: 1; transition: opacity 0.75s cubic-bezier(0.2, 0.8, 0.2, 1);
         }
 
-        /* Login Screen with True Blurry Wallpaper Background */
+        /* Windows 7 Animated Startup Boot Screen Video */
+        #bootVideoScreen {
+            background: #000; z-index: 100000;
+        }
+        #win7BootVideo {
+            width: 100%; height: 100%; object-fit: cover;
+        }
+
+        /* Login Screen with True Blurry Wallpaper Background & Frutiger Aero Glass Teal Pane */
         #loginScreen, #lockScreen {
             background: transparent;
             overflow: hidden;
+            opacity: 0;
+            display: none;
         }
         #loginScreen::before, #lockScreen::before {
             content: '';
@@ -101,52 +111,53 @@
         }
 
         .login-box {
-            width: 360px; background: rgba(15, 22, 35, 0.65);
-            backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.45);
-            border-top: 1px solid rgba(255, 255, 255, 0.85);
+            width: 380px; background: rgba(12, 28, 45, 0.55);
+            backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
+            border: 1px solid rgba(48, 213, 200, 0.45);
+            border-top: 1px solid rgba(255, 255, 255, 0.8);
             border-radius: 14px; padding: 35px;
-            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8), 0 30px 60px rgba(0,0,0,0.85), 0 0 35px var(--accent-glow);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6), 0 25px 50px rgba(0,0,0,0.8), 0 0 25px rgba(48, 213, 200, 0.3);
             text-align: center;
         }
         .login-avatar {
             width: 84px; height: 84px; border-radius: 50%; background: radial-gradient(circle, var(--accent) 0%, #1c65b5 100%);
             margin: 0 auto 15px auto; display: flex; align-items: center; justify-content: center; font-size: 38px;
-            border: 2px solid rgba(255,255,255,0.95); box-shadow: inset 0 2px 6px rgba(255,255,255,0.9), 0 4px 15px rgba(0,0,0,0.5);
+            border: 2px solid rgba(48, 213, 200, 0.8); box-shadow: inset 0 2px 6px rgba(255,255,255,0.9), 0 4px 15px rgba(0,0,0,0.5);
         }
         .login-box input {
             width: 100%; padding: 9px 14px; margin: 12px 0; background: rgba(10, 15, 25, 0.85);
-            border: 1px solid rgba(255, 255, 255, 0.4); border-radius: 5px; color: white; box-sizing: border-box; font-size: 14px;
+            border: 1px solid rgba(48, 213, 200, 0.35); border-radius: 5px; color: white; box-sizing: border-box; font-size: 14px;
             box-shadow: inset 0 2px 4px rgba(0,0,0,0.6); outline: none;
         }
-        .login-box input:focus { border-color: var(--accent); box-shadow: inset 0 2px 4px rgba(0,0,0,0.6), 0 0 12px var(--accent-glow); }
+        .login-box input:focus { border-color: rgba(48, 213, 200, 0.9); box-shadow: inset 0 2px 4px rgba(0,0,0,0.6), 0 0 12px rgba(48, 213, 200, 0.5); }
         
-        /* Energetic Login Button with Extra Deep Click Physics & No Hover Movement */
+        /* Frutiger Aero Login Button with Soft Animation & Extra Deep Tactile Click Physics */
         .login-box button {
             width: 100%; margin-top: 12px;
-            background: linear-gradient(to bottom, rgba(255, 255, 255, 0.65) 0%, rgba(255, 255, 255, 0.25) 49%, rgba(0, 0, 0, 0.25) 50%, rgba(28, 115, 205, 0.75) 100%);
-            border: 1px solid rgba(255, 255, 255, 0.8);
-            border-top: 1px solid rgba(255, 255, 255, 1);
+            background: linear-gradient(to bottom, rgba(255, 255, 255, 0.65) 0%, rgba(48, 213, 200, 0.25) 49%, rgba(15, 90, 130, 0.6) 50%, rgba(28, 115, 205, 0.75) 100%);
+            border: 1px solid rgba(48, 213, 200, 0.6);
+            border-top: 1px solid rgba(255, 255, 255, 0.95);
             border-radius: 6px; color: white; font-weight: bold; font-size: 14px; padding: 10px 16px; cursor: pointer;
             text-shadow: 0 1px 2px rgba(0,0,0,0.85);
-            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.95), 0 5px 16px rgba(0,0,0,0.5), 0 0 18px rgba(40, 140, 255, 0.95);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9), 0 4px 14px rgba(0,0,0,0.4), 0 0 14px rgba(48, 213, 200, 0.4);
             transform: none !important;
-            transition: box-shadow 0.15s ease !important;
+            transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.25s ease, background 0.25s ease !important;
         }
         .login-box button:hover {
             transform: none !important;
-            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 1), 0 6px 20px rgba(0,0,0,0.6), 0 0 24px rgba(50, 160, 255, 1) !important;
+            background: linear-gradient(to bottom, rgba(255, 255, 255, 0.8) 0%, rgba(48, 213, 200, 0.4) 49%, rgba(20, 110, 150, 0.7) 50%, rgba(40, 130, 220, 0.9) 100%);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 1), 0 6px 18px rgba(0,0,0,0.5), 0 0 18px rgba(48, 213, 200, 0.7) !important;
         }
         .login-box button:active {
             transform: translateY(3px) scale(0.97) !important;
-            box-shadow: inset 0 4px 12px rgba(0, 0, 0, 0.9), inset 0 -1px 2px rgba(255, 255, 255, 0.5), 0 1px 3px rgba(0,0,0,0.2) !important;
+            box-shadow: inset 0 4px 10px rgba(0, 0, 0, 0.85), inset 0 -1px 2px rgba(255, 255, 255, 0.4), 0 1px 3px rgba(0,0,0,0.2) !important;
         }
 
         #loginError { color: #ff6b61; font-size: 12px; margin-top: 8px; display: none; text-shadow: 0 1px 2px rgba(0,0,0,0.8); }
 
-        /* Windows 7 Frutiger Aero Glossy Glass Ring Welcome Screen Loader (Constant Speed) */
+        /* Windows 7 Frutiger Aero Glossy Glass Ring Welcome Screen Loader (Constant Linear Speed) */
         #welcomeScreen {
-            display: none; background: radial-gradient(circle, #081628 0%, #02050a 100%);
+            display: none; opacity: 0; background: radial-gradient(circle, #081628 0%, #02050a 100%);
         }
         .aero-ring-loader {
             width: 76px; height: 76px; border-radius: 50%;
@@ -166,12 +177,12 @@
         }
         @keyframes aeroRingSpin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
-        #shutdownScreen { display: none; background: #05070a; opacity: 0; transition: opacity 1s ease; }
+        #shutdownScreen { display: none; background: #05070a; opacity: 0; }
         #biosScreen {
             display: none; background: #000; color: #fff; font-family: 'Courier New', monospace;
-            padding: 40px; align-items: flex-start; justify-content: flex-start; z-index: 999999;
+            padding: 40px; align-items: flex-start; justify-content: flex-start; z-index: 999999; opacity: 0;
         }
-        #sleepScreen { display: none; background: #000; cursor: none; z-index: 999998; }
+        #sleepScreen { display: none; background: #000; cursor: none; z-index: 999998; opacity: 0; }
         .power-led {
             position: absolute; bottom: 25px; right: 35px; width: 8px; height: 8px;
             background: #00ff00; border-radius: 50%; box-shadow: 0 0 12px #00ff00;
@@ -179,9 +190,10 @@
         }
         @keyframes powerBlink { 0%, 100% { opacity: 0.3; } 50% { opacity: 1; } }
 
-        /* Desktop Canvas (Strictly hidden until welcome sequence completes) */
+        /* Desktop Canvas (Strictly hidden until welcome sequence completes with 700ms fade) */
         #desktop {
             position: relative; width: 100%; height: calc(100% - 42px); padding: 20px; box-sizing: border-box; display: none;
+            opacity: 0; transition: opacity 0.75s ease;
             transform-style: preserve-3d;
         }
         .desktop-icon {
@@ -419,7 +431,12 @@
     <!-- Glossy Real FPS Counter Overlay -->
     <div id="fpsCounter">FPS: 240</div>
 
-    <!-- Login Screen (True Blurry Background Wallpaper) -->
+    <!-- Windows 7 Animated Boot Screen Video Overlay -->
+    <div id="bootVideoScreen">
+        <video id="win7BootVideo" autoplay muted playsinline src="https://raw.githubusercontent.com/leonardo-leonardo/FrutigerAeroOperatingSystem/refs/heads/main/Microsoft%20Windows%207%20Startup%20Sound%20%28animated%29%20%5butUn3Gxw0SY%5D.mp4"></video>
+    </div>
+
+    <!-- Login Screen (Glass Teal Aero Pane & Blurry Wallpaper) -->
     <div id="loginScreen">
         <div class="login-box">
             <div class="login-avatar">👤</div>
@@ -431,7 +448,7 @@
         </div>
     </div>
 
-    <!-- Frutiger Aero Welcome Screen Loader (Appears immediately without desktop flash) -->
+    <!-- Frutiger Aero Welcome Screen Loader -->
     <div id="welcomeScreen">
         <div class="aero-ring-loader"></div>
         <div style="font-size: 22px; font-weight: 400; margin-top: 25px; letter-spacing: 0.5px; text-shadow: 0 2px 4px rgba(0,0,0,0.8);">Welcome</div>
@@ -473,7 +490,7 @@
         <div class="power-led"></div>
     </div>
 
-    <!-- Main OS Desktop (Strictly hidden until welcome loader finishes) -->
+    <!-- Main OS Desktop (Strictly hidden until welcome sequence completes) -->
     <div id="desktop">
         <!-- Desktop Shortcuts -->
         <div class="desktop-icon" onclick="openWindow('notepadWindow')">
@@ -508,11 +525,11 @@
                 </div>
             </div>
             <div class="window-content" style="padding:0;">
-                <textarea class="notepad-textarea">✨ Welcome to Frutiger Aero Web OS v8.3!
+                <textarea class="notepad-textarea">✨ Welcome to Frutiger Aero Web OS v8.4!
 
-- Login wallpaper correctly blurred with CSS backdrop filter.
-- Zero desktop flashing on login.
-- Authentic Win 7 Frutiger Aero glossy glass spinner with constant linear speed.</textarea>
+- Official Windows 7 Boot Video integration with seamless fade transitions.
+- Glass Teal Aero login pane styling with soft mechanical button physics.
+- Flawless startup sequence with zero desktop flashing.</textarea>
             </div>
             <div class="resizer right" onmousedown="initResize(event, 'notepadWindow', 'right')"></div>
             <div class="resizer bottom" onmousedown="initResize(event, 'notepadWindow', 'bottom')"></div>
@@ -737,7 +754,7 @@
                     <!-- About Pane -->
                     <div id="paneAbout" class="settings-pane">
                         <h3 style="margin-top:0; color:var(--accent);">About System</h3>
-                        <p><strong>OS:</strong> Frutiger Aero Web OS Ultimate 8.3</p>
+                        <p><strong>OS:</strong> Frutiger Aero Web OS Ultimate 8.4</p>
                         <p><strong>Environment:</strong> Web Browser Client Runtime</p>
                     </div>
                 </div>
@@ -793,7 +810,7 @@
     </div>
 
     <!-- Taskbar -->
-    <div id="taskbar">
+    <div id="taskbar" style="display: none;">
         <div class="start-btn" id="startOrb" title="Start Menu" onclick="toggleStartMenu(event)">🪟</div>
         <div id="taskbarApps"></div>
         <div class="taskbar-tray">
@@ -840,6 +857,26 @@
                 document.getElementById('settingsHardwareText').innerText = specStr;
                 document.getElementById('biosGpuLine').innerText = "Graphics: " + specStr;
             }
+
+            // Windows 7 Startup Video Handling & Seamless Fade-In to Login
+            const bootVideo = document.getElementById('win7BootVideo');
+            const bootScreen = document.getElementById('bootVideoScreen');
+            const loginScreen = document.getElementById('loginScreen');
+
+            const transitionToLogin = () => {
+                bootScreen.style.opacity = '0';
+                setTimeout(() => {
+                    bootScreen.style.display = 'none';
+                    loginScreen.style.display = 'flex';
+                    setTimeout(() => {
+                        loginScreen.style.opacity = '1';
+                    }, 50);
+                }, 750);
+            };
+
+            bootVideo.onended = transitionToLogin;
+            // Fallback safety timer in case video autoplay is restricted or fails
+            setTimeout(transitionToLogin, 6000);
         });
 
         function handleLogin() {
@@ -852,23 +889,26 @@
                 setTimeout(() => {
                     login.style.display = 'none';
                     
-                    // Show Welcome Screen immediately without any desktop flash
+                    // Show Welcome Screen with constant speed glassy ring loader
                     const welcome = document.getElementById('welcomeScreen');
                     welcome.style.display = 'flex';
-                    welcome.style.opacity = '1';
+                    setTimeout(() => { welcome.style.opacity = '1'; }, 50);
 
-                    // After 1.8 seconds, fade welcome screen and boot into desktop
+                    // After 1.8 seconds, fade welcome screen and fade into desktop
                     setTimeout(() => {
                         welcome.style.opacity = '0';
                         setTimeout(() => {
                             welcome.style.display = 'none';
-                            document.getElementById('desktop').style.display = 'block';
+                            const desktop = document.getElementById('desktop');
+                            desktop.style.display = 'block';
+                            document.getElementById('taskbar').style.display = 'flex';
+                            setTimeout(() => { desktop.style.opacity = '1'; }, 50);
                             updateTaskbarApps();
                             updateTaskManager();
-                        }, 500);
+                        }, 750);
                     }, 1800);
 
-                }, 300);
+                }, 750);
             } else {
                 err.style.display = 'block';
             }
@@ -879,7 +919,9 @@
             closeAllFlyouts();
             document.getElementById('lockPassword').value = '';
             document.getElementById('lockError').style.display = 'none';
-            document.getElementById('lockScreen').style.display = 'flex';
+            const lock = document.getElementById('lockScreen');
+            lock.style.display = 'flex';
+            setTimeout(() => { lock.style.opacity = '1'; }, 50);
         }
 
         function handleUnlock() {
@@ -887,7 +929,9 @@
             const err = document.getElementById('lockError');
             if (pass === currentPassword) {
                 err.style.display = 'none';
-                document.getElementById('lockScreen').style.display = 'none';
+                const lock = document.getElementById('lockScreen');
+                lock.style.opacity = '0';
+                setTimeout(() => { lock.style.display = 'none'; }, 750);
             } else {
                 err.style.display = 'block';
             }
@@ -910,29 +954,43 @@
             shutdown.style.display = 'flex';
             setTimeout(() => { shutdown.style.opacity = '1'; }, 50);
             setTimeout(() => {
-                shutdown.style.display = 'none';
                 shutdown.style.opacity = '0';
-                document.getElementById('biosScreen').style.display = 'flex';
+                setTimeout(() => {
+                    shutdown.style.display = 'none';
+                    const bios = document.getElementById('biosScreen');
+                    bios.style.display = 'flex';
+                    setTimeout(() => { bios.style.opacity = '1'; }, 50);
+                }, 750);
             }, 2000);
         }
 
         function bootFromBIOS() {
-            document.getElementById('biosScreen').style.display = 'none';
-            const login = document.getElementById('loginScreen');
-            login.style.display = 'flex';
-            login.style.opacity = '1';
-            document.getElementById('loginPassword').value = '';
+            const bios = document.getElementById('biosScreen');
+            bios.style.opacity = '0';
+            setTimeout(() => {
+                bios.style.display = 'none';
+                const login = document.getElementById('loginScreen');
+                login.style.display = 'flex';
+                setTimeout(() => { login.style.opacity = '1'; }, 50);
+                document.getElementById('loginPassword').value = '';
+            }, 750);
         }
 
         // Sleep Mode
         function triggerSleep() {
-            document.getElementById('sleepScreen').style.display = 'flex';
+            const sleep = document.getElementById('sleepScreen');
+            sleep.style.display = 'flex';
+            setTimeout(() => { sleep.style.opacity = '1'; }, 50);
             document.getElementById('desktop').style.display = 'none';
         }
 
         function wakeFromSleep() {
-            document.getElementById('sleepScreen').style.display = 'none';
-            document.getElementById('desktop').style.display = 'block';
+            const sleep = document.getElementById('sleepScreen');
+            sleep.style.opacity = '0';
+            setTimeout(() => {
+                sleep.style.display = 'none';
+                document.getElementById('desktop').style.display = 'block';
+            }, 750);
         }
 
         let highestZIndex = 10;
