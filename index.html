@@ -19,6 +19,8 @@
             --text-color: #f0f0f0;
             --sidebar-bg: rgba(20, 25, 35, 0.3);
             --col-bg: rgba(15, 20, 30, 0.25);
+            --window-anim-duration: 0.3s;
+            --window-anim-curve: cubic-bezier(0.1, 0.9, 0.2, 1);
         }
 
         /* Light Mode Overrides */
@@ -77,47 +79,78 @@
         }
 
         /* System Screens */
-        #bootScreen, #loginScreen, #lockScreen, #shutdownScreen, #biosScreen, #sleepScreen {
+        #loginScreen, #lockScreen, #shutdownScreen, #biosScreen, #sleepScreen, #welcomeScreen {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 99999;
-            display: flex; flex-direction: column; align-items: center; justify-content: center; background: #000; color: white;
+            display: flex; flex-direction: column; align-items: center; justify-content: center; color: white;
             transition: opacity 0.5s ease;
         }
-        #bootScreen { background: radial-gradient(circle, #152535 0%, #05080c 100%); }
-        .boot-logo {
-            width: 80px; height: 80px; border-radius: 50%; background: radial-gradient(circle, #72bcff 0%, #1c65b5 100%);
-            display: flex; align-items: center; justify-content: center; font-size: 40px; margin-bottom: 25px;
-            box-shadow: 0 0 35px rgba(114,188,255,0.9); animation: pulseLogo 2s infinite alternate;
-        }
-        @keyframes pulseLogo {
-            0% { transform: scale(1); filter: drop-shadow(0 0 10px rgba(114,188,255,0.5)); }
-            100% { transform: scale(1.08); filter: drop-shadow(0 0 30px rgba(114,188,255,1)); }
-        }
-        .spinner {
-            width: 36px; height: 36px; border: 4px solid rgba(255,255,255,0.2);
-            border-top: 4px solid var(--accent); border-radius: 50%;
-            animation: spin 1s linear infinite; margin-top: 20px;
-        }
-        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
+        /* Login Screen with Enhanced Aero & Slight Blur */
         #loginScreen, #lockScreen {
             background: url('https://raw.githubusercontent.com/leonardo-leonardo/FrutigerAeroOperatingSystem/refs/heads/main/Vista%20Black%20Widescreen%20Pixel4k.jpg') no-repeat center center fixed;
-            background-size: cover; display: none;
+            background-size: cover;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
         }
+
         .login-box {
-            width: 340px; background: rgba(20, 25, 35, 0.7); backdrop-filter: blur(14px);
-            border: 1px solid var(--accent); border-radius: 12px; padding: 30px; box-shadow: 0 25px 50px rgba(0,0,0,0.8), 0 0 20px var(--accent-glow); text-align: center;
+            width: 360px; background: rgba(15, 22, 35, 0.65);
+            backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            border-top: 1px solid rgba(255, 255, 255, 0.8);
+            border-radius: 14px; padding: 35px;
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.7), 0 30px 60px rgba(0,0,0,0.85), 0 0 30px var(--accent-glow);
+            text-align: center;
         }
         .login-avatar {
-            width: 80px; height: 80px; border-radius: 50%; background: radial-gradient(circle, var(--accent) 0%, #1c65b5 100%);
-            margin: 0 auto 15px auto; display: flex; align-items: center; justify-content: center; font-size: 36px;
-            border: 2px solid rgba(255,255,255,0.8); box-shadow: inset 0 2px 5px rgba(255,255,255,0.9);
+            width: 84px; height: 84px; border-radius: 50%; background: radial-gradient(circle, var(--accent) 0%, #1c65b5 100%);
+            margin: 0 auto 15px auto; display: flex; align-items: center; justify-content: center; font-size: 38px;
+            border: 2px solid rgba(255,255,255,0.9); box-shadow: inset 0 2px 6px rgba(255,255,255,0.9), 0 4px 15px rgba(0,0,0,0.5);
         }
         .login-box input {
-            width: 100%; padding: 8px 12px; margin: 10px 0; background: rgba(10, 15, 25, 0.8);
-            border: 1px solid rgba(255, 255, 255, 0.3); border-radius: 4px; color: white; box-sizing: border-box; font-size: 14px;
+            width: 100%; padding: 9px 14px; margin: 12px 0; background: rgba(10, 15, 25, 0.85);
+            border: 1px solid rgba(255, 255, 255, 0.4); border-radius: 5px; color: white; box-sizing: border-box; font-size: 14px;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.6); outline: none;
         }
-        .login-box button { width: 100%; margin-top: 10px; }
+        .login-box input:focus { border-color: var(--accent); box-shadow: inset 0 2px 4px rgba(0,0,0,0.6), 0 0 10px var(--accent-glow); }
+        
+        /* Fine-tuned Login Button: No hover movement, purely physical click compression */
+        .login-box button {
+            width: 100%; margin-top: 12px;
+            background: linear-gradient(to bottom, rgba(255, 255, 255, 0.35) 0%, rgba(255, 255, 255, 0.1) 50%, rgba(0, 0, 0, 0.2) 51%, rgba(28, 101, 181, 0.5) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.7);
+            border-top: 1px solid rgba(255, 255, 255, 0.95);
+            border-radius: 6px; color: white; font-weight: 600; padding: 9px 16px; cursor: pointer;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.8);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8), 0 4px 12px rgba(0,0,0,0.4), 0 0 10px var(--accent-glow);
+            transform: none !important;
+            transition: box-shadow 0.15s ease !important;
+        }
+        .login-box button:hover {
+            transform: none !important;
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.95), 0 5px 15px rgba(0,0,0,0.5), 0 0 14px var(--accent-glow) !important;
+        }
+        .login-box button:active {
+            transform: translateY(2px) scale(0.98) !important;
+            box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.85), inset 0 -1px 2px rgba(255, 255, 255, 0.4), 0 1px 3px rgba(0,0,0,0.3) !important;
+        }
+
         #loginError { color: #ff6b61; font-size: 12px; margin-top: 8px; display: none; text-shadow: 0 1px 2px rgba(0,0,0,0.8); }
+
+        /* Frutiger Aero Windows 7 Spinning Circle Loader */
+        #welcomeScreen {
+            display: none; background: radial-gradient(circle, #0a1828 0%, #03070d 100%);
+        }
+        .aero-spinner {
+            width: 52px; height: 52px;
+            border: 4px solid rgba(255, 255, 255, 0.15);
+            border-top: 4px solid #72bcff;
+            border-right: 4px solid #1c65b5;
+            border-radius: 50%;
+            animation: aeroSpin 0.85s cubic-bezier(0.5, 0.1, 0.5, 0.9) infinite;
+            box-shadow: 0 0 25px rgba(114, 188, 255, 0.8);
+        }
+        @keyframes aeroSpin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
         #shutdownScreen { display: none; background: #05070a; opacity: 0; transition: opacity 1s ease; }
         #biosScreen {
@@ -132,7 +165,7 @@
         }
         @keyframes powerBlink { 0%, 100% { opacity: 0.3; } 50% { opacity: 1; } }
 
-        /* Desktop Canvas */
+        /* Desktop Canvas (Initially Hidden so no flash occurs) */
         #desktop {
             position: relative; width: 100%; height: calc(100% - 42px); padding: 20px; box-sizing: border-box; display: none;
             transform-style: preserve-3d;
@@ -164,7 +197,7 @@
             transform: translateZ(5px);
         }
 
-        /* Slightly Blurred Glossy Glass Windows */
+        /* Slightly Blurred Glossy Glass Windows with Dynamic Animation Tuner Var */
         .window {
             position: absolute; top: 80px; left: 120px; width: 660px; height: 450px;
             background: var(--window-bg); backdrop-filter: blur(8px);
@@ -172,7 +205,7 @@
             box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.85), inset 0 0 30px rgba(255, 255, 255, 0.1), 0 30px 60px rgba(0, 0, 0, 0.75), 0 0 20px var(--accent-glow);
             border-radius: 8px 8px 5px 5px; display: flex; flex-direction: column; overflow: hidden; z-index: 10;
             transform: scale(0.7) translateY(30px) translateZ(-50px); opacity: 0; visibility: hidden;
-            transition: transform 0.3s cubic-bezier(0.1, 0.9, 0.2, 1), opacity 0.3s ease, visibility 0.3s ease;
+            transition: transform var(--window-anim-duration) var(--window-anim-curve), opacity var(--window-anim-duration) ease, visibility var(--window-anim-duration) ease;
             will-change: transform, left, top, width, height; backface-visibility: hidden; transform-style: preserve-3d;
         }
         .window.active { transform: scale(1) translateY(0) translateZ(0); opacity: 1; visibility: visible; }
@@ -193,18 +226,28 @@
         }
         .title-bar:active { cursor: grabbing; }
 
+        /* Window Buttons */
         .title-bar-controls { display: flex; align-items: center; gap: 4px; }
         .title-bar-controls button {
             width: 22px; height: 20px; border-radius: 3px; border: 1px solid rgba(255, 255, 255, 0.7);
             cursor: pointer; outline: none; display: flex; align-items: center; justify-content: center;
             font-size: 11px; font-weight: bold; color: white; text-shadow: 0 1px 1px rgba(0,0,0,0.8);
-            box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.9), 0 2px 4px rgba(0, 0, 0, 0.4);
-            transition: transform 0.1s ease, filter 0.15s ease; padding: 0;
+            box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.9), 0 2px 5px rgba(0, 0, 0, 0.4);
+            transition: transform 0.15s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.15s ease; padding: 0;
+            filter: none !important;
         }
-        .title-bar-controls button:hover { transform: scale(1.12); filter: brightness(1.25); }
-        .btn-minimize { background: radial-gradient(circle at 35% 35%, #7bc2ff 0%, #1555bd 70%, #0a3380 100%); }
-        .btn-maximize { background: radial-gradient(circle at 35% 35%, #7bff99 0%, #15803d 70%, #0a4d22 100%); }
-        .btn-close { background: radial-gradient(circle at 35% 35%, #ff7b71 0%, #bd1515 70%, #800a0a 100%); }
+        .title-bar-controls button:hover {
+            transform: translateY(-2px);
+            box-shadow: inset 0 1px 3px rgba(255, 255, 255, 1), 0 5px 10px rgba(0, 0, 0, 0.5);
+        }
+        .title-bar-controls button:active {
+            transform: translateY(2px) scale(0.95);
+            box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.85), inset 0 -1px 2px rgba(255, 255, 255, 0.4), 0 1px 2px rgba(0,0,0,0.3);
+        }
+
+        .btn-minimize { background: radial-gradient(circle at 35% 35%, #7bc2ff 0%, #1555bd 70%, #0a3380 100%) !important; }
+        .btn-maximize { background: radial-gradient(circle at 35% 35%, #7bff99 0%, #15803d 70%, #0a4d22 100%) !important; }
+        .btn-close { background: radial-gradient(circle at 35% 35%, #ff7b71 0%, #bd1515 70%, #800a0a 100%) !important; }
 
         .window-content { padding: 15px; color: var(--text-color); flex-grow: 1; overflow-y: auto; background: var(--window-content); }
 
@@ -258,7 +301,7 @@
         .settings-layout { display: flex; height: 100%; background: var(--window-content); border-radius: 6px; overflow: hidden; border: 1px solid rgba(255,255,255,0.3); }
         .settings-sidebar { width: 180px; background: var(--sidebar-bg); backdrop-filter: blur(6px); border-right: 1px solid rgba(255,255,255,0.25); padding: 10px; }
         .settings-sidebar div { padding: 8px 12px; cursor: pointer; border-radius: 4px; font-size: 13px; color: var(--text-color); margin-bottom: 4px; transition: background 0.2s; }
-        .settings-sidebar div:hover { background: rgba(255,255,255,0.2); }
+        .settings-sidebar div:hover { background: rgba(255, 255, 255, 0.2); }
         .settings-sidebar div.active-tab { background: var(--accent); color: white; font-weight: bold; }
         .settings-pane { flex-grow: 1; padding: 20px; overflow-y: auto; display: none; }
         .settings-pane.active { display: block; }
@@ -362,27 +405,26 @@
     <!-- Glossy Real FPS Counter Overlay -->
     <div id="fpsCounter">FPS: 240</div>
 
-    <!-- Boot Sequence Screen -->
-    <div id="bootScreen">
-        <div class="boot-logo">🪟</div>
-        <div style="font-size: 20px; font-weight: 500; letter-spacing: 1px;">Starting Frutiger Aero OS...</div>
-        <div class="spinner"></div>
-    </div>
-
-    <!-- Login Screen -->
+    <!-- Login Screen (Appears immediately on load with slight blur & dynamic specs) -->
     <div id="loginScreen">
         <div class="login-box">
             <div class="login-avatar">👤</div>
-            <div style="font-size: 18px; font-weight: bold; margin-bottom: 4px;">Leonardo</div>
-            <div style="font-size: 11px; opacity: 0.8; margin-bottom: 12px;">ASUS TUF Gaming A16 (FA608PMR)</div>
+            <div style="font-size: 20px; font-weight: bold; margin-bottom: 4px;">Leonardo</div>
+            <div id="loginDeviceSpecs" style="font-size: 11px; opacity: 0.85; margin-bottom: 14px;">Frutiger Aero Secure Session</div>
             <input type="password" id="loginPassword" placeholder="Password (default: 1234)">
             <button onclick="handleLogin()">Log In</button>
             <div id="loginError">Incorrect password! Please try again (default: 1234).</div>
         </div>
     </div>
 
+    <!-- Frutiger Aero Welcome Screen Loader -->
+    <div id="welcomeScreen">
+        <div class="aero-spinner"></div>
+        <div style="font-size: 22px; font-weight: 400; margin-top: 25px; letter-spacing: 0.5px; text-shadow: 0 2px 4px rgba(0,0,0,0.8);">Welcome</div>
+    </div>
+
     <!-- Lock Screen -->
-    <div id="lockScreen">
+    <div id="lockScreen" style="display: none;">
         <div class="login-box">
             <div class="login-avatar">🔒</div>
             <div style="font-size: 18px; font-weight: bold; margin-bottom: 4px;">Screen Locked</div>
@@ -402,13 +444,13 @@
     <!-- Working BIOS Screen -->
     <div id="biosScreen" onclick="bootFromBIOS()">
         <h3>AMI BIOS (C) 2006 American Megatrends, Inc.</h3>
-        <p>ASUS TUF Gaming A16 (FA608PMR) / Frutiger Aero Edition BIOS v2.50</p>
-        <p>CPU: AMD Ryzen 9 8940HX Processor @ 4.80GHz</p>
-        <p>Total Memory: 16384MB DDR5 (5200MHz Single Channel)</p>
+        <p>Frutiger Aero Edition BIOS v2.50</p>
+        <p>CPU: Detected x64 Architecture Processor @ 4.80GHz</p>
+        <p id="biosMemoryLine">Total Memory: 16384MB RAM</p>
         <br>
-        <p>Storage: WDC SN5000S 512GB NVMe SSD</p>
-        <p>Graphics: NVIDIA GeForce RTX 5060 Laptop GPU</p>
-        <p>Initializing USB Controllers & G-Helper Daemon ... Done.</p>
+        <p id="biosStorageLine">Storage: NVMe Solid State Drive</p>
+        <p id="biosGpuLine">Graphics: Dedicated Hardware GPU</p>
+        <p>Initializing System Daemon ... Done.</p>
         <p style="color:#00ff00; margin-top:30px;">[ Click anywhere or press any key to boot Frutiger Aero OS ]</p>
     </div>
 
@@ -417,7 +459,7 @@
         <div class="power-led"></div>
     </div>
 
-    <!-- Main OS Desktop -->
+    <!-- Main OS Desktop (Hidden initially so no flash happens) -->
     <div id="desktop">
         <!-- Desktop Shortcuts -->
         <div class="desktop-icon" onclick="openWindow('notepadWindow')">
@@ -452,11 +494,11 @@
                 </div>
             </div>
             <div class="window-content" style="padding:0;">
-                <textarea class="notepad-textarea">✨ Welcome to Frutiger Aero Web OS v7.0!
+                <textarea class="notepad-textarea">✨ Welcome to Frutiger Aero Web OS v8.0!
 
-- Universal transparent & glossy glass buttons applied across all dialogs, settings, task manager, and tray flyouts.
-- ASUS TUF Gaming A16 (FA608PMR) hardware verified.
-- Real password authentication & Lock Screen active.</textarea>
+- Login screen fine-tuned: Appears immediately on startup with glass backdrop blur and dynamic system hardware detection.
+- Windows 7 style welcoming animation loader before desktop.
+- Fixed button physics: stationary hover, tactile click compression.</textarea>
             </div>
             <div class="resizer right" onmousedown="initResize(event, 'notepadWindow', 'right')"></div>
             <div class="resizer bottom" onmousedown="initResize(event, 'notepadWindow', 'bottom')"></div>
@@ -534,15 +576,15 @@
             <div class="window-content" style="display: flex; flex-direction: column;">
                 <div class="taskmgr-header">
                     <div class="taskmgr-card">
-                        <div style="font-size:11px; opacity:0.8;">CPU (Ryzen 9 8940HX)</div>
+                        <div style="font-size:11px; opacity:0.8;">CPU Cores</div>
                         <div id="cpuUsageVal" style="font-size:18px; font-weight:bold; color:var(--accent);">14%</div>
                     </div>
                     <div class="taskmgr-card">
-                        <div style="font-size:11px; opacity:0.8;">Memory (16GB DDR5)</div>
+                        <div style="font-size:11px; opacity:0.8;">Memory</div>
                         <div id="ramUsageVal" style="font-size:18px; font-weight:bold; color:var(--accent);">4.8 / 16 GB</div>
                     </div>
                     <div class="taskmgr-card">
-                        <div style="font-size:11px; opacity:0.8;">GPU (RTX 5060)</div>
+                        <div style="font-size:11px; opacity:0.8;">GPU</div>
                         <div id="gpuUsageVal" style="font-size:18px; font-weight:bold; color:var(--accent);">6%</div>
                     </div>
                 </div>
@@ -601,19 +643,19 @@
                         <div id="tabSystem" class="active-tab" onclick="switchSettingsTab('System')">💻 System</div>
                         <div id="tabAccounts" onclick="switchSettingsTab('Accounts')">👤 Accounts</div>
                         <div id="tabPersonalization" onclick="switchSettingsTab('Personalization')">🎨 Personalization</div>
+                        <div id="tabAnimations" onclick="switchSettingsTab('Animations')">🎞️ Animation Tuner</div>
                         <div id="tabPerformance" onclick="switchSettingsTab('Performance')">⚡ Performance</div>
                         <div id="tabAbout" onclick="switchSettingsTab('About')">ℹ️ About</div>
                     </div>
                     <!-- System Pane -->
                     <div id="paneSystem" class="settings-pane active">
                         <h3 style="margin-top:0; color:var(--accent);">System Hardware & Display</h3>
-                        <p><strong>Detected Hardware:</strong> ASUS TUF Gaming A16 (FA608PMR)</p>
-                        <p><strong>Processor:</strong> AMD Ryzen 9 8940HX @ 4.80GHz</p>
-                        <p><strong>Graphics:</strong> NVIDIA GeForce RTX 5060 Laptop GPU</p>
+                        <p><strong>Detected Hardware:</strong> <span id="settingsHardwareText">Standard Web OS Client</span></p>
+                        <p><strong>Processor Cores:</strong> <span id="settingsCoresText">Multi-Core CPU</span></p>
                         <div class="settings-group">
                             <label>Display Resolution:</label>
                             <select>
-                                <option>2560 x 1600 (Recommended 16:10)</option>
+                                <option>Native Display (Auto Fit)</option>
                                 <option>1920 x 1080</option>
                             </select>
                         </div>
@@ -646,6 +688,23 @@
                             <input type="color" id="accentPicker" value="#1c65b5" onchange="changeAccentColor(this.value)" style="width:100%; height:36px; cursor:pointer;">
                         </div>
                     </div>
+                    <!-- Animation Tuner Pane -->
+                    <div id="paneAnimations" class="settings-pane">
+                        <h3 style="margin-top:0; color:var(--accent);">Window Animation Tuner</h3>
+                        <div class="settings-group">
+                            <label>Minimize / Maximize Speed: <span id="animSpeedVal" style="color:white; font-weight:bold;">0.3</span>s</label>
+                            <input type="range" id="animSpeedSlider" min="0.1" max="0.8" step="0.05" value="0.3" oninput="updateAnimSpeed(this.value)" style="width:100%; cursor:pointer;">
+                        </div>
+                        <div class="settings-group">
+                            <label>Window Physics Curve:</label>
+                            <select id="animCurveSelect" onchange="updateAnimCurve(this.value)">
+                                <option value="cubic-bezier(0.1, 0.9, 0.2, 1)">Smooth Aero Fluid (Default)</option>
+                                <option value="cubic-bezier(0.175, 0.885, 0.32, 1.275)">Bouncy Elastic Spring</option>
+                                <option value="cubic-bezier(0.4, 0, 0.2, 1)">Snappy Modern Ease</option>
+                                <option value="linear">Instant Linear</option>
+                            </select>
+                        </div>
+                    </div>
                     <!-- Performance Pane -->
                     <div id="panePerformance" class="settings-pane">
                         <h3 style="margin-top:0; color:var(--accent);">Aero Glass Performance & Framerate</h3>
@@ -664,12 +723,8 @@
                     <!-- About Pane -->
                     <div id="paneAbout" class="settings-pane">
                         <h3 style="margin-top:0; color:var(--accent);">About System</h3>
-                        <p><strong>Model:</strong> ASUS TUF Gaming A16 (FA608PMR)</p>
-                        <p><strong>CPU:</strong> AMD Ryzen 9 8940HX</p>
-                        <p><strong>RAM:</strong> 16GB 5200MHz DDR5</p>
-                        <p><strong>Storage:</strong> WDC SN5000S 512GB SSD</p>
-                        <p><strong>GPU:</strong> NVIDIA GeForce RTX 5060</p>
-                        <p><strong>OS:</strong> Frutiger Aero Web OS Ultimate 7.0</p>
+                        <p><strong>OS:</strong> Frutiger Aero Web OS Ultimate 8.0</p>
+                        <p><strong>Environment:</strong> Web Browser Client Runtime</p>
                     </div>
                 </div>
             </div>
@@ -685,7 +740,7 @@
             <span style="font-size: 20px;">👤</span>
             <div>
                 <div style="font-size: 13px;">Leonardo</div>
-                <div style="font-size: 10px; opacity: 0.8;">ASUS TUF Gaming A16</div>
+                <div style="font-size: 10px; opacity: 0.8;">Local Session</div>
             </div>
         </div>
         <div class="start-menu-items">
@@ -702,16 +757,16 @@
 
     <!-- Tray Flyouts -->
     <div id="weatherFlyout" class="tray-flyout">
-        <div style="font-weight:bold; margin-bottom:8px; color:var(--accent);">Qionglin, Hsinchu County</div>
+        <div style="font-weight:bold; margin-bottom:8px; color:var(--accent);">Local Weather</div>
         <div style="font-size:24px; font-weight:bold; margin-bottom:4px;">32°C ⛅</div>
-        <div style="font-size:12px; opacity:0.8; margin-bottom:12px;">Partly Cloudy • Humidity: 65%[cite: 21]</div>
+        <div style="font-size:12px; opacity:0.8; margin-bottom:12px;">Partly Cloudy • Humidity: 65%</div>
         <div style="font-size:11px; opacity:0.7;">Live weather service connected.</div>
     </div>
 
     <div id="networkFlyout" class="tray-flyout">
         <div style="font-weight:bold; margin-bottom:10px; color:var(--accent);">Network & Internet</div>
-        <div style="font-size:13px; margin-bottom:6px;">📶 Wi-Fi: <strong>TUF_Gaming_5G</strong></div>
-        <div style="font-size:12px; opacity:0.8; margin-bottom:12px;">Connected, secure (Wi-Fi 6E Realtek 8852CE)</div>
+        <div style="font-size:13px; margin-bottom:6px;">📶 Status: <strong>Connected</strong></div>
+        <div style="font-size:12px; opacity:0.8; margin-bottom:12px;">Secure Web Client Network</div>
         <button onclick="toggleFlyout('networkFlyout')" style="width:100%;">Network Settings</button>
     </div>
 
@@ -734,7 +789,7 @@
             </div>
             <span class="tray-icon" title="Network" onclick="toggleFlyout('networkFlyout', event)">📶</span>
             <span class="tray-icon" title="Volume" onclick="toggleFlyout('volumeFlyout', event)">🔊</span>
-            <span class="tray-icon" title="Battery">🔋 93%</span>
+            <span class="tray-icon" title="Battery">🔋 100%</span>
             <span class="tray-icon">ENG</span>
             <span class="tray-icon" id="clockDate" onclick="toggleFlyout('', event)" style="text-align:right; font-size:10px; line-height:1.2;">
                 <div id="timeText">02:41 PM</div>
@@ -746,15 +801,32 @@
     <script>
         let currentPassword = "1234";
 
-        // Automatic Boot Sequence
-        setTimeout(() => {
-            const boot = document.getElementById('bootScreen');
-            boot.style.opacity = '0';
-            setTimeout(() => {
-                boot.style.display = 'none';
-                document.getElementById('loginScreen').style.display = 'flex';
-            }, 500);
-        }, 2500);
+        // Dynamic Hardware Detection for Login & Settings
+        window.addEventListener('DOMContentLoaded', () => {
+            let specStr = "";
+            try {
+                const canvas = document.createElement('canvas');
+                const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+                if (gl) {
+                    const debugInfo = gl.getExtension('WEBGL_debug_renderer_info');
+                    if (debugInfo) {
+                        const renderer = gl.getParameter(debugInfo.UNMASKED_RENDERER_WEBGL);
+                        if (renderer) specStr = renderer;
+                    }
+                }
+            } catch(e) {}
+
+            if (navigator.hardwareConcurrency) {
+                specStr += (specStr ? " • " : "") + navigator.hardwareConcurrency + " Cores";
+                document.getElementById('settingsCoresText').innerText = navigator.hardwareConcurrency + " Cores";
+            }
+
+            if (specStr) {
+                document.getElementById('loginDeviceSpecs').innerText = specStr;
+                document.getElementById('settingsHardwareText').innerText = specStr;
+                document.getElementById('biosGpuLine').innerText = "Graphics: " + specStr;
+            }
+        });
 
         function handleLogin() {
             const pass = document.getElementById('loginPassword').value;
@@ -765,10 +837,24 @@
                 login.style.opacity = '0';
                 setTimeout(() => {
                     login.style.display = 'none';
-                    document.getElementById('desktop').style.display = 'block';
-                    updateTaskbarApps();
-                    updateTaskManager();
-                }, 500);
+                    
+                    // Show Welcome Screen with Win 7 Frutiger Aero Spinning Circle
+                    const welcome = document.getElementById('welcomeScreen');
+                    welcome.style.display = 'flex';
+                    welcome.style.opacity = '1';
+
+                    // After 1.6 seconds, fade welcome screen and boot into desktop
+                    setTimeout(() => {
+                        welcome.style.opacity = '0';
+                        setTimeout(() => {
+                            welcome.style.display = 'none';
+                            document.getElementById('desktop').style.display = 'block';
+                            updateTaskbarApps();
+                            updateTaskManager();
+                        }, 500);
+                    }, 1600);
+
+                }, 300);
             } else {
                 err.style.display = 'block';
             }
@@ -818,15 +904,10 @@
 
         function bootFromBIOS() {
             document.getElementById('biosScreen').style.display = 'none';
-            document.getElementById('bootScreen').style.display = 'flex';
-            document.getElementById('bootScreen').style.opacity = '1';
-            setTimeout(() => {
-                document.getElementById('bootScreen').style.opacity = '0';
-                setTimeout(() => {
-                    document.getElementById('bootScreen').style.display = 'none';
-                    document.getElementById('desktop').style.display = 'block';
-                }, 500);
-            }, 1500);
+            const login = document.getElementById('loginScreen');
+            login.style.display = 'flex';
+            login.style.opacity = '1';
+            document.getElementById('loginPassword').value = '';
         }
 
         // Sleep Mode
@@ -1018,7 +1099,7 @@
 
         // Settings Tabs Switcher
         function switchSettingsTab(tabName) {
-            ['System', 'Accounts', 'Personalization', 'Performance', 'About'].forEach(t => {
+            ['System', 'Accounts', 'Personalization', 'Animations', 'Performance', 'About'].forEach(t => {
                 const pane = document.getElementById('pane' + t);
                 const tab = document.getElementById('tab' + t);
                 if (pane) pane.classList.remove('active');
@@ -1041,6 +1122,16 @@
 
         function changeAccentColor(hex) {
             document.documentElement.style.setProperty('--accent', hex);
+        }
+
+        // Animation Tuner Functions
+        function updateAnimSpeed(val) {
+            document.getElementById('animSpeedVal').innerText = val;
+            document.documentElement.style.setProperty('--window-anim-duration', val + 's');
+        }
+
+        function updateAnimCurve(curve) {
+            document.documentElement.style.setProperty('--window-anim-curve', curve);
         }
 
         // Real True Framerate Limiter & Glossy Counter
