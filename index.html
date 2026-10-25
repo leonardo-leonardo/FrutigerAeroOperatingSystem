@@ -78,22 +78,27 @@
             perspective: 1200px; transform-style: preserve-3d; user-select: none;
         }
 
-        /* System Screens with Win 7 Fade-in/Fade-out Transitions (700ms) */
+        /* System Screens with Smooth Fade-in/Fade-out Transitions */
         #bootVideoScreen, #loginScreen, #lockScreen, #shutdownScreen, #biosScreen, #sleepScreen, #welcomeScreen {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 99999;
             display: flex; flex-direction: column; align-items: center; justify-content: center; color: white;
             opacity: 1; transition: opacity 0.75s cubic-bezier(0.2, 0.8, 0.2, 1);
         }
 
-        /* Windows 7 Animated Startup Boot Screen Video */
+        /* Windows 7 Authentic Sized Boot Screen Video Container */
         #bootVideoScreen {
             background: #000; z-index: 100000;
+        }
+        .boot-video-container {
+            width: 560px; height: 315px; background: #000; border-radius: 6px;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.9), 0 0 25px rgba(28, 142, 230, 0.25);
+            overflow: hidden; display: flex; align-items: center; justify-content: center;
         }
         #win7BootVideo {
             width: 100%; height: 100%; object-fit: cover;
         }
 
-        /* Login Screen with True Blurry Wallpaper Background & Frutiger Aero Glass Teal Pane */
+        /* Login Screen with Glossy Subtle Blur & Frutiger Black / Win 7 Light Blue Palette */
         #loginScreen, #lockScreen {
             background: transparent;
             overflow: hidden;
@@ -102,51 +107,57 @@
         }
         #loginScreen::before, #lockScreen::before {
             content: '';
-            position: absolute; top: -20px; left: -20px; right: -20px; bottom: -20px;
+            position: absolute; top: -15px; left: -15px; right: -15px; bottom: -15px;
             background: url('https://raw.githubusercontent.com/leonardo-leonardo/FrutigerAeroOperatingSystem/refs/heads/main/Vista%20Black%20Widescreen%20Pixel4k.jpg') no-repeat center center fixed;
             background-size: cover;
-            filter: blur(14px);
-            -webkit-filter: blur(14px);
+            filter: blur(5px);
+            -webkit-filter: blur(5px);
             z-index: -1;
         }
 
         .login-box {
-            width: 380px; background: rgba(12, 28, 45, 0.55);
-            backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
-            border: 1px solid rgba(48, 213, 200, 0.45);
+            width: 380px; background: rgba(12, 18, 28, 0.78);
+            backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(114, 188, 255, 0.45);
             border-top: 1px solid rgba(255, 255, 255, 0.8);
-            border-radius: 14px; padding: 35px;
-            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6), 0 25px 50px rgba(0,0,0,0.8), 0 0 25px rgba(48, 213, 200, 0.3);
+            border-radius: 12px; padding: 35px;
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 25px 50px rgba(0,0,0,0.9), 0 0 30px rgba(28, 142, 230, 0.35);
             text-align: center;
         }
         .login-avatar {
-            width: 84px; height: 84px; border-radius: 50%; background: radial-gradient(circle, var(--accent) 0%, #1c65b5 100%);
-            margin: 0 auto 15px auto; display: flex; align-items: center; justify-content: center; font-size: 38px;
-            border: 2px solid rgba(48, 213, 200, 0.8); box-shadow: inset 0 2px 6px rgba(255,255,255,0.9), 0 4px 15px rgba(0,0,0,0.5);
+            width: 84px; height: 84px; border-radius: 50%; background: radial-gradient(circle, #1c8ee6 0%, #0a4f94 100%);
+            margin: 0 auto 15px auto; display: flex; align-items: center; justify-content: center;
+            border: 2px solid rgba(114, 188, 255, 0.9); box-shadow: inset 0 2px 6px rgba(255,255,255,0.8), 0 4px 15px rgba(0,0,0,0.5);
+            overflow: hidden; position: relative;
+        }
+        .login-avatar::after {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 50%;
+            background: linear-gradient(to bottom, rgba(255,255,255,0.4), rgba(255,255,255,0.05));
+            border-radius: 50% 50% 0 0; pointer-events: none;
         }
         .login-box input {
-            width: 100%; padding: 9px 14px; margin: 12px 0; background: rgba(10, 15, 25, 0.85);
-            border: 1px solid rgba(48, 213, 200, 0.35); border-radius: 5px; color: white; box-sizing: border-box; font-size: 14px;
-            box-shadow: inset 0 2px 4px rgba(0,0,0,0.6); outline: none;
+            width: 100%; padding: 9px 14px; margin: 12px 0; background: rgba(8, 12, 20, 0.9);
+            border: 1px solid rgba(114, 188, 255, 0.35); border-radius: 5px; color: white; box-sizing: border-box; font-size: 14px;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.7); outline: none;
         }
-        .login-box input:focus { border-color: rgba(48, 213, 200, 0.9); box-shadow: inset 0 2px 4px rgba(0,0,0,0.6), 0 0 12px rgba(48, 213, 200, 0.5); }
+        .login-box input:focus { border-color: rgba(114, 188, 255, 0.9); box-shadow: inset 0 2px 4px rgba(0,0,0,0.7), 0 0 12px rgba(28, 142, 230, 0.6); }
         
         /* Frutiger Aero Login Button with Soft Animation & Extra Deep Tactile Click Physics */
         .login-box button {
             width: 100%; margin-top: 12px;
-            background: linear-gradient(to bottom, rgba(255, 255, 255, 0.65) 0%, rgba(48, 213, 200, 0.25) 49%, rgba(15, 90, 130, 0.6) 50%, rgba(28, 115, 205, 0.75) 100%);
-            border: 1px solid rgba(48, 213, 200, 0.6);
+            background: linear-gradient(to bottom, rgba(255, 255, 255, 0.6) 0%, rgba(114, 188, 255, 0.3) 49%, rgba(28, 101, 181, 0.6) 50%, rgba(18, 85, 160, 0.8) 100%);
+            border: 1px solid rgba(114, 188, 255, 0.7);
             border-top: 1px solid rgba(255, 255, 255, 0.95);
             border-radius: 6px; color: white; font-weight: bold; font-size: 14px; padding: 10px 16px; cursor: pointer;
             text-shadow: 0 1px 2px rgba(0,0,0,0.85);
-            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9), 0 4px 14px rgba(0,0,0,0.4), 0 0 14px rgba(48, 213, 200, 0.4);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9), 0 4px 14px rgba(0,0,0,0.4), 0 0 14px rgba(28, 142, 230, 0.45);
             transform: none !important;
             transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.25s ease, background 0.25s ease !important;
         }
         .login-box button:hover {
             transform: none !important;
-            background: linear-gradient(to bottom, rgba(255, 255, 255, 0.8) 0%, rgba(48, 213, 200, 0.4) 49%, rgba(20, 110, 150, 0.7) 50%, rgba(40, 130, 220, 0.9) 100%);
-            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 1), 0 6px 18px rgba(0,0,0,0.5), 0 0 18px rgba(48, 213, 200, 0.7) !important;
+            background: linear-gradient(to bottom, rgba(255, 255, 255, 0.75) 0%, rgba(114, 188, 255, 0.45) 49%, rgba(35, 120, 205, 0.7) 50%, rgba(25, 100, 190, 0.9) 100%);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 1), 0 6px 18px rgba(0,0,0,0.5), 0 0 20px rgba(28, 142, 230, 0.75) !important;
         }
         .login-box button:active {
             transform: translateY(3px) scale(0.97) !important;
@@ -190,7 +201,7 @@
         }
         @keyframes powerBlink { 0%, 100% { opacity: 0.3; } 50% { opacity: 1; } }
 
-        /* Desktop Canvas (Strictly hidden until welcome sequence completes with 700ms fade) */
+        /* Desktop Canvas (Strictly hidden until welcome sequence completes with fade) */
         #desktop {
             position: relative; width: 100%; height: calc(100% - 42px); padding: 20px; box-sizing: border-box; display: none;
             opacity: 0; transition: opacity 0.75s ease;
@@ -431,15 +442,24 @@
     <!-- Glossy Real FPS Counter Overlay -->
     <div id="fpsCounter">FPS: 240</div>
 
-    <!-- Windows 7 Animated Boot Screen Video Overlay -->
+    <!-- Windows 7 Authentic Sized Boot Screen Video Overlay -->
     <div id="bootVideoScreen">
-        <video id="win7BootVideo" autoplay muted playsinline src="https://raw.githubusercontent.com/leonardo-leonardo/FrutigerAeroOperatingSystem/refs/heads/main/Microsoft%20Windows%207%20Startup%20Sound%20%28animated%29%20%5butUn3Gxw0SY%5D.mp4"></video>
+        <div class="boot-video-container">
+            <video id="win7BootVideo" autoplay muted playsinline src="https://raw.githubusercontent.com/leonardo-leonardo/FrutigerAeroOperatingSystem/refs/heads/main/Microsoft%20Windows%207%20Startup%20Sound%20%28animated%29%20%5butUn3Gxw0SY%5D.mp4"></video>
+        </div>
     </div>
 
-    <!-- Login Screen (Glass Teal Aero Pane & Blurry Wallpaper) -->
+    <!-- Login Screen (Glossy Subtle Blur, Frutiger Black / Light Blue Theme, Win 7 Flower Icon) -->
     <div id="loginScreen">
         <div class="login-box">
-            <div class="login-avatar">👤</div>
+            <div class="login-avatar" title="Windows 7 flower icon_4k.png">
+                <svg viewBox="0 0 100 100" width="56" height="56" style="filter: drop-shadow(0 2px 4px rgba(0,0,0,0.6));">
+                    <path d="M 12 12 L 46 12 L 46 46 L 12 46 Z" fill="#f25022"/>
+                    <path d="M 54 12 L 88 12 L 88 46 L 54 46 Z" fill="#7fba00"/>
+                    <path d="M 12 54 L 46 54 L 46 88 L 12 88 Z" fill="#00a4ef"/>
+                    <path d="M 54 54 L 88 54 L 88 88 L 54 88 Z" fill="#ffb900"/>
+                </svg>
+            </div>
             <div style="font-size: 20px; font-weight: bold; margin-bottom: 4px;">Leonardo</div>
             <div id="loginDeviceSpecs" style="font-size: 11px; opacity: 0.85; margin-bottom: 14px;">Frutiger Aero Secure Session</div>
             <input type="password" id="loginPassword" placeholder="Password (default: 1234)">
@@ -457,7 +477,14 @@
     <!-- Lock Screen -->
     <div id="lockScreen" style="display: none;">
         <div class="login-box">
-            <div class="login-avatar">🔒</div>
+            <div class="login-avatar" title="Windows 7 flower icon_4k.png">
+                <svg viewBox="0 0 100 100" width="56" height="56" style="filter: drop-shadow(0 2px 4px rgba(0,0,0,0.6));">
+                    <path d="M 12 12 L 46 12 L 46 46 L 12 46 Z" fill="#f25022"/>
+                    <path d="M 54 12 L 88 12 L 88 46 L 54 46 Z" fill="#7fba00"/>
+                    <path d="M 12 54 L 46 54 L 46 88 L 12 88 Z" fill="#00a4ef"/>
+                    <path d="M 54 54 L 88 54 L 88 88 L 54 88 Z" fill="#ffb900"/>
+                </svg>
+            </div>
             <div style="font-size: 18px; font-weight: bold; margin-bottom: 4px;">Screen Locked</div>
             <div style="font-size: 11px; opacity: 0.8; margin-bottom: 12px;">Session secure for Leonardo</div>
             <input type="password" id="lockPassword" placeholder="Enter password to unlock">
@@ -525,11 +552,12 @@
                 </div>
             </div>
             <div class="window-content" style="padding:0;">
-                <textarea class="notepad-textarea">✨ Welcome to Frutiger Aero Web OS v8.4!
+                <textarea class="notepad-textarea">✨ Welcome to Frutiger Aero Web OS v8.5!
 
-- Official Windows 7 Boot Video integration with seamless fade transitions.
-- Glass Teal Aero login pane styling with soft mechanical button physics.
-- Flawless startup sequence with zero desktop flashing.</textarea>
+- Glossy subtle wallpaper blur (5px).
+- Frutiger Black & Windows 7 Light Blue login theme.
+- Windows 7 flower icon profile picture (Windows 7 flower icon_4k.png).
+- Centered authentic Win 7 boot animation frame with smooth fade transitions.</textarea>
             </div>
             <div class="resizer right" onmousedown="initResize(event, 'notepadWindow', 'right')"></div>
             <div class="resizer bottom" onmousedown="initResize(event, 'notepadWindow', 'bottom')"></div>
@@ -754,7 +782,7 @@
                     <!-- About Pane -->
                     <div id="paneAbout" class="settings-pane">
                         <h3 style="margin-top:0; color:var(--accent);">About System</h3>
-                        <p><strong>OS:</strong> Frutiger Aero Web OS Ultimate 8.4</p>
+                        <p><strong>OS:</strong> Frutiger Aero Web OS Ultimate 8.5</p>
                         <p><strong>Environment:</strong> Web Browser Client Runtime</p>
                     </div>
                 </div>
@@ -875,7 +903,7 @@
             };
 
             bootVideo.onended = transitionToLogin;
-            // Fallback safety timer in case video autoplay is restricted or fails
+            // Fallback safety timer
             setTimeout(transitionToLogin, 6000);
         });
 
