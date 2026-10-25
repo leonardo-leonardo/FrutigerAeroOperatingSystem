@@ -78,6 +78,13 @@
             perspective: 1200px; transform-style: preserve-3d; user-select: none;
         }
 
+        /* Global Screen Dim / Fade Curtain for Whole Screen & Wallpaper */
+        #screenCurtain {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: #000; opacity: 0; pointer-events: none; z-index: 999995;
+            transition: opacity 0.75s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
         /* System Screens with Smooth Fade-in/Fade-out Transitions */
         #bootVideoScreen, #loginScreen, #lockScreen, #shutdownScreen, #biosScreen, #sleepScreen, #welcomeScreen {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 99999;
@@ -85,26 +92,16 @@
             opacity: 1; transition: opacity 0.75s cubic-bezier(0.2, 0.8, 0.2, 1);
         }
 
-        /* Windows 7 Authentic Boot Screen Style (Picture 5 Match) */
+        /* Clean Borderless 3/4 Size Boot Screen Video */
         #bootVideoScreen {
             background: #000; z-index: 100000;
         }
         .boot-video-container {
-            width: 680px; height: 420px; background: #000; border-radius: 12px;
-            border: 1px solid rgba(48, 140, 210, 0.35);
-            box-shadow: 0 30px 80px rgba(0,0,0,0.95), 0 0 35px rgba(28, 120, 220, 0.2);
-            overflow: hidden; display: flex; flex-direction: column; align-items: center; justify-content: center;
-            position: relative;
-        }
-        .boot-video-wrapper {
-            width: 220px; height: 130px; overflow: hidden; display: flex; align-items: center; justify-content: center;
+            width: 75vw; max-width: 960px; height: auto; background: transparent;
+            display: flex; align-items: center; justify-content: center; overflow: hidden;
         }
         #win7BootVideo {
-            width: 380px; height: 380px; object-fit: cover; margin-top: -20px;
-        }
-        .boot-text {
-            font-family: 'Segoe UI', Tahoma, sans-serif; font-size: 14px; font-weight: 400;
-            color: #d0d5df; margin-top: 15px; letter-spacing: 0.3px; text-shadow: 0 1px 3px rgba(0,0,0,0.8);
+            width: 100%; height: auto; object-fit: contain;
         }
 
         /* Login Screen with Glossy Subtle Blur & Frutiger Black / Light Blue Theme */
@@ -448,28 +445,40 @@
 </head>
 <body onclick="checkClosePopups(event)">
 
+    <!-- Global Screen Dim & Fade Curtain for Whole Screen & Wallpaper -->
+    <div id="screenCurtain"></div>
+
     <!-- Glossy Real FPS Counter Overlay -->
     <div id="fpsCounter">FPS: 240</div>
 
-    <!-- Windows 7 Authentic Boot Screen Style (Picture 5 Match) -->
+    <!-- Clean Borderless 3/4 Size Boot Screen -->
     <div id="bootVideoScreen">
         <div class="boot-video-container">
-            <div class="boot-video-wrapper">
-                <video id="win7BootVideo" autoplay muted playsinline src="https://raw.githubusercontent.com/leonardo-leonardo/FrutigerAeroOperatingSystem/refs/heads/main/Microsoft%20Windows%207%20Startup%20Sound%20%28animated%29%20%5butUn3Gxw0SY%5D.mp4"></video>
-            </div>
-            <div class="boot-text">Starting Windows</div>
+            <video id="win7BootVideo" autoplay muted playsinline src="https://raw.githubusercontent.com/leonardo-leonardo/FrutigerAeroOperatingSystem/refs/heads/main/Microsoft%20Windows%207%20Startup%20Sound%20%28animated%29%20%5butUn3Gxw0SY%5D.mp4"></video>
         </div>
     </div>
 
-    <!-- Login Screen (Glossy Subtle Blur, Frutiger Black / Light Blue Theme, Win 7 Flower Icon) -->
+    <!-- Login Screen (Glossy Subtle Blur, Frutiger Black / Light Blue Theme, Win 7 Flower / Orb Icon) -->
     <div id="loginScreen">
         <div class="login-box">
             <div class="login-avatar" title="Windows 7 flower icon_4k.png">
-                <svg viewBox="0 0 100 100" width="56" height="56" style="filter: drop-shadow(0 2px 4px rgba(0,0,0,0.6));">
-                    <path d="M 12 12 L 46 12 L 46 46 L 12 46 Z" fill="#f25022"/>
-                    <path d="M 54 12 L 88 12 L 88 46 L 54 46 Z" fill="#7fba00"/>
-                    <path d="M 12 54 L 46 54 L 46 88 L 12 88 Z" fill="#00a4ef"/>
-                    <path d="M 54 54 L 88 54 L 88 88 L 54 88 Z" fill="#ffb900"/>
+                <svg viewBox="0 0 100 100" width="60" height="60" style="filter: drop-shadow(0 2px 4px rgba(0,0,0,0.6));">
+                    <defs>
+                        <radialGradient id="orbGlass" cx="50%" cy="30%" r="65%">
+                            <stop offset="0%" stop-color="#4db8ff"/>
+                            <stop offset="50%" stop-color="#0066cc"/>
+                            <stop offset="100%" stop-color="#002b66"/>
+                        </radialGradient>
+                    </defs>
+                    <circle cx="50" cy="50" r="46" fill="url(#orbGlass)" stroke="#72bcff" stroke-width="2"/>
+                    <!-- Windows 7 Four-Color Waving Flag -->
+                    <g transform="translate(28, 28) scale(0.48)">
+                        <path d="M 5 5 L 45 2 L 45 42 L 5 45 Z" fill="#f25022"/>
+                        <path d="M 50 2 L 90 5 L 90 45 L 50 42 Z" fill="#7fba00"/>
+                        <path d="M 5 48 L 45 45 L 45 85 L 5 88 Z" fill="#00a4ef"/>
+                        <path d="M 50 45 L 90 48 L 90 88 L 50 85 Z" fill="#ffb900"/>
+                    </g>
+                    <ellipse cx="50" cy="22" rx="26" ry="11" fill="rgba(255,255,255,0.45)"/>
                 </svg>
             </div>
             <div style="font-size: 20px; font-weight: bold; margin-bottom: 4px;">Leonardo</div>
@@ -490,11 +499,15 @@
     <div id="lockScreen" style="display: none;">
         <div class="login-box">
             <div class="login-avatar" title="Windows 7 flower icon_4k.png">
-                <svg viewBox="0 0 100 100" width="56" height="56" style="filter: drop-shadow(0 2px 4px rgba(0,0,0,0.6));">
-                    <path d="M 12 12 L 46 12 L 46 46 L 12 46 Z" fill="#f25022"/>
-                    <path d="M 54 12 L 88 12 L 88 46 L 54 46 Z" fill="#7fba00"/>
-                    <path d="M 12 54 L 46 54 L 46 88 L 12 88 Z" fill="#00a4ef"/>
-                    <path d="M 54 54 L 88 54 L 88 88 L 54 88 Z" fill="#ffb900"/>
+                <svg viewBox="0 0 100 100" width="60" height="60" style="filter: drop-shadow(0 2px 4px rgba(0,0,0,0.6));">
+                    <circle cx="50" cy="50" r="46" fill="url(#orbGlass)" stroke="#72bcff" stroke-width="2"/>
+                    <g transform="translate(28, 28) scale(0.48)">
+                        <path d="M 5 5 L 45 2 L 45 42 L 5 45 Z" fill="#f25022"/>
+                        <path d="M 50 2 L 90 5 L 90 45 L 50 42 Z" fill="#7fba00"/>
+                        <path d="M 5 48 L 45 45 L 45 85 L 5 88 Z" fill="#00a4ef"/>
+                        <path d="M 50 45 L 90 48 L 90 88 L 50 85 Z" fill="#ffb900"/>
+                    </g>
+                    <ellipse cx="50" cy="22" rx="26" ry="11" fill="rgba(255,255,255,0.45)"/>
                 </svg>
             </div>
             <div style="font-size: 18px; font-weight: bold; margin-bottom: 4px;">Screen Locked</div>
@@ -564,11 +577,11 @@
                 </div>
             </div>
             <div class="window-content" style="padding:0;">
-                <textarea class="notepad-textarea">✨ Welcome to Frutiger Aero Web OS v8.6!
+                <textarea class="notepad-textarea">✨ Welcome to Frutiger Aero Web OS v8.8!
 
-- Picture 5 authentic boot screen container with "Starting Windows" text.
-- Perfect subtle shadow and clean border styling.
-- Windows 7 flower icon profile avatar.</textarea>
+- Clean borderless 3/4 scale boot screen video.
+- Authentic Windows 7 flower / orb profile icon (Windows 7 flower icon_4k.png).
+- Global screen & wallpaper dim curtain transitions.</textarea>
             </div>
             <div class="resizer right" onmousedown="initResize(event, 'notepadWindow', 'right')"></div>
             <div class="resizer bottom" onmousedown="initResize(event, 'notepadWindow', 'bottom')"></div>
@@ -793,7 +806,7 @@
                     <!-- About Pane -->
                     <div id="paneAbout" class="settings-pane">
                         <h3 style="margin-top:0; color:var(--accent);">About System</h3>
-                        <p><strong>OS:</strong> Frutiger Aero Web OS Ultimate 8.6</p>
+                        <p><strong>OS:</strong> Frutiger Aero Web OS Ultimate 8.8</p>
                         <p><strong>Environment:</strong> Web Browser Client Runtime</p>
                     </div>
                 </div>
@@ -897,18 +910,20 @@
                 document.getElementById('biosGpuLine').innerText = "Graphics: " + specStr;
             }
 
-            // Windows 7 Startup Video Handling & Seamless Fade-In to Login
+            // Windows 7 Startup Video Handling & Seamless Curtain/Fade Transition to Login
             const bootVideo = document.getElementById('win7BootVideo');
             const bootScreen = document.getElementById('bootVideoScreen');
             const loginScreen = document.getElementById('loginScreen');
+            const curtain = document.getElementById('screenCurtain');
 
             const transitionToLogin = () => {
-                bootScreen.style.opacity = '0';
+                curtain.style.opacity = '1';
                 setTimeout(() => {
                     bootScreen.style.display = 'none';
                     loginScreen.style.display = 'flex';
                     setTimeout(() => {
                         loginScreen.style.opacity = '1';
+                        curtain.style.opacity = '0';
                     }, 50);
                 }, 750);
             };
@@ -921,27 +936,36 @@
         function handleLogin() {
             const pass = document.getElementById('loginPassword').value;
             const err = document.getElementById('loginError');
+            const curtain = document.getElementById('screenCurtain');
             if (pass === currentPassword) {
                 err.style.display = 'none';
-                const login = document.getElementById('loginScreen');
-                login.style.opacity = '0';
+                curtain.style.opacity = '1';
                 setTimeout(() => {
+                    const login = document.getElementById('loginScreen');
+                    login.style.opacity = '0';
                     login.style.display = 'none';
                     
                     // Show Welcome Screen with constant speed glassy ring loader
                     const welcome = document.getElementById('welcomeScreen');
                     welcome.style.display = 'flex';
-                    setTimeout(() => { welcome.style.opacity = '1'; }, 50);
+                    setTimeout(() => { 
+                        welcome.style.opacity = '1'; 
+                        curtain.style.opacity = '0';
+                    }, 50);
 
-                    // After 1.8 seconds, fade welcome screen and fade into desktop
+                    // After 1.8 seconds, transition to desktop via curtain dim
                     setTimeout(() => {
-                        welcome.style.opacity = '0';
+                        curtain.style.opacity = '1';
                         setTimeout(() => {
+                            welcome.style.opacity = '0';
                             welcome.style.display = 'none';
                             const desktop = document.getElementById('desktop');
                             desktop.style.display = 'block';
                             document.getElementById('taskbar').style.display = 'flex';
-                            setTimeout(() => { desktop.style.opacity = '1'; }, 50);
+                            setTimeout(() => { 
+                                desktop.style.opacity = '1'; 
+                                curtain.style.opacity = '0';
+                            }, 50);
                             updateTaskbarApps();
                             updateTaskManager();
                         }, 750);
@@ -958,19 +982,31 @@
             closeAllFlyouts();
             document.getElementById('lockPassword').value = '';
             document.getElementById('lockError').style.display = 'none';
-            const lock = document.getElementById('lockScreen');
-            lock.style.display = 'flex';
-            setTimeout(() => { lock.style.opacity = '1'; }, 50);
+            const curtain = document.getElementById('screenCurtain');
+            curtain.style.opacity = '1';
+            setTimeout(() => {
+                const lock = document.getElementById('lockScreen');
+                lock.style.display = 'flex';
+                setTimeout(() => { 
+                    lock.style.opacity = '1'; 
+                    curtain.style.opacity = '0';
+                }, 50);
+            }, 750);
         }
 
         function handleUnlock() {
             const pass = document.getElementById('lockPassword').value;
             const err = document.getElementById('lockError');
+            const curtain = document.getElementById('screenCurtain');
             if (pass === currentPassword) {
                 err.style.display = 'none';
-                const lock = document.getElementById('lockScreen');
-                lock.style.opacity = '0';
-                setTimeout(() => { lock.style.display = 'none'; }, 750);
+                curtain.style.opacity = '1';
+                setTimeout(() => {
+                    const lock = document.getElementById('lockScreen');
+                    lock.style.opacity = '0';
+                    lock.style.display = 'none';
+                    setTimeout(() => { curtain.style.opacity = '0'; }, 50);
+                }, 750);
             } else {
                 err.style.display = 'block';
             }
@@ -987,48 +1023,77 @@
             }
         }
 
-        // Real Shutdown to BIOS
+        // Real Shutdown to BIOS with Curtain Dim
         function triggerShutdown() {
-            const shutdown = document.getElementById('shutdownScreen');
-            shutdown.style.display = 'flex';
-            setTimeout(() => { shutdown.style.opacity = '1'; }, 50);
+            const curtain = document.getElementById('screenCurtain');
+            curtain.style.opacity = '1';
             setTimeout(() => {
-                shutdown.style.opacity = '0';
+                const shutdown = document.getElementById('shutdownScreen');
+                shutdown.style.display = 'flex';
+                setTimeout(() => { 
+                    shutdown.style.opacity = '1'; 
+                    curtain.style.opacity = '0';
+                }, 50);
                 setTimeout(() => {
-                    shutdown.style.display = 'none';
-                    const bios = document.getElementById('biosScreen');
-                    bios.style.display = 'flex';
-                    setTimeout(() => { bios.style.opacity = '1'; }, 50);
-                }, 750);
-            }, 2000);
+                    curtain.style.opacity = '1';
+                    setTimeout(() => {
+                        shutdown.style.display = 'none';
+                        shutdown.style.opacity = '0';
+                        const bios = document.getElementById('biosScreen');
+                        bios.style.display = 'flex';
+                        setTimeout(() => { 
+                            bios.style.opacity = '1'; 
+                            curtain.style.opacity = '0';
+                        }, 50);
+                    }, 750);
+                }, 2000);
+            }, 750);
         }
 
         function bootFromBIOS() {
-            const bios = document.getElementById('biosScreen');
-            bios.style.opacity = '0';
+            const curtain = document.getElementById('screenCurtain');
+            curtain.style.opacity = '1';
             setTimeout(() => {
+                const bios = document.getElementById('biosScreen');
+                bios.style.opacity = '0';
                 bios.style.display = 'none';
                 const login = document.getElementById('loginScreen');
                 login.style.display = 'flex';
-                setTimeout(() => { login.style.opacity = '1'; }, 50);
+                setTimeout(() => { 
+                    login.style.opacity = '1'; 
+                    curtain.style.opacity = '0';
+                }, 50);
                 document.getElementById('loginPassword').value = '';
             }, 750);
         }
 
         // Sleep Mode
         function triggerSleep() {
-            const sleep = document.getElementById('sleepScreen');
-            sleep.style.display = 'flex';
-            setTimeout(() => { sleep.style.opacity = '1'; }, 50);
-            document.getElementById('desktop').style.display = 'none';
+            const curtain = document.getElementById('screenCurtain');
+            curtain.style.opacity = '1';
+            setTimeout(() => {
+                const sleep = document.getElementById('sleepScreen');
+                sleep.style.display = 'flex';
+                setTimeout(() => { 
+                    sleep.style.opacity = '1'; 
+                    curtain.style.opacity = '0';
+                }, 50);
+                document.getElementById('desktop').style.display = 'none';
+            }, 750);
         }
 
         function wakeFromSleep() {
-            const sleep = document.getElementById('sleepScreen');
-            sleep.style.opacity = '0';
+            const curtain = document.getElementById('screenCurtain');
+            curtain.style.opacity = '1';
             setTimeout(() => {
+                const sleep = document.getElementById('sleepScreen');
+                sleep.style.opacity = '0';
                 sleep.style.display = 'none';
                 document.getElementById('desktop').style.display = 'block';
+                setTimeout(() => { 
+                    document.getElementById('desktop').style.opacity = '1'; 
+                    curtain.style.opacity = '0';
+                }, 50);
             }, 750);
         }
 
