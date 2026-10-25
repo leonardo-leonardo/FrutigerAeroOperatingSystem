@@ -92,7 +92,7 @@
             opacity: 1; transition: opacity 0.75s cubic-bezier(0.2, 0.8, 0.2, 1);
         }
 
-        /* Clean Borderless 3/4 Size Boot Screen Video */
+        /* Clean Borderless 3/4 Size Boot Screen */
         #bootVideoScreen {
             background: #000; z-index: 100000;
         }
@@ -135,6 +135,9 @@
             margin: 0 auto 15px auto; display: flex; align-items: center; justify-content: center;
             border: 2px solid rgba(114, 188, 255, 0.9); box-shadow: inset 0 2px 6px rgba(255,255,255,0.8), 0 4px 15px rgba(0,0,0,0.5);
             overflow: hidden; position: relative;
+        }
+        .login-avatar img {
+            width: 100%; height: 100%; object-fit: cover;
         }
         .login-avatar::after {
             content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 50%;
@@ -458,28 +461,11 @@
         </div>
     </div>
 
-    <!-- Login Screen (Glossy Subtle Blur, Frutiger Black / Light Blue Theme, Win 7 Flower / Orb Icon) -->
+    <!-- Login Screen (Glossy Subtle Blur, Frutiger Black / Light Blue Theme, Win 7 Flower Icon URL) -->
     <div id="loginScreen">
         <div class="login-box">
-            <div class="login-avatar" title="Windows 7 flower icon_4k.png">
-                <svg viewBox="0 0 100 100" width="60" height="60" style="filter: drop-shadow(0 2px 4px rgba(0,0,0,0.6));">
-                    <defs>
-                        <radialGradient id="orbGlass" cx="50%" cy="30%" r="65%">
-                            <stop offset="0%" stop-color="#4db8ff"/>
-                            <stop offset="50%" stop-color="#0066cc"/>
-                            <stop offset="100%" stop-color="#002b66"/>
-                        </radialGradient>
-                    </defs>
-                    <circle cx="50" cy="50" r="46" fill="url(#orbGlass)" stroke="#72bcff" stroke-width="2"/>
-                    <!-- Windows 7 Four-Color Waving Flag -->
-                    <g transform="translate(28, 28) scale(0.48)">
-                        <path d="M 5 5 L 45 2 L 45 42 L 5 45 Z" fill="#f25022"/>
-                        <path d="M 50 2 L 90 5 L 90 45 L 50 42 Z" fill="#7fba00"/>
-                        <path d="M 5 48 L 45 45 L 45 85 L 5 88 Z" fill="#00a4ef"/>
-                        <path d="M 50 45 L 90 48 L 90 88 L 50 85 Z" fill="#ffb900"/>
-                    </g>
-                    <ellipse cx="50" cy="22" rx="26" ry="11" fill="rgba(255,255,255,0.45)"/>
-                </svg>
+            <div class="login-avatar" title="Windows 7 flower icon_upscayl_4x_high-fidelity-4x.png">
+                <img src="https://raw.githubusercontent.com/leonardo-leonardo/FrutigerAeroOperatingSystem/refs/heads/main/Windows%207%20flower%20icon_upscayl_4x_high-fidelity-4x.png" alt="Windows 7 Flower Icon">
             </div>
             <div style="font-size: 20px; font-weight: bold; margin-bottom: 4px;">Leonardo</div>
             <div id="loginDeviceSpecs" style="font-size: 11px; opacity: 0.85; margin-bottom: 14px;">Frutiger Aero Secure Session</div>
@@ -498,17 +484,8 @@
     <!-- Lock Screen -->
     <div id="lockScreen" style="display: none;">
         <div class="login-box">
-            <div class="login-avatar" title="Windows 7 flower icon_4k.png">
-                <svg viewBox="0 0 100 100" width="60" height="60" style="filter: drop-shadow(0 2px 4px rgba(0,0,0,0.6));">
-                    <circle cx="50" cy="50" r="46" fill="url(#orbGlass)" stroke="#72bcff" stroke-width="2"/>
-                    <g transform="translate(28, 28) scale(0.48)">
-                        <path d="M 5 5 L 45 2 L 45 42 L 5 45 Z" fill="#f25022"/>
-                        <path d="M 50 2 L 90 5 L 90 45 L 50 42 Z" fill="#7fba00"/>
-                        <path d="M 5 48 L 45 45 L 45 85 L 5 88 Z" fill="#00a4ef"/>
-                        <path d="M 50 45 L 90 48 L 90 88 L 50 85 Z" fill="#ffb900"/>
-                    </g>
-                    <ellipse cx="50" cy="22" rx="26" ry="11" fill="rgba(255,255,255,0.45)"/>
-                </svg>
+            <div class="login-avatar" title="Windows 7 flower icon_upscayl_4x_high-fidelity-4x.png">
+                <img src="https://raw.githubusercontent.com/leonardo-leonardo/FrutigerAeroOperatingSystem/refs/heads/main/Windows%207%20flower%20icon_upscayl_4x_high-fidelity-4x.png" alt="Windows 7 Flower Icon">
             </div>
             <div style="font-size: 18px; font-weight: bold; margin-bottom: 4px;">Screen Locked</div>
             <div style="font-size: 11px; opacity: 0.8; margin-bottom: 12px;">Session secure for Leonardo</div>
@@ -577,11 +554,11 @@
                 </div>
             </div>
             <div class="window-content" style="padding:0;">
-                <textarea class="notepad-textarea">✨ Welcome to Frutiger Aero Web OS v8.8!
+                <textarea class="notepad-textarea">✨ Welcome to Frutiger Aero Web OS v8.9!
 
-- Clean borderless 3/4 scale boot screen video.
-- Authentic Windows 7 flower / orb profile icon (Windows 7 flower icon_4k.png).
-- Global screen & wallpaper dim curtain transitions.</textarea>
+- Connected user profile image to Windows 7 flower icon URL.
+- Clean borderless boot screen video at 3/4 size.
+- Global screen and wallpaper dim curtain active.</textarea>
             </div>
             <div class="resizer right" onmousedown="initResize(event, 'notepadWindow', 'right')"></div>
             <div class="resizer bottom" onmousedown="initResize(event, 'notepadWindow', 'bottom')"></div>
@@ -806,7 +783,7 @@
                     <!-- About Pane -->
                     <div id="paneAbout" class="settings-pane">
                         <h3 style="margin-top:0; color:var(--accent);">About System</h3>
-                        <p><strong>OS:</strong> Frutiger Aero Web OS Ultimate 8.8</p>
+                        <p><strong>OS:</strong> Frutiger Aero Web OS Ultimate 8.9</p>
                         <p><strong>Environment:</strong> Web Browser Client Runtime</p>
                     </div>
                 </div>
