@@ -92,16 +92,16 @@
             opacity: 1; transition: opacity 0.75s cubic-bezier(0.2, 0.8, 0.2, 1);
         }
 
-        /* Clean Borderless 3/4 Size Boot Screen */
+        /* Clean Borderless 3/4 Size Boot Screen with Bottom Copyright Bar Cropped Out */
         #bootVideoScreen {
             background: #000; z-index: 100000;
         }
         .boot-video-container {
-            width: 75vw; max-width: 960px; height: auto; background: transparent;
-            display: flex; align-items: center; justify-content: center; overflow: hidden;
+            width: 75vw; max-width: 960px; height: 50vh; max-height: 540px; background: #000;
+            display: flex; align-items: center; justify-content: center; overflow: hidden; position: relative;
         }
         #win7BootVideo {
-            width: 100%; height: auto; object-fit: contain;
+            width: 100%; height: 125%; object-fit: cover; object-position: center 38%;
         }
 
         /* Login Screen with Glossy Subtle Blur & Frutiger Black / Light Blue Theme */
@@ -454,7 +454,7 @@
     <!-- Glossy Real FPS Counter Overlay -->
     <div id="fpsCounter">FPS: 240</div>
 
-    <!-- Clean Borderless 3/4 Size Boot Screen -->
+    <!-- Clean Borderless 3/4 Size Boot Screen (Cropped Bottom Letterbox / Copyright Bar) -->
     <div id="bootVideoScreen">
         <div class="boot-video-container">
             <video id="win7BootVideo" autoplay muted playsinline src="https://raw.githubusercontent.com/leonardo-leonardo/FrutigerAeroOperatingSystem/refs/heads/main/Microsoft%20Windows%207%20Startup%20Sound%20%28animated%29%20%5butUn3Gxw0SY%5D.mp4"></video>
@@ -554,11 +554,11 @@
                 </div>
             </div>
             <div class="window-content" style="padding:0;">
-                <textarea class="notepad-textarea">✨ Welcome to Frutiger Aero Web OS v8.9!
+                <textarea class="notepad-textarea">✨ Welcome to Frutiger Aero Web OS v9.0!
 
-- Connected user profile image to Windows 7 flower icon URL.
-- Clean borderless boot screen video at 3/4 size.
-- Global screen and wallpaper dim curtain active.</textarea>
+- Boot animation background/copyright bar cropped out.
+- Boot animation now loops correctly on every reboot from BIOS/Shutdown.
+- Windows 7 flower profile icon active.</textarea>
             </div>
             <div class="resizer right" onmousedown="initResize(event, 'notepadWindow', 'right')"></div>
             <div class="resizer bottom" onmousedown="initResize(event, 'notepadWindow', 'bottom')"></div>
@@ -783,7 +783,7 @@
                     <!-- About Pane -->
                     <div id="paneAbout" class="settings-pane">
                         <h3 style="margin-top:0; color:var(--accent);">About System</h3>
-                        <p><strong>OS:</strong> Frutiger Aero Web OS Ultimate 8.9</p>
+                        <p><strong>OS:</strong> Frutiger Aero Web OS Ultimate 9.0</p>
                         <p><strong>Environment:</strong> Web Browser Client Runtime</p>
                     </div>
                 </div>
@@ -861,7 +861,23 @@
     <script>
         let currentPassword = "1234";
 
-        // Dynamic Hardware Detection for Login & Settings
+        // Transition from boot video to login screen
+        const transitionToLogin = () => {
+            const curtain = document.getElementById('screenCurtain');
+            const bootScreen = document.getElementById('bootVideoScreen');
+            const loginScreen = document.getElementById('loginScreen');
+
+            curtain.style.opacity = '1';
+            setTimeout(() => {
+                bootScreen.style.display = 'none';
+                loginScreen.style.display = 'flex';
+                setTimeout(() => {
+                    loginScreen.style.opacity = '1';
+                    curtain.style.opacity = '0';
+                }, 50);
+            }, 750);
+        };
+
         window.addEventListener('DOMContentLoaded', () => {
             let specStr = "";
             try {
@@ -887,26 +903,9 @@
                 document.getElementById('biosGpuLine').innerText = "Graphics: " + specStr;
             }
 
-            // Windows 7 Startup Video Handling & Seamless Curtain/Fade Transition to Login
             const bootVideo = document.getElementById('win7BootVideo');
-            const bootScreen = document.getElementById('bootVideoScreen');
-            const loginScreen = document.getElementById('loginScreen');
-            const curtain = document.getElementById('screenCurtain');
-
-            const transitionToLogin = () => {
-                curtain.style.opacity = '1';
-                setTimeout(() => {
-                    bootScreen.style.display = 'none';
-                    loginScreen.style.display = 'flex';
-                    setTimeout(() => {
-                        loginScreen.style.opacity = '1';
-                        curtain.style.opacity = '0';
-                    }, 50);
-                }, 750);
-            };
-
             bootVideo.onended = transitionToLogin;
-            // Fallback safety timer
+            // Fallback safety timer in case video end event doesn't fire
             setTimeout(transitionToLogin, 6000);
         });
 
@@ -1016,6 +1015,12 @@
                     setTimeout(() => {
                         shutdown.style.display = 'none';
                         shutdown.style.opacity = '0';
+                        const desktop = document.getElementById('desktop');
+                        const taskbar = document.getElementById('taskbar');
+                        desktop.style.display = 'none';
+                        desktop.style.opacity = '0';
+                        taskbar.style.display = 'none';
+
                         const bios = document.getElementById('biosScreen');
                         bios.style.display = 'flex';
                         setTimeout(() => { 
@@ -1027,6 +1032,7 @@
             }, 750);
         }
 
+        // Boot from BIOS -> Replays Boot Video Sequence Every Time
         function bootFromBIOS() {
             const curtain = document.getElementById('screenCurtain');
             curtain.style.opacity = '1';
@@ -1034,13 +1040,18 @@
                 const bios = document.getElementById('biosScreen');
                 bios.style.opacity = '0';
                 bios.style.display = 'none';
-                const login = document.getElementById('loginScreen');
-                login.style.display = 'flex';
-                setTimeout(() => { 
-                    login.style.opacity = '1'; 
+
+                // Re-enable and play boot video sequence
+                const bootScreen = document.getElementById('bootVideoScreen');
+                const bootVideo = document.getElementById('win7BootVideo');
+                bootScreen.style.display = 'flex';
+                bootScreen.style.opacity = '1';
+                bootVideo.currentTime = 0;
+                bootVideo.play().catch(e => {});
+
+                setTimeout(() => {
                     curtain.style.opacity = '0';
                 }, 50);
-                document.getElementById('loginPassword').value = '';
             }, 750);
         }
 
