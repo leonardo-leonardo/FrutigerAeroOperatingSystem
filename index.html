@@ -85,17 +85,24 @@
             transition: opacity 0.5s ease;
         }
 
-        /* Login Screen with Heavy Background Blur */
+        /* Login Screen with True Blurry Wallpaper Background */
         #loginScreen, #lockScreen {
+            background: transparent;
+            overflow: hidden;
+        }
+        #loginScreen::before, #lockScreen::before {
+            content: '';
+            position: absolute; top: -20px; left: -20px; right: -20px; bottom: -20px;
             background: url('https://raw.githubusercontent.com/leonardo-leonardo/FrutigerAeroOperatingSystem/refs/heads/main/Vista%20Black%20Widescreen%20Pixel4k.jpg') no-repeat center center fixed;
             background-size: cover;
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
+            filter: blur(14px);
+            -webkit-filter: blur(14px);
+            z-index: -1;
         }
 
         .login-box {
-            width: 360px; background: rgba(15, 22, 35, 0.6);
-            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            width: 360px; background: rgba(15, 22, 35, 0.65);
+            backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
             border: 1px solid rgba(255, 255, 255, 0.45);
             border-top: 1px solid rgba(255, 255, 255, 0.85);
             border-radius: 14px; padding: 35px;
@@ -114,40 +121,48 @@
         }
         .login-box input:focus { border-color: var(--accent); box-shadow: inset 0 2px 4px rgba(0,0,0,0.6), 0 0 12px var(--accent-glow); }
         
-        /* Energetic Login Button: No hover displacement, extra deep click compression physics */
+        /* Energetic Login Button with Extra Deep Click Physics & No Hover Movement */
         .login-box button {
             width: 100%; margin-top: 12px;
-            background: linear-gradient(to bottom, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0.25) 49%, rgba(0, 0, 0, 0.25) 50%, rgba(28, 115, 205, 0.7) 100%);
+            background: linear-gradient(to bottom, rgba(255, 255, 255, 0.65) 0%, rgba(255, 255, 255, 0.25) 49%, rgba(0, 0, 0, 0.25) 50%, rgba(28, 115, 205, 0.75) 100%);
             border: 1px solid rgba(255, 255, 255, 0.8);
             border-top: 1px solid rgba(255, 255, 255, 1);
             border-radius: 6px; color: white; font-weight: bold; font-size: 14px; padding: 10px 16px; cursor: pointer;
             text-shadow: 0 1px 2px rgba(0,0,0,0.85);
-            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9), 0 5px 16px rgba(0,0,0,0.5), 0 0 16px rgba(40, 140, 255, 0.9);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.95), 0 5px 16px rgba(0,0,0,0.5), 0 0 18px rgba(40, 140, 255, 0.95);
             transform: none !important;
             transition: box-shadow 0.15s ease !important;
         }
         .login-box button:hover {
             transform: none !important;
-            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 1), 0 6px 20px rgba(0,0,0,0.6), 0 0 22px rgba(50, 160, 255, 1) !important;
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 1), 0 6px 20px rgba(0,0,0,0.6), 0 0 24px rgba(50, 160, 255, 1) !important;
         }
         .login-box button:active {
             transform: translateY(3px) scale(0.97) !important;
-            box-shadow: inset 0 4px 10px rgba(0, 0, 0, 0.9), inset 0 -1px 2px rgba(255, 255, 255, 0.5), 0 1px 3px rgba(0,0,0,0.2) !important;
+            box-shadow: inset 0 4px 12px rgba(0, 0, 0, 0.9), inset 0 -1px 2px rgba(255, 255, 255, 0.5), 0 1px 3px rgba(0,0,0,0.2) !important;
         }
 
         #loginError { color: #ff6b61; font-size: 12px; margin-top: 8px; display: none; text-shadow: 0 1px 2px rgba(0,0,0,0.8); }
 
-        /* Windows 7 Frutiger Aero Glassy Ring Welcome Screen Loader */
+        /* Windows 7 Frutiger Aero Glossy Glass Ring Welcome Screen Loader (Constant Speed) */
         #welcomeScreen {
             display: none; background: radial-gradient(circle, #081628 0%, #02050a 100%);
         }
         .aero-ring-loader {
-            width: 72px; height: 72px; border-radius: 50%;
-            background: conic-gradient(from 0deg, #30d5c8, #158078 50%, rgba(20,40,60,0.1) 80%, #30d5c8);
-            mask: radial-gradient(farthest-side, transparent 58%, black 60%);
-            -webkit-mask: radial-gradient(farthest-side, transparent 58%, black 60%);
-            box-shadow: inset 0 2px 6px rgba(255,255,255,0.8), 0 0 30px rgba(48,213,200,0.8);
-            animation: aeroRingSpin 0.9s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+            width: 76px; height: 76px; border-radius: 50%;
+            background: conic-gradient(from 0deg, rgba(255,255,255,0.1), #1c8ee6 30%, #00e1ff 60%, rgba(255,255,255,0.9) 90%, rgba(255,255,255,0.1));
+            mask: radial-gradient(farthest-side, transparent 62%, black 64%);
+            -webkit-mask: radial-gradient(farthest-side, transparent 62%, black 64%);
+            box-shadow: inset 0 3px 8px rgba(255,255,255,0.9), 0 0 25px rgba(0,225,255,0.85);
+            animation: aeroRingSpin 1s linear infinite;
+            position: relative;
+        }
+        .aero-ring-loader::after {
+            content: '';
+            position: absolute; top: 4px; left: 14px; width: 48px; height: 22px;
+            background: linear-gradient(to bottom, rgba(255,255,255,0.85), rgba(255,255,255,0.15));
+            border-radius: 50% 50% 20% 20%;
+            pointer-events: none;
         }
         @keyframes aeroRingSpin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
@@ -164,7 +179,7 @@
         }
         @keyframes powerBlink { 0%, 100% { opacity: 0.3; } 50% { opacity: 1; } }
 
-        /* Desktop Canvas (Hidden until welcome screen finishes) */
+        /* Desktop Canvas (Strictly hidden until welcome sequence completes) */
         #desktop {
             position: relative; width: 100%; height: calc(100% - 42px); padding: 20px; box-sizing: border-box; display: none;
             transform-style: preserve-3d;
@@ -404,7 +419,7 @@
     <!-- Glossy Real FPS Counter Overlay -->
     <div id="fpsCounter">FPS: 240</div>
 
-    <!-- Login Screen (Blurred Background & Energetic Button) -->
+    <!-- Login Screen (True Blurry Background Wallpaper) -->
     <div id="loginScreen">
         <div class="login-box">
             <div class="login-avatar">👤</div>
@@ -416,7 +431,7 @@
         </div>
     </div>
 
-    <!-- Frutiger Aero Welcome Screen Loader (Appears FIRST upon login) -->
+    <!-- Frutiger Aero Welcome Screen Loader (Appears immediately without desktop flash) -->
     <div id="welcomeScreen">
         <div class="aero-ring-loader"></div>
         <div style="font-size: 22px; font-weight: 400; margin-top: 25px; letter-spacing: 0.5px; text-shadow: 0 2px 4px rgba(0,0,0,0.8);">Welcome</div>
@@ -458,7 +473,7 @@
         <div class="power-led"></div>
     </div>
 
-    <!-- Main OS Desktop (Hidden until welcome loader finishes) -->
+    <!-- Main OS Desktop (Strictly hidden until welcome loader finishes) -->
     <div id="desktop">
         <!-- Desktop Shortcuts -->
         <div class="desktop-icon" onclick="openWindow('notepadWindow')">
@@ -493,11 +508,11 @@
                 </div>
             </div>
             <div class="window-content" style="padding:0;">
-                <textarea class="notepad-textarea">✨ Welcome to Frutiger Aero Web OS v8.2!
+                <textarea class="notepad-textarea">✨ Welcome to Frutiger Aero Web OS v8.3!
 
-- Login background heavily blurred with glassmorphism.
-- Login button enhanced with energetic glow and extra deep click physics.
-- Windows 7 glassy ring spinner welcome screen appears immediately upon login before showing the desktop.</textarea>
+- Login wallpaper correctly blurred with CSS backdrop filter.
+- Zero desktop flashing on login.
+- Authentic Win 7 Frutiger Aero glossy glass spinner with constant linear speed.</textarea>
             </div>
             <div class="resizer right" onmousedown="initResize(event, 'notepadWindow', 'right')"></div>
             <div class="resizer bottom" onmousedown="initResize(event, 'notepadWindow', 'bottom')"></div>
@@ -722,7 +737,7 @@
                     <!-- About Pane -->
                     <div id="paneAbout" class="settings-pane">
                         <h3 style="margin-top:0; color:var(--accent);">About System</h3>
-                        <p><strong>OS:</strong> Frutiger Aero Web OS Ultimate 8.2</p>
+                        <p><strong>OS:</strong> Frutiger Aero Web OS Ultimate 8.3</p>
                         <p><strong>Environment:</strong> Web Browser Client Runtime</p>
                     </div>
                 </div>
@@ -837,12 +852,12 @@
                 setTimeout(() => {
                     login.style.display = 'none';
                     
-                    // Show Welcome Screen FIRST with Glassy Ring Spinner
+                    // Show Welcome Screen immediately without any desktop flash
                     const welcome = document.getElementById('welcomeScreen');
                     welcome.style.display = 'flex';
                     welcome.style.opacity = '1';
 
-                    // After 1.8 seconds, transition from Welcome Screen to Desktop
+                    // After 1.8 seconds, fade welcome screen and boot into desktop
                     setTimeout(() => {
                         welcome.style.opacity = '0';
                         setTimeout(() => {
