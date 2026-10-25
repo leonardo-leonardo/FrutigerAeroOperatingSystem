@@ -85,20 +85,29 @@
             opacity: 1; transition: opacity 0.75s cubic-bezier(0.2, 0.8, 0.2, 1);
         }
 
-        /* Windows 7 Authentic Sized Boot Screen Video Container */
+        /* Windows 7 Authentic Boot Screen Style (Picture 5 Match) */
         #bootVideoScreen {
             background: #000; z-index: 100000;
         }
         .boot-video-container {
-            width: 560px; height: 315px; background: #000; border-radius: 6px;
-            box-shadow: 0 15px 50px rgba(0,0,0,0.9), 0 0 25px rgba(28, 142, 230, 0.25);
-            overflow: hidden; display: flex; align-items: center; justify-content: center;
+            width: 680px; height: 420px; background: #000; border-radius: 12px;
+            border: 1px solid rgba(48, 140, 210, 0.35);
+            box-shadow: 0 30px 80px rgba(0,0,0,0.95), 0 0 35px rgba(28, 120, 220, 0.2);
+            overflow: hidden; display: flex; flex-direction: column; align-items: center; justify-content: center;
+            position: relative;
+        }
+        .boot-video-wrapper {
+            width: 220px; height: 130px; overflow: hidden; display: flex; align-items: center; justify-content: center;
         }
         #win7BootVideo {
-            width: 100%; height: 100%; object-fit: cover;
+            width: 380px; height: 380px; object-fit: cover; margin-top: -20px;
+        }
+        .boot-text {
+            font-family: 'Segoe UI', Tahoma, sans-serif; font-size: 14px; font-weight: 400;
+            color: #d0d5df; margin-top: 15px; letter-spacing: 0.3px; text-shadow: 0 1px 3px rgba(0,0,0,0.8);
         }
 
-        /* Login Screen with Glossy Subtle Blur & Frutiger Black / Win 7 Light Blue Palette */
+        /* Login Screen with Glossy Subtle Blur & Frutiger Black / Light Blue Theme */
         #loginScreen, #lockScreen {
             background: transparent;
             overflow: hidden;
@@ -442,10 +451,13 @@
     <!-- Glossy Real FPS Counter Overlay -->
     <div id="fpsCounter">FPS: 240</div>
 
-    <!-- Windows 7 Authentic Sized Boot Screen Video Overlay -->
+    <!-- Windows 7 Authentic Boot Screen Style (Picture 5 Match) -->
     <div id="bootVideoScreen">
         <div class="boot-video-container">
-            <video id="win7BootVideo" autoplay muted playsinline src="https://raw.githubusercontent.com/leonardo-leonardo/FrutigerAeroOperatingSystem/refs/heads/main/Microsoft%20Windows%207%20Startup%20Sound%20%28animated%29%20%5butUn3Gxw0SY%5D.mp4"></video>
+            <div class="boot-video-wrapper">
+                <video id="win7BootVideo" autoplay muted playsinline src="https://raw.githubusercontent.com/leonardo-leonardo/FrutigerAeroOperatingSystem/refs/heads/main/Microsoft%20Windows%207%20Startup%20Sound%20%28animated%29%20%5butUn3Gxw0SY%5D.mp4"></video>
+            </div>
+            <div class="boot-text">Starting Windows</div>
         </div>
     </div>
 
@@ -552,12 +564,11 @@
                 </div>
             </div>
             <div class="window-content" style="padding:0;">
-                <textarea class="notepad-textarea">✨ Welcome to Frutiger Aero Web OS v8.5!
+                <textarea class="notepad-textarea">✨ Welcome to Frutiger Aero Web OS v8.6!
 
-- Glossy subtle wallpaper blur (5px).
-- Frutiger Black & Windows 7 Light Blue login theme.
-- Windows 7 flower icon profile picture (Windows 7 flower icon_4k.png).
-- Centered authentic Win 7 boot animation frame with smooth fade transitions.</textarea>
+- Picture 5 authentic boot screen container with "Starting Windows" text.
+- Perfect subtle shadow and clean border styling.
+- Windows 7 flower icon profile avatar.</textarea>
             </div>
             <div class="resizer right" onmousedown="initResize(event, 'notepadWindow', 'right')"></div>
             <div class="resizer bottom" onmousedown="initResize(event, 'notepadWindow', 'bottom')"></div>
@@ -782,7 +793,7 @@
                     <!-- About Pane -->
                     <div id="paneAbout" class="settings-pane">
                         <h3 style="margin-top:0; color:var(--accent);">About System</h3>
-                        <p><strong>OS:</strong> Frutiger Aero Web OS Ultimate 8.5</p>
+                        <p><strong>OS:</strong> Frutiger Aero Web OS Ultimate 8.6</p>
                         <p><strong>Environment:</strong> Web Browser Client Runtime</p>
                     </div>
                 </div>
